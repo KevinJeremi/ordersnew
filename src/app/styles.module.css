@@ -1,0 +1,766 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.header {
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition: transform 0.3s ease-in-out;
+}
+
+.headerVisible {
+  transform: translateY(0);
+}
+
+.headerHidden {
+  transform: translateY(-100%);
+}
+
+.header_inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #FF7A00;
+}
+
+.nav {
+  display: none;
+}
+
+.nav_link {
+  color: #4B5563;
+  margin-left: 2rem;
+  transition: color 0.2s, transform 0.2s;
+  padding: 0.25rem 0;
+  position: relative;
+}
+
+.nav_link:hover {
+  color: #FF7A00;
+  transform: translateY(-1px);
+}
+
+.nav_link_active {
+  color: #FF7A00;
+  font-weight: 500;
+}
+
+.nav_link_active:after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, #FF7A00, #3D8C95);
+  border-radius: 2px;
+}
+
+.mobileMenuButton {
+  display: block;
+  color: #4B5563;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.mobileMenu {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  right: 0;
+  background: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+}
+
+.mobileMenuNav {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.mobileMenuNav a {
+  padding: 0.5rem 0;
+  color: #4B5563;
+}
+
+.mobileMenuNav a:hover {
+  color: #2F80ED;
+}
+
+.heroSection {
+  background: linear-gradient(135deg, #FF7A00, #061E44);
+  color: white;
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.heroContent {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .heroContainer {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+  
+  .heroContent {
+    flex: 1;
+    margin-bottom: 0;
+  }
+  
+  .heroImage {
+    flex: 1;
+  }
+}
+
+.heroTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: white;
+  line-height: 1.2;
+  max-width: 600px;
+}
+
+.heroText {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroText {
+    font-size: 1.25rem;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background-color: #FF7A00;
+  color: white;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.primaryButton:hover {
+  background-color: rgba(255, 122, 0, 0.9);
+}
+
+.outlineButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid white;
+  color: white;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.outlineButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.heroImage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.aboutSection {
+  background-color: #F9FAFB;
+  padding: 4rem 0;
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sectionTitle h2 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #1F2937;
+}
+
+.sectionTitle p {
+  max-width: 48rem;
+  margin: 0 auto;
+  color: #4B5563;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.statCard {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.statNumber {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #FF7A00;
+  margin-bottom: 0.5rem;
+}
+
+.statTitle {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #1F2937;
+}
+
+.statDescription {
+  color: #4B5563;
+}
+
+.servicesSection {
+  background-color: white;
+  padding: 4rem 0;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.serviceCard {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.serviceIcon {
+  background-color: rgba(255, 122, 0, 0.1);
+  width: 4rem;
+  height: 4rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.serviceIcon svg {
+  width: 2rem;
+  height: 2rem;
+  color: #FF7A00;
+}
+
+.portfolioSection {
+  background-color: #F9FAFB;
+  padding: 4rem 0;
+}
+
+.portfolioGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.portfolioCard {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.portfolioImage {
+  height: 12rem;
+  background-color: #e5e7eb;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.portfolioImageOverlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 122, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolioImageText {
+  color: #FF7A00;
+  font-weight: 500;
+}
+
+.portfolioContent {
+  padding: 1.5rem;
+}
+
+.portfolioTitle {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #1F2937;
+}
+
+.portfolioDescription {
+  margin-bottom: 1rem;
+  color: #4B5563;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  background-color: rgba(255, 122, 0, 0.1);
+  color: #FF7A00;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+}
+
+.contactSection {
+  background-color: #F9FAFB;
+  padding: 4rem 0;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+.contactForm {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.formTitle {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: #1F2937;
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+}
+
+.formLabel {
+  display: block;
+  color: #4B5563;
+  margin-bottom: 0.25rem;
+}
+
+.formInput {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.formInput:focus {
+  border-color: #FF7A00;
+  box-shadow: 0 0 0 2px rgba(255, 122, 0, 0.3);
+  outline: none;
+}
+
+.formTextarea {
+  min-height: 8rem;
+}
+
+.contactInfoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contactInfoCard {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.contactInfoItem {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.contactInfoIcon {
+  color: #FF7A00;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.contactInfoText {
+  color: #4B5563;
+}
+
+.statsGrid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.statItem {
+  text-align: center;
+}
+
+.statNumber2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #FF7A00;
+}
+
+.footer {
+  background-color: #061E44;
+  color: white;
+  padding: 3rem 0;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.footerLogo {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.footerText {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+}
+
+.footerTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.footerLinks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footerLinks li {
+  margin-bottom: 0.5rem;
+}
+
+.footerLinks a {
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s;
+}
+
+.footerLinks a:hover {
+  color: #FF7A00;
+}
+
+.socialLinksContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialLink {
+  color: white;
+  transition: color 0.2s;
+}
+
+.socialLink:hover {
+  color: #FF7A00;
+}
+
+.footerBottom {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.875rem;
+}
+
+/* Responsive styles */
+@media (min-width: 768px) {
+  .heroContainer {
+    flex-direction: row;
+  }
+  
+  .heroContent {
+    width: 50%;
+  }
+  
+  .heroImage {
+    width: 50%;
+  }
+  
+  .heroTitle {
+    font-size: 3rem;
+  }
+  
+  .nav {
+    display: flex;
+  }
+  
+  .mobileMenuButton {
+    display: none;
+  }
+  
+  .statsGrid,
+  .servicesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .portfolioGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .contactGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .footerGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfolioGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Team Section Styles */
+.teamSection {
+  background-color: white;
+  padding: 4rem 0;
+  position: relative;
+}
+
+.teamSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(135deg, rgba(255,122,0,0.1), rgba(61,140,149,0.1));
+  z-index: 0;
+}
+
+.teamGrid {
+  display: none; /* Hide on mobile by default */
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.teamCard {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  height: 100%; /* Make sure all cards have the same height */
+}
+
+.teamCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 122, 0, 0.3);
+}
+
+.teamCard:hover .teamImagePlaceholder {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.25);
+}
+
+.teamCard:hover::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #FF7A00, #3D8C95);
+}
+
+.teamImageContainer {
+  height: 280px; /* Increased height to show more of image */
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+}
+
+.teamImage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.actualTeamImage {
+  transition: transform 0.5s ease;
+  transform-origin: center top; /* Make sure zoom happens from top center */
+}
+
+.teamCard:hover .actualTeamImage {
+  transform: scale(1.08);
+}
+
+.teamImagePlaceholder {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #FF7A00, #3D8C95);
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  border: 3px solid white;
+  z-index: 5;
+}
+
+.teamContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 220px; /* Increased height to prevent content from being cut off */
+}
+
+.teamName {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #061E44;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.teamName::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 3px;
+  width: 40px;
+  background: linear-gradient(to right, #FF7A00, #3D8C95);
+  border-radius: 2px;
+}
+
+.teamPosition {
+  margin: 0.75rem 0;
+}
+
+.teamBio {
+  color: #4B5563;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.teamSocial {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.socialLink {
+  color: #4B5563;
+  transition: color 0.2s;
+}
+
+.socialLink:hover {
+  color: #FF7A00;
+}
+
+@media (min-width: 640px) {
+  .teamGrid {
+    display: grid; /* Show grid starting from sm screens */
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .teamGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .teamGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
