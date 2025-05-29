@@ -110,8 +110,8 @@ export default function ContactSection() {
                                 type="submit"
                                 disabled={isSubmitting}
                                 className={`w-full font-semibold py-4 px-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-lg ${isSubmitting
-                                        ? 'bg-gray-400 cursor-not-allowed'
-                                        : 'bg-gradient-to-r from-[#FF7A00] to-[#3D8C95] hover:from-[#FF7A00]/90 hover:to-[#3D8C95]/90'
+                                    ? 'bg-gray-400 cursor-not-allowed'
+                                    : 'bg-gradient-to-r from-[#FF7A00] to-[#3D8C95] hover:from-[#FF7A00]/90 hover:to-[#3D8C95]/90'
                                     } text-white`}
                             >
                                 {isSubmitting ? 'Mengirim...' : 'Kirim Pesan'}
@@ -132,7 +132,7 @@ export default function ContactSection() {
                                         </svg>
                                     </div>                                    <div className="select-text cursor-text" style={{ userSelect: 'text', WebkitUserSelect: 'text' }}>
                                         <h4 className="font-semibold text-[#061E44] mb-1 select-text">Email</h4>
-                                        <p className="text-gray-600 select-text">info@orderdigital.com</p>
+                                        <p className="text-gray-600 select-text">teamorders2k25@gmail.com</p>
                                     </div>
                                 </div>
 
@@ -147,17 +147,7 @@ export default function ContactSection() {
                                     </div>
                                 </div>
 
-                                <div className="flex items-start group/item">
-                                    <div className="w-12 h-12 bg-gradient-to-br from-[#061E44] to-[#061E44]/80 rounded-2xl flex items-center justify-center mr-4 flex-shrink-0 group-hover/item:scale-110 transition-transform duration-300">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-white">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                                        </svg>
-                                    </div>                                    <div className="select-text cursor-text" style={{ userSelect: 'text', WebkitUserSelect: 'text' }}>
-                                        <h4 className="font-semibold text-[#061E44] mb-1 select-text">Alamat</h4>
-                                        <p className="text-gray-600 select-text">Jl. Sudirman No. 123<br />Jakarta Pusat, 10220</p>
-                                    </div>
-                                </div>
+
                             </div>                        </div>
 
                         <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl group transition-all duration-500 border border-gray-100/50 backdrop-blur-sm relative z-10 p-6">
@@ -177,24 +167,16 @@ export default function ContactSection() {
                                     </div>
                                     <p className="text-center text-xs text-[#FF7A00] mt-2 font-medium">Instagram</p>
                                 </a>
-
-                                <a href="#" className="group/social relative" aria-label="Twitter">
-                                    <div className="w-full h-16 bg-gradient-to-br from-[#3D8C95]/10 to-[#3D8C95]/5 hover:from-[#3D8C95] hover:to-[#3D8C95]/80 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg group-hover/social:shadow-[#3D8C95]/25">
-                                        <svg className="w-6 h-6 text-[#3D8C95] group-hover/social:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                                <a href="#" className="group/social relative" aria-label="Facebook">
+                                    <div className="w-full h-16 bg-gradient-to-br from-blue-500/10 to-blue-600/5 hover:from-blue-500 hover:to-blue-600/80 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg group-hover/social:shadow-blue-500/25">
+                                        <svg className="w-6 h-6 text-blue-600 group-hover/social:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.35C0 23.407.593 24 1.325 24h11.494V14.706h-3.12v-3.62h3.12V8.413c0-3.09 1.892-4.787 4.651-4.787 1.325 0 2.465.098 2.8.142v3.25h-1.92c-1.505 0-1.794.716-1.794 1.77v2.32h3.588l-.467 3.62h-3.121V24h6.116c.732 0 1.325-.593 1.325-1.325V1.325C24 .593 23.407 0 22.675 0z" />
                                         </svg>
                                     </div>
-                                    <p className="text-center text-xs text-[#3D8C95] mt-2 font-medium">Twitter</p>
+                                    <p className="text-center text-xs text-blue-600 mt-2 font-medium">Facebook</p>
                                 </a>
 
-                                <a href="#" className="group/social relative" aria-label="LinkedIn">
-                                    <div className="w-full h-16 bg-gradient-to-br from-[#061E44]/10 to-[#061E44]/5 hover:from-[#061E44] hover:to-[#061E44]/80 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg group-hover/social:shadow-[#061E44]/25">
-                                        <svg className="w-6 h-6 text-[#061E44] group-hover/social:text-white transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                                        </svg>
-                                    </div>
-                                    <p className="text-center text-xs text-[#061E44] mt-2 font-medium">LinkedIn</p>
-                                </a>
+
 
                                 <a href="#" className="group/social relative" aria-label="WhatsApp">
                                     <div className="w-full h-16 bg-gradient-to-br from-green-500/10 to-green-600/5 hover:from-green-500 hover:to-green-600/80 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg group-hover/social:shadow-green-500/25">

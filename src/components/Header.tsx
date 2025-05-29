@@ -15,7 +15,7 @@ export default function Header() {
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
-            
+
             // Show navbar when scrolling up, hide when scrolling down
             if (currentScrollY < lastScrollY || currentScrollY < 10) {
                 setIsVisible(true);
@@ -23,7 +23,7 @@ export default function Header() {
                 setIsVisible(false);
                 setIsMenuOpen(false); // Close mobile menu when hiding
             }
-            
+
             setLastScrollY(currentScrollY);
         };
 
@@ -35,7 +35,7 @@ export default function Header() {
     const handleNavClick = (section: string) => {
         setActiveSection(section);
         setIsMenuOpen(false);
-    };    return (
+    }; return (
         <header className={`${styles.header} ${isVisible ? styles.headerVisible : styles.headerHidden}`}>
             <div className={`${styles.container} ${styles.header_inner}`}>
                 <div className="flex items-center">
