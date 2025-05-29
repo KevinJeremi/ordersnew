@@ -56,7 +56,7 @@ const TeamSection = () => {
     {
       name: 'Natasya Lumingkewas',
       position: 'UI/UX Designer',
-      image: '/images/team/p5.png'
+      image: '/images/team/p10.png'
     }
   ]; return (
     <section className={styles.teamSection} id="team">
