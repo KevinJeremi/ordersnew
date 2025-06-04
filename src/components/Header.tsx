@@ -8,35 +8,37 @@ import styles from '../app/styles.module.css';
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
-    const [isVisible, setIsVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
+    // State untuk transparansi header saat scroll
+    const [isScrolled, setIsScrolled] = useState(false);
 
-    // Handle scroll to show/hide navbar
+    // Mendeteksi scroll untuk efek transparansi
     useEffect(() => {
         const handleScroll = () => {
-            const currentScrollY = window.scrollY;
+            const scrollPosition = window.scrollY;
 
-            // Show navbar when scrolling up, hide when scrolling down
-            if (currentScrollY < lastScrollY || currentScrollY < 10) {
-                setIsVisible(true);
-            } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                setIsVisible(false);
-                setIsMenuOpen(false); // Close mobile menu when hiding
+            // Set header menjadi transparan ketika scroll lebih dari 50px
+            if (scrollPosition > 50) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
             }
 
-            setLastScrollY(currentScrollY);
+            // Handle mobile menu saat scroll jika diperlukan
+            if (scrollPosition > 100 && isMenuOpen) {
+                setIsMenuOpen(false); // Close mobile menu when scrolling significantly
+            }
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [lastScrollY]);
+    }, [isMenuOpen]);
 
     // Function to handle navigation click and set active section
     const handleNavClick = (section: string) => {
         setActiveSection(section);
         setIsMenuOpen(false);
     }; return (
-        <header className={`${styles.header} ${isVisible ? styles.headerVisible : styles.headerHidden}`}>
+        <header className={`${styles.header} ${isScrolled ? styles.headerScrolled : styles.headerVisible}`}>
             <div className={`${styles.container} ${styles.header_inner}`}>
                 <div className="flex items-center">
                     <Link href="/" className={styles.logo} onClick={() => handleNavClick('home')}>
@@ -57,8 +59,7 @@ export default function Header() {
                         </div>
                     </Link>
                 </div>
-                {/* Desktop Navigation */}
-                <nav className={styles.nav}>
+                {/* Desktop Navigation */}                <nav className={styles.nav}>
                     <Link
                         href="#tentang-kami"
                         className={`${styles.nav_link} ${activeSection === 'about' ? styles.nav_link_active : ''}`}
@@ -72,6 +73,13 @@ export default function Header() {
                         onClick={() => handleNavClick('services')}
                     >
                         Layanan
+                    </Link>
+                    <Link
+                        href="#pricing"
+                        className={`${styles.nav_link} ${activeSection === 'pricing' ? styles.nav_link_active : ''}`}
+                        onClick={() => handleNavClick('pricing')}
+                    >
+                        Harga
                     </Link>
                     <Link
                         href="#portofolio"
@@ -106,45 +114,51 @@ export default function Header() {
                 </button>
 
                 {/* Mobile Menu */}
-                {isMenuOpen && (
-                    <div className={styles.mobileMenu}>            <nav className={styles.mobileMenuNav}>
-                        <Link
-                            href="#tentang-kami"
-                            className={`${styles.nav_link} ${activeSection === 'about' ? styles.nav_link_active : ''}`}
-                            onClick={() => handleNavClick('about')}
-                        >
-                            Tentang Kami
-                        </Link>
-                        <Link
-                            href="#layanan"
-                            className={`${styles.nav_link} ${activeSection === 'services' ? styles.nav_link_active : ''}`}
-                            onClick={() => handleNavClick('services')}
-                        >
-                            Layanan
-                        </Link>
-                        <Link
-                            href="#portofolio"
-                            className={`${styles.nav_link} ${activeSection === 'portfolio' ? styles.nav_link_active : ''}`}
-                            onClick={() => handleNavClick('portfolio')}
-                        >
-                            Portofolio
-                        </Link>
-                        <Link
-                            href="#team"
-                            className={`${styles.nav_link} ${activeSection === 'team' ? styles.nav_link_active : ''}`}
-                            onClick={() => handleNavClick('team')}
-                        >
-                            Tim Kami
-                        </Link>
-                        <Link
-                            href="#kontak"
-                            className={`${styles.nav_link} ${activeSection === 'contact' ? styles.nav_link_active : ''}`}
-                            onClick={() => handleNavClick('contact')}
-                        >
-                            Kontak
-                        </Link>
-                    </nav>
-                    </div>
+                {isMenuOpen && (<div className={styles.mobileMenu}>            <nav className={styles.mobileMenuNav}>
+                    <Link
+                        href="#tentang-kami"
+                        className={`${styles.nav_link} ${activeSection === 'about' ? styles.nav_link_active : ''}`}
+                        onClick={() => handleNavClick('about')}
+                    >
+                        Tentang Kami
+                    </Link>
+                    <Link
+                        href="#layanan"
+                        className={`${styles.nav_link} ${activeSection === 'services' ? styles.nav_link_active : ''}`}
+                        onClick={() => handleNavClick('services')}
+                    >
+                        Layanan
+                    </Link>
+                    <Link
+                        href="#pricing"
+                        className={`${styles.nav_link} ${activeSection === 'pricing' ? styles.nav_link_active : ''}`}
+                        onClick={() => handleNavClick('pricing')}
+                    >
+                        Harga
+                    </Link>
+                    <Link
+                        href="#portofolio"
+                        className={`${styles.nav_link} ${activeSection === 'portfolio' ? styles.nav_link_active : ''}`}
+                        onClick={() => handleNavClick('portfolio')}
+                    >
+                        Portofolio
+                    </Link>
+                    <Link
+                        href="#team"
+                        className={`${styles.nav_link} ${activeSection === 'team' ? styles.nav_link_active : ''}`}
+                        onClick={() => handleNavClick('team')}
+                    >
+                        Tim Kami
+                    </Link>
+                    <Link
+                        href="#kontak"
+                        className={`${styles.nav_link} ${activeSection === 'contact' ? styles.nav_link_active : ''}`}
+                        onClick={() => handleNavClick('contact')}
+                    >
+                        Kontak
+                    </Link>
+                </nav>
+                </div>
                 )}
             </div>
         </header>

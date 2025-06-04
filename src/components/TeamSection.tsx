@@ -8,21 +8,8 @@ const TeamSection = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
 
-  // Update activeIdx on scroll
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider) return;
-
-    const onScroll = () => {
-      const scrollLeft = slider.scrollLeft;
-      const containerWidth = slider.clientWidth;
-      const newActiveIdx = Math.round(scrollLeft / containerWidth);
-      setActiveIdx(newActiveIdx);
-    };
-
-    slider.addEventListener("scroll", onScroll, { passive: true });
-    return () => slider.removeEventListener("scroll", onScroll);
-  }, []); const teamMembers = [
+  // Team members data moved before useEffect
+  const teamMembers = [
     {
       name: 'Aldy Loing',
       position: 'Team Leader',
@@ -57,8 +44,66 @@ const TeamSection = () => {
       name: 'Natasya Lumingkewas',
       position: 'UI/UX Designer',
       image: '/images/team/p10.png'
+    },
+    {
+      name: 'Giordyano Anhar',
+      position: 'Designer',
+      image: '/images/team/p8.png'
     }
-  ]; return (
+  ];
+
+  // Update activeIdx on scroll with improved calculation
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    const onScroll = () => {
+      const scrollLeft = slider.scrollLeft;
+      const containerWidth = slider.clientWidth;
+
+      // More accurate calculation with threshold
+      const rawIndex = scrollLeft / containerWidth;
+      const newActiveIdx = Math.round(rawIndex);
+
+      // Ensure the index is within bounds
+      const clampedIdx = Math.max(0, Math.min(newActiveIdx, teamMembers.length - 1));
+
+      // Only update if index actually changed
+      if (clampedIdx !== activeIdx) {
+        setActiveIdx(clampedIdx);
+      }
+    };
+
+    // Throttle scroll events for better performance
+    let ticking = false;
+    const throttledScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          onScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    slider.addEventListener("scroll", throttledScroll, { passive: true });
+    return () => slider.removeEventListener("scroll", throttledScroll);
+  }, [activeIdx, teamMembers.length]);
+
+  // Function to handle dot click
+  const handleDotClick = (index: number) => {
+    const slider = sliderRef.current;
+    if (slider) {
+      const containerWidth = slider.clientWidth;
+      slider.scrollTo({
+        left: index * containerWidth,
+        behavior: 'smooth'
+      });
+      setActiveIdx(index);
+    }
+  };
+
+  return (
     <section className={styles.teamSection} id="team">
       {/* Enhanced Background Elements */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#FF7A00]/10 to-transparent rounded-bl-full"></div>
@@ -74,8 +119,8 @@ const TeamSection = () => {
       <div className={styles.container}>
         <div className={styles.sectionTitle}>
           <span className="inline-block text-[#FF7A00] font-semibold mb-2">DREAM TEAM</span>
-          <h2 className="text-4xl font-bold mb-3">Meet Our Experts</h2>
-          <p className="max-w-2xl mx-auto text-gray-600">Kami adalah tim profesional berdedikasi yang memadukan kreativitas, keahlian teknis, dan pengalaman bisnis untuk memberikan solusi digital yang luar biasa.</p>
+          <h2 className="text-4xl font-bold mb-3">Meet Our Roaster</h2>
+          <p className="max-w-2xl mx-auto text-gray-600">Kami adalah tim ahli berdedikasi yang memadukan kreativitas, keahlian teknis untuk memberikan solusi digital yang luar biasa.</p>
         </div>
 
         {/* Mobile Slider */}
@@ -92,22 +137,30 @@ const TeamSection = () => {
                     key={index}
                     className="w-full flex-shrink-0 px-4"
                     style={{ scrollSnapAlign: 'start' }}
-                  >                    <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl group transition-all duration-500 hover:-translate-y-3 border border-gray-100/50 backdrop-blur-sm relative before:absolute before:inset-0 before:bg-gradient-to-br before:from-[#FF7A00]/5 before:via-transparent before:to-[#3D8C95]/5 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100">
+                  >
+                    <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl group transition-all duration-500 hover:-translate-y-3 border border-gray-100/50 backdrop-blur-sm relative before:absolute before:inset-0 before:bg-gradient-to-br before:from-[#FF7A00]/5 before:via-transparent before:to-[#3D8C95]/5 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100">
                       {/* Modern Image Container with Gradient Overlay */}
                       <div className="relative h-80 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/10 via-transparent to-[#3D8C95]/10 z-10"></div>                        <Image
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/10 via-transparent to-[#3D8C95]/10 z-10"></div>
+                        <Image
                           src={member.image}
                           alt={member.name}
                           fill
-                          style={{ objectFit: 'cover', objectPosition: 'center 10%' }}
+                          style={{
+                            objectFit: 'cover',
+                            objectPosition: member.name === 'Giordyano Anhar' ? 'center 60%' : 'center 50%'
+                          }}
                           priority={index < 2}
                           className="group-hover:scale-110 transition-transform duration-700 ease-out"
                         />
-                      </div>                      {/* Modern Content Section */}
+                      </div>
+
+                      {/* Modern Content Section */}
                       <div className="p-6 relative z-10">
                         {/* Background Pattern */}
                         <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#FF7A00]/5 to-transparent rounded-bl-full group-hover:from-[#FF7A00]/10 transition-all duration-500"></div>
                         <div className="absolute -top-2 -left-2 w-8 h-8 bg-gradient-to-br from-[#3D8C95]/10 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200"></div>
+
                         {/* Name and Position Display */}
                         <div className="text-center">
                           <h3 className="text-xl font-bold text-[#061E44] mb-2 group-hover:text-[#FF7A00] transition-colors duration-300">{member.name}</h3>
@@ -150,8 +203,8 @@ const TeamSection = () => {
               </div>
             </div>
 
-            {/* Slider Dots Indicator */}
-            <div className="flex justify-center items-center mt-6 space-x-2 bg-transparent">
+            {/* Slider Dots Indicator - Fixed */}
+            <div className="flex justify-center items-center mt-6 space-x-2">
               {teamMembers.map((_, idx) => (
                 <button
                   key={idx}
@@ -160,36 +213,40 @@ const TeamSection = () => {
                     ? 'bg-[#FF7A00] scale-110'
                     : 'bg-[#FF7A00]/30 hover:bg-[#FF7A00]/50'
                     }`}
-                  onClick={() => {
-                    const slider = sliderRef.current;
-                    if (slider) {
-                      const containerWidth = slider.clientWidth;
-                      slider.scrollTo({ left: idx * containerWidth, behavior: 'smooth' });
-                    }
-                  }}
+                  onClick={() => handleDotClick(idx)}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
               ))}
             </div>
           </div>
-        </div>        {/* Desktop Grid */}
+        </div>
+
+        {/* Desktop Grid */}
         <div className={`hidden md:grid ${styles.teamGrid}`}>
           {teamMembers.map((member, index) => (
             <div key={index} className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl group transition-all duration-500 hover:-translate-y-3 border border-gray-100/50 backdrop-blur-sm relative before:absolute before:inset-0 before:bg-gradient-to-br before:from-[#FF7A00]/5 before:via-transparent before:to-[#3D8C95]/5 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100">
               {/* Modern Image Container with Gradient Overlay */}
               <div className="relative h-72 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/10 via-transparent to-[#3D8C95]/10 z-10"></div>                <Image
+                <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/10 via-transparent to-[#3D8C95]/10 z-10"></div>
+                <Image
                   src={member.image}
                   alt={member.name}
                   fill
-                  style={{ objectFit: 'cover', objectPosition: 'center 10%' }}
+                  style={{
+                    objectFit: 'cover',
+                    objectPosition: member.name === 'Giordyano Anhar' ? 'center 60%' : 'center 50%'
+                  }}
                   priority={index < 2}
                   className="group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
-              </div>              {/* Modern Content Section */}
+              </div>
+
+              {/* Modern Content Section */}
               <div className="p-5 relative z-10">
-                {/* Background Pattern */}                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#FF7A00]/5 to-transparent rounded-bl-full group-hover:from-[#FF7A00]/10 transition-all duration-500"></div>
+                {/* Background Pattern */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#FF7A00]/5 to-transparent rounded-bl-full group-hover:from-[#FF7A00]/10 transition-all duration-500"></div>
                 <div className="absolute -top-1 -left-1 w-6 h-6 bg-gradient-to-br from-[#3D8C95]/10 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200"></div>
+
                 {/* Name and Position Display */}
                 <div className="text-center">
                   <h3 className="text-lg font-bold text-[#061E44] mb-2 group-hover:text-[#FF7A00] transition-colors duration-300">{member.name}</h3>
