@@ -10,10 +10,6 @@ export default function WhyOrdersSection() {
             <div className={`${styles.container}`}>
                 <div className="text-center mb-10">
                     <h2 className="text-3xl font-bold mb-4 text-[#1F2937]">Kenapa Memilih ORDERS?</h2>
-                    <p className="max-w-3xl mx-auto text-[#4B5563]">
-                        Kami menawarkan solusi digital berkualitas tinggi dengan harga terjangkau dan layanan terbaik
-                        untuk membantu bisnis Anda berkembang di era digital.
-                    </p>
                 </div>
 
                 <div className="flex flex-col lg:flex-row gap-8 items-center">

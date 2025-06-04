@@ -8,9 +8,12 @@ export default function ServicesSection() {
   const [activeIdx, setActiveIdx] = useState(0);
   // Add state for selected service
   const [selectedService, setSelectedService] = useState(0);
+  const [previousService, setPreviousService] = useState(0);
   // Add state for expanded service on mobile
   const [expandedService, setExpandedService] = useState<number | null>(null);
-
+  // Add state for transition control
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right');
   // Update activeIdx on scroll
   useEffect(() => {
     const slider = sliderRef.current;
@@ -26,6 +29,24 @@ export default function ServicesSection() {
     slider.addEventListener("scroll", onScroll, { passive: true });
     return () => slider.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Handle service selection with proper transition
+  const handleServiceSelect = (index: number) => {
+    if (selectedService !== index && !isTransitioning) {
+      setPreviousService(selectedService);
+      setSlideDirection(index > selectedService ? 'right' : 'left');
+      setIsTransitioning(true);
+
+      // Start exit animation, then change service
+      setTimeout(() => {
+        setSelectedService(index);
+        // End transition after enter animation
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 600);
+      }, 300);
+    }
+  };
 
   const services = [
     {
@@ -141,15 +162,16 @@ export default function ServicesSection() {
               <div className="px-4 pb-6 border-t border-gray-100">
                 {/* Service Image */}
                 <div className="mt-4 mb-4 flex justify-center">
-                  <div className="relative w-full max-w-sm bg-white p-3 rounded-xl shadow-lg">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      width={400}
-                      height={250}
-                      className="rounded-lg w-full h-auto object-contain"
-                      priority={expandedService === index}
-                    />
+                  <div className="relative w-full max-w-sm bg-white p-3 rounded-xl shadow-lg">                    <Image
+                    src={service.image}
+                    alt={service.title}
+                    width={400}
+                    height={250}
+                    className={`rounded-lg w-full h-auto object-contain ${service.title === 'Desain Digital' ? 'scale-150' :
+                        service.title === 'Pembuatan Aplikasi' ? 'scale-150' : ''
+                      }`}
+                    priority={expandedService === index}
+                  />
                   </div>
                 </div>
 
@@ -167,42 +189,63 @@ export default function ServicesSection() {
       <div className="hidden md:grid md:grid-cols-3 gap-8 items-center">
         {/* Left Column Services */}
         <div className="space-y-5">
-          {leftServices.map((service, index) => (
-            <div
-              key={index}
-              className={`bg-white rounded-2xl p-5 shadow hover:shadow-md transition-all duration-300 group cursor-pointer ${selectedService === index ? 'ring-2 ring-orange-500' : ''}`}
-              onClick={() => setSelectedService(index)}
-            >
-              {/* Icon Container */}
-              <div className="flex items-center mb-3">
-                <div className={`${service.bgColor} p-2.5 rounded-lg mr-3`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
-                    className={`w-5 h-5 ${service.iconBgColor}`}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d={service.icon} />
-                  </svg>
-                </div>
-                <h3 className="text-base font-semibold text-gray-800 group-hover:text-orange-600 transition-colors">{service.title}</h3>
+          {leftServices.map((service, index) => (<div
+            key={index}
+            className={`bg-white rounded-2xl p-5 shadow hover:shadow-md transition-all duration-300 group cursor-pointer ${selectedService === index ? 'ring-2 ring-orange-500' : ''}`}
+            onClick={() => handleServiceSelect(index)}
+          >
+            {/* Icon Container */}
+            <div className="flex items-center mb-3">
+              <div className={`${service.bgColor} p-2.5 rounded-lg mr-3`}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+                  className={`w-5 h-5 ${service.iconBgColor}`}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d={service.icon} />
+                </svg>
               </div>
-
-              <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
+              <h3 className="text-base font-semibold text-gray-800 group-hover:text-orange-600 transition-colors">{service.title}</h3>
             </div>
+
+            <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
+          </div>
           ))}
         </div>        {/* Center Image Column */}
         <div className="flex justify-center items-center">
-          <div className="relative w-full max-w-lg bg-white p-6 rounded-2xl shadow-2xl">
-            <Image
-              src={services[selectedService].image}
-              alt={services[selectedService].title}
-              width={600}
-              height={380}
-              className="rounded-xl w-full h-auto object-contain transition-all duration-500"
-              priority
-            />
-            {/* Service Title Overlay */}
-            <div className="absolute bottom-2 left-2 right-2">
-              <div className="bg-black/70 backdrop-blur-sm rounded-lg px-4 py-2">
-                <h4 className="text-white font-semibold text-sm text-center">{services[selectedService].title}</h4>
+          <div className="relative w-full max-w-lg bg-white p-6 overflow-hidden" style={{ minHeight: '300px' }}>
+            {/* Previous Image - Exit Animation */}
+            {isTransitioning && (
+              <div className={`absolute inset-6 z-20 ${slideDirection === 'right'
+                  ? 'animate-[slideOutLeft_0.3s_ease-in_forwards]'
+                  : 'animate-[slideOutRight_0.3s_ease-in_forwards]'
+                }`}>                <Image
+                  src={services[previousService].image}
+                  alt={services[previousService].title}
+                  width={600}
+                  height={380}
+                  className={`w-full h-auto object-contain ${services[previousService].title === 'Desain Digital' ? 'scale-150' :
+                      services[previousService].title === 'Pembuatan Aplikasi' ? 'scale-150' : ''
+                    }`}
+                  priority
+                />
               </div>
+            )}
+
+            {/* Current Image - Enter Animation */}
+            <div className={`relative z-10 ${isTransitioning
+                ? `${slideDirection === 'right'
+                  ? 'animate-[slideInFromRight_0.6s_ease-out_0.3s_both]'
+                  : 'animate-[slideInFromLeft_0.6s_ease-out_0.3s_both]'
+                }`
+                : 'opacity-100'
+              }`}>              <Image
+                src={services[selectedService].image}
+                alt={services[selectedService].title}
+                width={600}
+                height={380}
+                className={`w-full h-auto object-contain hover:scale-105 transition-transform duration-300 ${services[selectedService].title === 'Desain Digital' ? 'scale-150' :
+                    services[selectedService].title === 'Pembuatan Aplikasi' ? 'scale-150' : ''
+                  }`}
+                priority
+              />
             </div>
           </div>
         </div>
@@ -213,7 +256,7 @@ export default function ServicesSection() {
             <div
               key={index}
               className={`bg-white rounded-2xl p-5 shadow hover:shadow-md transition-all duration-300 group cursor-pointer ${selectedService === index + 4 ? 'ring-2 ring-orange-500' : ''}`}
-              onClick={() => setSelectedService(index + 4)}
+              onClick={() => handleServiceSelect(index + 4)}
             >
               {/* Icon Container */}
               <div className="flex items-center mb-3">

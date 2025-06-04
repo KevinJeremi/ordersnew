@@ -12,7 +12,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 50;
+  z-index: 9998;
   transition: all 0.3s ease-in-out;
   backdrop-filter: blur(4px);
 }
@@ -46,7 +46,7 @@
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #ea580c;
+  color: #FF7A00;
 }
 
 .nav {
@@ -64,13 +64,13 @@
 }
 
 .nav_link:hover {
-  color: #ea580c;
+  color: #FF7A00;
   transform: translateY(-1px);
   opacity: 1;
 }
 
 .nav_link_active {
-  color: #ea580c;
+  color: #FF7A00;
   font-weight: 500;
 }
 
@@ -81,8 +81,55 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(to right, #ea580c, #3D8C95);
+  background: linear-gradient(to right, #FF7A00, #3D8C95);
   border-radius: 2px;
+}
+
+/* Dropdown styles */
+.servicesDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 9999;
+  margin-top: 0.5rem;
+  width: 20rem;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(229, 231, 235, 1);
+  overflow: hidden;
+}
+
+.dropdownItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dropdownItem:hover {
+  background-color: rgba(255, 122, 0, 0.05);
+}
+
+.dropdownItem:hover .dropdownTitle {
+  color: #FF7A00;
+}
+
+.dropdownTitle {
+  font-weight: 500;
+  color: #061E44;
+  transition: color 0.2s ease;
+}
+
+.dropdownDescription {
+  font-size: 0.875rem;
+  color: #6B7280;
+  margin-top: 0.25rem;
 }
 
 .mobileMenuButton {

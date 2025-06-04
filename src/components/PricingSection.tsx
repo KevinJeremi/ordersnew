@@ -103,10 +103,14 @@ const PricingCard = ({
                     <div className="text-2xl font-bold text-orange-500">
                         {price}
                     </div>
-                </div>
-                <button className="w-full py-3 px-6 bg-gray-700 hover:bg-orange-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden">
+                </div>                <a
+                    href={`https://wa.me/6282195965483?text=Halo!%20Saya%20tertarik%20dengan%20paket%20${encodeURIComponent(name)}.%20Bisakah%20Anda%20memberikan%20informasi%20lebih%20lanjut?`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3 px-6 bg-gray-700 hover:bg-orange-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden inline-block text-center"
+                >
                     <span className="relative z-10">Pesan Sekarang</span>
-                </button>
+                </a>
             </div>
         </div>
     </motion.div>
@@ -147,10 +151,14 @@ const ServiceCard = ({ service, index }: { service: ServiceData; index: number }
                             <span className="text-2xl font-bold text-orange-500">
                                 {service.price}
                             </span>
-                        </div>
-                        <button className="px-4 py-2 bg-gray-700 hover:bg-orange-600 text-white text-sm font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                        </div>                        <a
+                            href={`https://wa.me/6282195965483?text=Halo!%20Saya%20tertarik%20dengan%20layanan%20${encodeURIComponent(service.name)}.%20Bisakah%20Anda%20memberikan%20informasi%20lebih%20lanjut?`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-4 py-2 bg-gray-700 hover:bg-orange-600 text-white text-sm font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 inline-block"
+                        >
                             Pesan
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -237,9 +245,9 @@ export default function PricingSection() {
     const services: ServiceData[] = [
         {
             name: "UI/UX Design",
-            price: "Rp 50.000",
-            originalPrice: "Rp 800.000",
-            discount: "94%",
+            price: "Rp 25.000",
+            originalPrice: "Rp 80.000",
+            discount: "69%",
             description: "Desain interface dan user experience yang modern dan user-friendly",
             icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -249,9 +257,9 @@ export default function PricingSection() {
         },
         {
             name: "Logo Design",
-            price: "Rp 50.000",
-            originalPrice: "Rp 300.000",
-            discount: "83%",
+            price: "Rp 25.000",
+            originalPrice: "Rp 100.000",
+            discount: "75%",
             description: "Pembuatan logo profesional yang mencerminkan identitas brand Anda",
             icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -261,9 +269,9 @@ export default function PricingSection() {
         },
         {
             name: "Poster Design",
-            price: "Rp 50.000",
-            originalPrice: "Rp 150.000",
-            discount: "67%",
+            price: "Rp 25.000",
+            originalPrice: "Rp 60.000",
+            discount: "58%",
             description: "Desain poster menarik untuk promosi event, produk, atau layanan",
             icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -273,9 +281,9 @@ export default function PricingSection() {
         },
         {
             name: "Social Media Content",
-            price: "Rp 50.000",
-            originalPrice: "Rp 200.000",
-            discount: "75%",
+            price: "Rp 25.000",
+            originalPrice: "Rp 50.000",
+            discount: "50%",
             description: "Konten visual untuk Instagram, Facebook, dan platform media sosial lainnya",
             icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -285,9 +293,7 @@ export default function PricingSection() {
         },
         {
             name: "Moodboard Design",
-            price: "Rp 50.000",
-            originalPrice: "Rp 250.000",
-            discount: "80%",
+            price: "Rp 20.000",
             description: "Panduan visual dan konsep desain untuk project branding atau website",
             icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -297,9 +303,7 @@ export default function PricingSection() {
         },
         {
             name: "Prototype Design",
-            price: "Rp 50.000",
-            originalPrice: "Rp 600.000",
-            discount: "92%",
+            price: "Rp 100.000",
             description: "Prototype interaktif untuk aplikasi mobile atau web",
             icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -309,9 +313,9 @@ export default function PricingSection() {
         },
         {
             name: "Photo Editing",
-            price: "Rp 50.000",
-            originalPrice: "Rp 100.000",
-            discount: "50%",
+            price: "Rp 20.000",
+            originalPrice: "Rp 50.000",
+            discount: "60%",
             description: "Edit dan retouch foto profesional untuk kebutuhan bisnis",
             icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -322,8 +326,8 @@ export default function PricingSection() {
         {
             name: "Video Editing",
             price: "Rp 50.000",
-            originalPrice: "Rp 400.000",
-            discount: "88%",
+            originalPrice: "Rp 100.000",
+            discount: "50%",
             description: "Edit video promosi, tutorial, atau konten media sosial",
             icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -463,9 +467,6 @@ export default function PricingSection() {
                     <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
                         List Layanan & Harga <span className="text-orange-500">Desain Digital</span>
                     </h2>
-                    <p className="max-w-2xl mx-auto text-gray-900">
-                        Layanan desain digital profesional untuk kebutuhan branding dan pemasaran Anda
-                    </p>
 
                 </div>                {/* Services Grid */}
                 {/* Mobile: Horizontal Scroll */}                <div className="md:hidden mb-16">

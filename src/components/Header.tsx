@@ -8,17 +8,23 @@ import styles from '../app/styles.module.css';
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const dropdownRef = useRef<HTMLDivElement>(null);
-    // State untuk transparansi header saat scroll
+    const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
-    // Daftar layanan untuk dropdown
+    // Refs untuk dropdown
+    const dropdownRef = useRef<HTMLDivElement>(null);
+    const mobileDropdownRef = useRef<HTMLDivElement>(null);
+
+    // Services data for dropdown
     const services = [
-        { name: 'Web Development', href: '#layanan-web' },
-        { name: 'Mobile App', href: '#layanan-mobile' },
-        { name: 'UI/UX Design', href: '#layanan-uiux' },
-        { name: 'Digital Marketing', href: '#layanan-marketing' },
+        { title: "Pembuatan Website", description: "Company Profile, E-commerce, Landing Page" },
+        { title: "Pembuatan Aplikasi", description: "Mobile App, Web App Fullstack" },
+        { title: "Less Coding", description: "Pemrograman cepat dan efisien" },
+        { title: "Desain Digital", description: "UI/UX, Logo, Poster, Social Media" },
+        { title: "Moodboard", description: "Konsep visual panduan desain" },
+        { title: "Prototype", description: "Model awal interaktif" },
+        { title: "Photo Editing", description: "Penyuntingan foto profesional" },
+        { title: "Video Editing", description: "Pembuatan dan editing video" }
     ];
 
     // Mendeteksi scroll untuk efek transparansi
@@ -35,37 +41,62 @@ export default function Header() {
 
             // Handle mobile menu saat scroll jika diperlukan
             if (scrollPosition > 100 && isMenuOpen) {
-                setIsMenuOpen(false); // Close mobile menu when scrolling significantly
-            }
-
-            // Close dropdown menu when scrolling
-            if (isDropdownOpen) {
-                setIsDropdownOpen(false);
+                setIsMenuOpen(false);
             }
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [isMenuOpen, isDropdownOpen]);
-
-    // Handle click outside to close dropdown
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-                setIsDropdownOpen(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
+    }, [isMenuOpen]);
 
     // Function to handle navigation click and set active section
     const handleNavClick = (section: string) => {
         setActiveSection(section);
         setIsMenuOpen(false);
-        setIsDropdownOpen(false); // Close dropdown when navigating
+        setIsServicesDropdownOpen(false);
     };
+
+    // Function to handle service click
+    const handleServiceClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        setActiveSection('services');
+        setIsServicesDropdownOpen(false);
+        setIsMenuOpen(false);
+
+        // Scroll to services section
+        const servicesSection = document.getElementById('layanan');
+        if (servicesSection) {
+            servicesSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    // Toggle dropdown
+    const toggleServicesDropdown = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Toggling dropdown, current state:', isServicesDropdownOpen);
+        setIsServicesDropdownOpen(!isServicesDropdownOpen);
+    };
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) &&
+                mobileDropdownRef.current && !mobileDropdownRef.current.contains(event.target as Node)) {
+                setIsServicesDropdownOpen(false);
+            }
+        };
+
+        if (isServicesDropdownOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isServicesDropdownOpen]);
 
     return (
         <header className={`${styles.header} ${isScrolled ? styles.headerScrolled : styles.headerVisible}`}>
@@ -84,7 +115,7 @@ export default function Header() {
                                 />
                             </div>
                             <div>
-                                <span className="text-[#ea580c] font-bold text-2xl tracking-wide">ORDERS</span>
+                                <span className="text-[#FF7A00] font-bold text-2xl tracking-wide">ORDERS</span>
                                 <div className="text-xs text-[#3D8C95]">Organize. Develop. Thrive.</div>
                             </div>
                         </div>
@@ -100,42 +131,45 @@ export default function Header() {
                     >
                         Tentang Kami
                     </Link>
-                    <div className="relative inline-block" ref={dropdownRef}>
+
+                    <div className="relative" ref={dropdownRef}>
                         <button
-                            className={`${styles.nav_link} ${activeSection === 'services' ? styles.nav_link_active : ''} flex items-center`}
-                            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                            aria-expanded={isDropdownOpen}
-                            aria-haspopup="true"
+                            type="button"
+                            className={`${styles.nav_link} ${activeSection === 'services' ? styles.nav_link_active : ''} flex items-center gap-1 bg-transparent border-none cursor-pointer`}
+                            onClick={toggleServicesDropdown}
                         >
                             Layanan
                             <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                                className={`w-4 h-4 ml-1 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}
+                                className={`w-4 h-4 transition-transform duration-200 ${isServicesDropdownOpen ? 'rotate-180' : ''}`}
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
                             >
-                                <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
-                        </button>
-
-                        {/* Dropdown Menu */}
-                        {isDropdownOpen && (
-                            <div className="absolute top-full left-0 mt-2 w-56 rounded-xl shadow-lg border border-gray-100 bg-white/95 backdrop-blur-md overflow-hidden transition-all duration-300 ease-in-out z-50">
-                                <div className="py-2">
-                                    {services.map((service, index) => (
-                                        <Link
-                                            key={index}
-                                            href={service.href}
-                                            className="block px-4 py-3 text-sm hover:bg-gray-50 text-gray-700 hover:text-[#ea580c] transition-colors duration-200"
-                                            onClick={() => handleNavClick('services')}
-                                        >
-                                            {service.name}
-                                        </Link>
-                                    ))}
+                        </button>                        {/* Services Dropdown */}
+                        {isServicesDropdownOpen && (
+                            <div className={styles.servicesDropdown}>
+                                <div className="p-4">
+                                    <h3 className="text-lg font-bold text-[#061E44] mb-3 px-2">Layanan Kami</h3>
+                                    <div className="grid grid-cols-1 gap-2">
+                                        {services.map((service, index) => (
+                                            <button
+                                                key={index}
+                                                onClick={handleServiceClick}
+                                                className={styles.dropdownItem}
+                                            >
+                                                <div className={styles.dropdownTitle}>
+                                                    {service.title}
+                                                </div>
+                                            </button>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         )}
                     </div>
+
                     <Link
                         href="#pricing"
                         className={`${styles.nav_link} ${activeSection === 'pricing' ? styles.nav_link_active : ''}`}
@@ -171,22 +205,9 @@ export default function Header() {
                     className={styles.mobileMenuButton}
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     aria-label="Toggle menu"
-                    aria-expanded={isMenuOpen}
                 >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        width="24"
-                        height="24"
-                    >
-                        {isMenuOpen ? (
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        ) : (
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                        )}
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" width="24" height="24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
                 </button>
 
@@ -201,40 +222,39 @@ export default function Header() {
                             >
                                 Tentang Kami
                             </Link>
-                            <div>
+
+                            <div className="relative" ref={mobileDropdownRef}>
                                 <button
-                                    className={`${styles.nav_link} ${activeSection === 'services' ? styles.nav_link_active : ''} flex items-center w-full justify-between`}
-                                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                    aria-expanded={isDropdownOpen}
-                                    aria-haspopup="true"
+                                    className={`${styles.nav_link} ${activeSection === 'services' ? styles.nav_link_active : ''} flex items-center justify-between w-full`}
+                                    onClick={toggleServicesDropdown}
                                 >
-                                    <span>Layanan</span>
+                                    Layanan
                                     <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                        className={`w-4 h-4 ml-1 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}
+                                        className={`w-4 h-4 transition-transform duration-200 ${isServicesDropdownOpen ? 'rotate-180' : ''}`}
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
                                     >
-                                        <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </button>
 
-                                {/* Mobile Dropdown Menu */}
-                                {isDropdownOpen && (
-                                    <div className="pl-4 bg-white/30 rounded-md mt-2 mb-2">
+                                {/* Mobile Services Dropdown */}
+                                {isServicesDropdownOpen && (
+                                    <div className="mt-2 ml-4 space-y-1">
                                         {services.map((service, index) => (
-                                            <Link
+                                            <button
                                                 key={index}
-                                                href={service.href}
-                                                className="block py-2 text-sm text-gray-700 hover:text-[#ea580c] transition-colors duration-200"
-                                                onClick={() => handleNavClick('services')}
+                                                onClick={handleServiceClick}
+                                                className="text-left block w-full p-2 text-sm text-gray-600 hover:text-[#FF7A00] hover:bg-[#FF7A00]/5 rounded transition-all duration-200"
                                             >
-                                                {service.name}
-                                            </Link>
+                                                {service.title}
+                                            </button>
                                         ))}
                                     </div>
                                 )}
                             </div>
+
                             <Link
                                 href="#pricing"
                                 className={`${styles.nav_link} ${activeSection === 'pricing' ? styles.nav_link_active : ''}`}
