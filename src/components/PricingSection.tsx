@@ -7,15 +7,18 @@ import { motion } from 'framer-motion';
 interface PackageData {
     name: string;
     price: string;
+    originalPrice?: string;
+    discount?: string;
     features: string[];
     estimatedTime: string;
-    popular?: boolean;
 }
 
 // Service data interface
 interface ServiceData {
     name: string;
     price: string;
+    originalPrice?: string;
+    discount?: string;
     description: string;
     icon: React.ReactNode;
 }
@@ -36,49 +39,51 @@ const FeatureCheck = ({ feature, isHighlighted = false }: { feature: string; isH
 const PricingCard = ({
     name,
     price,
+    originalPrice,
+    discount,
     features,
     estimatedTime,
-    index,
-    popular
+    index
 }: {
     name: string;
     price: string;
+    originalPrice?: string;
+    discount?: string;
     features: string[];
     estimatedTime: string;
     index: number;
-    popular?: boolean;
 }) => {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 * index }}
-            className={`bg-white rounded-xl shadow-lg hover:shadow-xl p-6 transform hover:scale-105 transition-all duration-300 flex flex-col h-full border ${popular ? 'border-orange-300' : 'border-gray-100'} relative overflow-hidden group`}
-        >
-            {/* Popular badge */}
-            {popular && (
-                <div className="absolute -top-4 left-0 right-0 mx-auto w-fit px-4 py-1 bg-orange-500 text-white text-sm font-medium rounded-full shadow-md">
-                    Popular
-                </div>
-            )}
+    return (<motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 * index }}
+        className="bg-white rounded-xl shadow-lg hover:shadow-xl p-6 transform hover:scale-105 transition-all duration-300 flex flex-col h-full border border-gray-100 relative group"
+    >        {/* Discount badge removed from here and moved inline with package name */}
 
-            {/* Decorative background element */}
-            <div className={`absolute top-0 right-0 w-32 h-32 ${popular ? 'bg-gradient-to-bl from-orange-100 to-transparent' : 'bg-gradient-to-bl from-orange-50 to-transparent'} rounded-bl-full opacity-30`}></div>
+        {/* Decorative background element */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-orange-50 to-transparent rounded-bl-full opacity-30"></div>
 
-            {/* Package name */}
-            <h3 className="text-xl font-bold text-gray-800 mb-2 relative z-10">{name}</h3>
+        {/* Card content wrapper with flex-grow to push button to bottom */}        <div className="flex flex-col h-full">
+            {/* Package name with inline discount badge */}            <div className="flex flex-wrap items-center mb-2 gap-2">
+                <h3 className="text-xl font-bold text-gray-800 relative z-10">{name}</h3>
+                {discount && (
+                    <div className="px-3 py-1 bg-red-500 text-white text-xs font-medium rounded-full shadow-md whitespace-nowrap">
+                        Diskon {discount}
+                    </div>
+                )}
+            </div>
 
             {/* Estimated time badge */}
-            <div className={`text-xs font-medium px-2 py-1 ${popular ? 'bg-orange-100 text-orange-600' : 'bg-teal-50 text-teal-600'} rounded-full inline-block mb-4 w-fit relative z-10`}>
+            <div className="text-xs font-medium px-2 py-1 bg-teal-50 text-teal-600 rounded-full inline-block mb-4 w-fit relative z-10">
                 {estimatedTime}
             </div>
 
-            {/* Features list */}
-            <div className="mb-6 flex-grow relative z-10">
+            {/* Features list - flex-grow to take up available space */}
+            <div className="flex-grow relative z-10 mb-6">
                 {features.map((feature, i) => (
                     <div key={i} className="flex items-start space-x-2 mb-2">
                         <div className="flex-shrink-0 w-5 h-5 mt-0.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke={popular ? "#F97316" : "#0D9488"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#0D9488" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                         </div>
@@ -87,56 +92,81 @@ const PricingCard = ({
                 ))}
             </div>
 
-            {/* Price and CTA */}
-            <div className="mt-auto relative z-10">
-                <div className="text-2xl font-bold text-orange-500 mb-4">
-                    {price}
+            {/* Price and CTA - always at bottom */}
+            <div className="relative z-10 mt-auto">
+                <div className="mb-4">
+                    {originalPrice && (
+                        <div className="text-sm text-gray-500 line-through mb-1">
+                            {originalPrice}
+                        </div>
+                    )}
+                    <div className="text-2xl font-bold text-orange-500">
+                        {price}
+                    </div>
                 </div>
-                <button className={`w-full py-3 px-6 ${popular ? 'bg-orange-500' : 'bg-gray-700'} hover:bg-orange-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden`}>
+                <button className="w-full py-3 px-6 bg-gray-700 hover:bg-orange-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden">
                     <span className="relative z-10">Pesan Sekarang</span>
                 </button>
             </div>
-        </motion.div>
+        </div>
+    </motion.div>
     );
 };
 
 // Service card component
 const ServiceCard = ({ service, index }: { service: ServiceData; index: number }) => (
-    <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 * index }}
-        className="bg-white rounded-xl shadow-lg hover:shadow-xl p-6 transform hover:scale-105 transition-all duration-300 border border-gray-100 group"
-    >
-        <div className="flex items-start space-x-4">
-            <div className="flex-shrink-0 w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
-                {service.icon}
-            </div>
-            <div className="flex-grow">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">{service.name}</h3>
-                <p className="text-gray-600 text-sm mb-4">{service.description}</p>
-                <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-orange-500">
-                        {service.price}
-                    </span>
-                    <button className="px-4 py-2 bg-gray-700 hover:bg-orange-600 text-white text-sm font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
-                        Pesan
-                    </button>
+    <div className="relative pt-6">
+        {/* Discount badge for services - positioned outside the card */}
+        {/* Service discount badge moved to inline with name */}
+
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 * index }}
+            className="bg-white rounded-xl shadow-lg hover:shadow-xl p-6 transform hover:scale-105 transition-all duration-300 border border-gray-100 group relative mt-2"
+        >        <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+                    {service.icon}
+                </div>                <div className="flex-grow">
+                    <div className="flex flex-wrap items-center mb-2 gap-2">
+                        <h3 className="text-xl font-bold text-gray-800">{service.name}</h3>
+                        {service.discount && (
+                            <div className="px-3 py-1 bg-red-500 text-white text-xs font-medium rounded-full shadow-md whitespace-nowrap">
+                                Diskon {service.discount}
+                            </div>
+                        )}
+                    </div>
+                    <p className="text-gray-600 text-sm mb-4">{service.description}</p>
+                    <div className="flex items-center justify-between">
+                        <div className="flex flex-col">
+                            {service.originalPrice && (
+                                <div className="text-sm text-gray-500 line-through mb-1">
+                                    {service.originalPrice}
+                                </div>
+                            )}
+                            <span className="text-2xl font-bold text-orange-500">
+                                {service.price}
+                            </span>
+                        </div>
+                        <button className="px-4 py-2 bg-gray-700 hover:bg-orange-600 text-white text-sm font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                            Pesan
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </motion.div>
+        </motion.div>
+    </div>
 );
 
 // Main component
 export default function PricingSection() {
-    const pricingSectionRef = useRef<HTMLDivElement>(null);
-
-    // Define packages data
+    const pricingSectionRef = useRef<HTMLDivElement>(null);    // Define packages data
     const packages: PackageData[] = [
         {
             name: "Starter",
             price: "Rp 150.000",
+            originalPrice: "Rp 500.000",
+            discount: "70%",
             features: [
                 "Landing Page/Blog Sederhana",
                 "1–3 Halaman",
@@ -147,6 +177,8 @@ export default function PricingSection() {
         {
             name: "Company",
             price: "Rp 500.000",
+            originalPrice: "Rp 1.000.000",
+            discount: "50%",
             features: [
                 "Company Profile",
                 "5–7 Halaman",
@@ -154,12 +186,13 @@ export default function PricingSection() {
                 "Google Maps",
                 "Social Media Integration"
             ],
-            estimatedTime: "7–14 hari",
-            popular: true
+            estimatedTime: "7–14 hari"
         },
         {
             name: "Business",
             price: "Rp 1.000.000",
+            originalPrice: "Rp 2.000.000",
+            discount: "50%",
             features: [
                 "E-Commerce Website",
                 "10–15 Halaman",
@@ -173,6 +206,8 @@ export default function PricingSection() {
         {
             name: "Ultimate",
             price: "Rp 2.500.000",
+            originalPrice: "Rp 4.000.000",
+            discount: "38%",
             features: [
                 "Custom Web Application",
                 "User Authentication",
@@ -198,20 +233,13 @@ export default function PricingSection() {
         "Free Konsultasi sebelum deal",
         "Technical Support 24/7",
         "Support: Free maintenance 1 bulan pertama"
-    ];
-
-    // Premium features for higher tier packages
-    const premiumFeatures = [
-        "Free Domain & Hosting (khusus Business & Ultimate)",
-        "Google Analytics Integration (Business & Ultimate)",
-        "Backup & Recovery (Ultimate only)"
-    ];
-
-    // Define services data
+    ];    // Premium features removed as requested    // Define services data
     const services: ServiceData[] = [
         {
             name: "UI/UX Design",
-            price: "Rp 800.000",
+            price: "Rp 50.000",
+            originalPrice: "Rp 800.000",
+            discount: "94%",
             description: "Desain interface dan user experience yang modern dan user-friendly",
             icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -221,7 +249,9 @@ export default function PricingSection() {
         },
         {
             name: "Logo Design",
-            price: "Rp 300.000",
+            price: "Rp 50.000",
+            originalPrice: "Rp 300.000",
+            discount: "83%",
             description: "Pembuatan logo profesional yang mencerminkan identitas brand Anda",
             icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -231,7 +261,9 @@ export default function PricingSection() {
         },
         {
             name: "Poster Design",
-            price: "Rp 150.000",
+            price: "Rp 50.000",
+            originalPrice: "Rp 150.000",
+            discount: "67%",
             description: "Desain poster menarik untuk promosi event, produk, atau layanan",
             icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -241,7 +273,9 @@ export default function PricingSection() {
         },
         {
             name: "Social Media Content",
-            price: "Rp 200.000",
+            price: "Rp 50.000",
+            originalPrice: "Rp 200.000",
+            discount: "75%",
             description: "Konten visual untuk Instagram, Facebook, dan platform media sosial lainnya",
             icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -251,7 +285,9 @@ export default function PricingSection() {
         },
         {
             name: "Moodboard Design",
-            price: "Rp 250.000",
+            price: "Rp 50.000",
+            originalPrice: "Rp 250.000",
+            discount: "80%",
             description: "Panduan visual dan konsep desain untuk project branding atau website",
             icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -261,7 +297,9 @@ export default function PricingSection() {
         },
         {
             name: "Prototype Design",
-            price: "Rp 600.000",
+            price: "Rp 50.000",
+            originalPrice: "Rp 600.000",
+            discount: "92%",
             description: "Prototype interaktif untuk aplikasi mobile atau web",
             icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -271,7 +309,9 @@ export default function PricingSection() {
         },
         {
             name: "Photo Editing",
-            price: "Rp 100.000",
+            price: "Rp 50.000",
+            originalPrice: "Rp 100.000",
+            discount: "50%",
             description: "Edit dan retouch foto profesional untuk kebutuhan bisnis",
             icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -281,7 +321,9 @@ export default function PricingSection() {
         },
         {
             name: "Video Editing",
-            price: "Rp 400.000",
+            price: "Rp 50.000",
+            originalPrice: "Rp 400.000",
+            discount: "88%",
             description: "Edit video promosi, tutorial, atau konten media sosial",
             icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -319,32 +361,32 @@ export default function PricingSection() {
                 {/* Mobile: Horizontal Scroll */}
                 <div className="md:hidden">
                     <div className="overflow-x-auto scrollbar-hide pb-4">
-                        <div className="flex space-x-4 px-4" style={{ width: 'max-content' }}>
-                            {packages.map((pkg, index) => (
-                                <motion.div
-                                    key={pkg.name}
-                                    variants={{
-                                        hidden: { opacity: 0 },
-                                        visible: { opacity: 1 }
-                                    }}
-                                    initial="hidden"
-                                    animate="visible"
-                                    transition={{ delay: 0.05 * index, duration: 0.5 }}
-                                    className={`flex-shrink-0 w-80 ${pkg.popular ? "scale-105 z-10" : ""}`}
-                                >
-                                    <PricingCard
-                                        name={pkg.name}
-                                        price={pkg.price}
-                                        features={pkg.features}
-                                        estimatedTime={pkg.estimatedTime}
-                                        popular={pkg.popular}
-                                        index={index}
-                                    />
-                                </motion.div>
-                            ))}
+                        <div className="flex space-x-4 px-4" style={{ width: 'max-content' }}>                            {packages.map((pkg, index) => (
+                            <motion.div
+                                key={pkg.name}
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    visible: { opacity: 1 }
+                                }}
+                                initial="hidden"
+                                animate="visible"
+                                transition={{ delay: 0.05 * index, duration: 0.5 }}
+                                className="flex-shrink-0 w-80"
+                            >
+                                <PricingCard
+                                    name={pkg.name}
+                                    price={pkg.price}
+                                    originalPrice={pkg.originalPrice}
+                                    discount={pkg.discount}
+                                    features={pkg.features}
+                                    estimatedTime={pkg.estimatedTime}
+                                    index={index}
+                                />
+                            </motion.div>
+                        ))}
                         </div>
                     </div>
-                      {/* Scroll indicator for mobile */}
+                    {/* Scroll indicator for mobile */}
                     <div className="flex justify-center mt-4">
                         <div className="flex space-x-2">
                             {packages.map((_, index) => (
@@ -358,49 +400,36 @@ export default function PricingSection() {
                 </div>
 
                 {/* Desktop: Grid Layout */}
-                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                    {packages.map((pkg, index) => (
-                        <motion.div
-                            key={pkg.name}
-                            variants={{
-                                hidden: { opacity: 0 },
-                                visible: { opacity: 1 }
-                            }}
-                            initial="hidden"
-                            animate="visible"
-                            transition={{ delay: 0.05 * index, duration: 0.5 }}
-                            className={pkg.popular ? "sm:scale-105 sm:-mt-2 z-10" : ""}
-                        >
-                            <PricingCard
-                                name={pkg.name}
-                                price={pkg.price}
-                                features={pkg.features}
-                                estimatedTime={pkg.estimatedTime}
-                                popular={pkg.popular}
-                                index={index}
-                            />
-                        </motion.div>
-                    ))}
+                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">                    {packages.map((pkg, index) => (
+                    <motion.div
+                        key={pkg.name}
+                        variants={{
+                            hidden: { opacity: 0 },
+                            visible: { opacity: 1 }
+                        }}
+                        initial="hidden"
+                        animate="visible"
+                        transition={{ delay: 0.05 * index, duration: 0.5 }}
+                    >
+                        <PricingCard
+                            name={pkg.name}
+                            price={pkg.price}
+                            originalPrice={pkg.originalPrice}
+                            discount={pkg.discount}
+                            features={pkg.features}
+                            estimatedTime={pkg.estimatedTime}
+                            index={index}
+                        />
+                    </motion.div>
+                ))}
                 </div>
 
                 {/* General features section */}                <div className="mt-16 bg-white rounded-xl p-8 shadow-md">
                     <h3 className="text-xl font-bold text-center mb-6 text-orange-500">
                         Fitur Semua Paket
-                    </h3>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-4">
+                    </h3>                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-4">
                         {generalFeatures.map((feature, index) => (
                             <FeatureCheck key={index} feature={feature} />
-                        ))}
-                        {premiumFeatures.map((feature, index) => (
-                            <div key={`premium-${index}`} className="text-sm text-orange-500 flex items-start space-x-2">
-                                <div className="flex-shrink-0 w-5 h-5 text-orange-500 mt-0.5">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                    </svg>
-                                </div>
-                                <span className="italic text-orange-500">{feature}</span>
-                            </div>
                         ))}
                     </div>
                 </div>
@@ -413,16 +442,12 @@ export default function PricingSection() {
                     className="mt-16 text-center"
                 >
                     <h3 className="text-2xl font-bold mb-4 text-black">Butuh solusi custom?</h3>
-                    <p className="text-gray-900 mb-8 max-w-2xl mx-auto">
-                        Jika Anda membutuhkan solusi yang lebih spesifik sesuai kebutuhan bisnis Anda,
-                        jangan ragu untuk menghubungi tim kami untuk mendiskusikan project Anda.
-                    </p>
 
                     <a
                         href="#kontak"
                         className="px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 inline-block"
                     >
-                        Konsultasi Gratis
+                        Konsultasikan
                     </a>
                 </motion.div>
             </div>
@@ -443,10 +468,9 @@ export default function PricingSection() {
                     </p>
 
                 </div>                {/* Services Grid */}
-                {/* Mobile: Horizontal Scroll */}
-                <div className="md:hidden mb-16">
+                {/* Mobile: Horizontal Scroll */}                <div className="md:hidden mb-16">
                     <div className="overflow-x-auto scrollbar-hide pb-4">
-                        <div className="flex space-x-4 px-4" style={{ width: 'max-content' }}>
+                        <div className="flex space-x-6 px-4" style={{ width: 'max-content' }}>
                             {services.map((service, index) => (
                                 <div key={service.name} className="flex-shrink-0 w-80">
                                     <ServiceCard service={service} index={index} />
@@ -454,7 +478,7 @@ export default function PricingSection() {
                             ))}
                         </div>
                     </div>
-                      {/* Scroll indicator for mobile */}
+                    {/* Scroll indicator for mobile */}
                     <div className="flex justify-center mt-4">
                         <div className="flex space-x-2">
                             {services.slice(0, 4).map((_, index) => (

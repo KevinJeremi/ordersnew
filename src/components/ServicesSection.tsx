@@ -107,7 +107,7 @@ export default function ServicesSection() {
         {services.map((service, index) => (
           <div key={index} className="bg-white rounded-2xl shadow hover:shadow-md transition-all duration-300">
             {/* Service Header - Always Visible */}
-            <div 
+            <div
               className="p-4 cursor-pointer flex items-center justify-between"
               onClick={() => setExpandedService(expandedService === index ? null : index)}
             >
@@ -120,15 +120,15 @@ export default function ServicesSection() {
                 </div>
                 <h3 className="text-lg font-semibold text-gray-800 truncate">{service.title}</h3>
               </div>
-              
+
               {/* Dropdown Arrow */}
               <div className="ml-4 flex-shrink-0">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  strokeWidth={2} 
-                  stroke="currentColor" 
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
                   className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${expandedService === index ? 'rotate-180' : ''}`}
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -152,7 +152,7 @@ export default function ServicesSection() {
                     />
                   </div>
                 </div>
-                
+
                 {/* Service Description */}
                 <div className="px-2">
                   <p className="text-gray-700 text-sm leading-relaxed text-center font-medium">{service.description}</p>

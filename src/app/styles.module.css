@@ -46,7 +46,7 @@
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #FF7A00;
+  color: #ea580c;
 }
 
 .nav {
@@ -64,13 +64,13 @@
 }
 
 .nav_link:hover {
-  color: #FF7A00;
+  color: #ea580c;
   transform: translateY(-1px);
   opacity: 1;
 }
 
 .nav_link_active {
-  color: #FF7A00;
+  color: #ea580c;
   font-weight: 500;
 }
 
@@ -81,7 +81,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(to right, #FF7A00, #3D8C95);
+  background: linear-gradient(to right, #ea580c, #3D8C95);
   border-radius: 2px;
 }
 

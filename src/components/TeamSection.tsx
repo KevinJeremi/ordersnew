@@ -22,17 +22,17 @@ const TeamSection = () => {
     },
     {
       name: 'Friestha Arikalang',
-      position: 'Team Developer',
+      position: 'Secretary',
       image: '/images/team/p4.png'
     },
     {
       name: 'Jazel Kandou',
-      position: 'Team Developer',
+      position: 'Quality Control',
       image: '/images/team/p3.png'
     },
     {
       name: 'Kevin Pesik',
-      position: 'Team Developer',
+      position: 'Quality Control',
       image: '/images/team/p2.png'
     },
     {
@@ -42,12 +42,12 @@ const TeamSection = () => {
     },
     {
       name: 'Natasya Lumingkewas',
-      position: 'UI/UX Designer',
+      position: 'Finance Officer',
       image: '/images/team/p10.png'
     },
     {
       name: 'Giordyano Anhar',
-      position: 'Designer',
+      position: 'Creative Director',
       image: '/images/team/p8.png'
     }
   ];
@@ -164,7 +164,7 @@ const TeamSection = () => {
                         {/* Name and Position Display */}
                         <div className="text-center">
                           <h3 className="text-xl font-bold text-[#061E44] mb-2 group-hover:text-[#FF7A00] transition-colors duration-300">{member.name}</h3>
-                          <div className="inline-block bg-gradient-to-r from-[#FF7A00] to-[#3D8C95] text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
+                          <div className="inline-block bg-[#ea580c] text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
                             {member.position}
                           </div>
                         </div>
@@ -250,7 +250,7 @@ const TeamSection = () => {
                 {/* Name and Position Display */}
                 <div className="text-center">
                   <h3 className="text-lg font-bold text-[#061E44] mb-2 group-hover:text-[#FF7A00] transition-colors duration-300">{member.name}</h3>
-                  <div className="inline-block bg-gradient-to-r from-[#FF7A00] to-[#3D8C95] text-white px-3 py-1.5 rounded-full text-xs font-medium mb-3">
+                  <div className="inline-block bg-[#ea580c] text-white px-3 py-1.5 rounded-full text-xs font-medium mb-3">
                     {member.position}
                   </div>
                 </div>

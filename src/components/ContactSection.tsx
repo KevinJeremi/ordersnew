@@ -111,7 +111,7 @@ export default function ContactSection() {
                                 disabled={isSubmitting}
                                 className={`w-full font-semibold py-4 px-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-lg ${isSubmitting
                                     ? 'bg-gray-400 cursor-not-allowed'
-                                    : 'bg-gradient-to-r from-[#FF7A00] to-[#3D8C95] hover:from-[#FF7A00]/90 hover:to-[#3D8C95]/90'
+                                    : 'bg-[#ea580c] hover:bg-[#ea580c]/90'
                                     } text-white`}
                             >
                                 {isSubmitting ? 'Mengirim...' : 'Kirim Pesan'}
