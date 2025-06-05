@@ -53,7 +53,7 @@ export default function PortfolioSection() {
             technologies: ["CodeIgniter", "MySQL", "PHP"],
             image: "/images/portofolio/farmasi.png",
             imageAlt: "Pharmacy Website Screenshot"
-        },        {
+        }, {
             title: "Library App",
             description: "Aplikasi sistem manajemen perpustakaan dengan fitur peminjaman buku, manajemen anggota, dan laporan digital yang terintegrasi.",
             technologies: ["Laravel", "MySQL", "PHP"],
@@ -67,7 +67,7 @@ export default function PortfolioSection() {
             image: "/images/portofolio/Identifikasi_nilam.jpg",
             imageAlt: "Website Identifikasi Penyakit Mozaik Tanaman Nilam Screenshot"
         }
-    ];return (
+    ]; return (
         <section id="portofolio" className="bg-light py-16 md:py-24 relative overflow-hidden">
             {/* Enhanced Background Elements */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#FF7A00]/10 to-transparent rounded-bl-full"></div>
