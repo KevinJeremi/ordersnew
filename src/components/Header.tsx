@@ -21,6 +21,7 @@ export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
     const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+    const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -89,6 +90,7 @@ export default function Header() {
         setActiveSection(section);
         setIsMenuOpen(false);
         setIsServicesDropdownOpen(false);
+        setIsMobileServicesOpen(false);
     };
 
     // Handle service click
@@ -98,6 +100,7 @@ export default function Header() {
 
         setActiveSection('services');
         setIsServicesDropdownOpen(false);
+        setIsMobileServicesOpen(false);
         setIsMenuOpen(false);
 
         const servicesSection = document.getElementById('layanan');
@@ -176,8 +179,8 @@ export default function Header() {
     return (
         <motion.header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                    ? 'bg-white border-b border-gray-200 shadow-md'
-                    : 'bg-white shadow-sm'
+                ? 'bg-white border-b border-gray-200 shadow-md'
+                : 'bg-white shadow-sm'
                 }`}
             variants={headerVariants}
             initial="visible"
@@ -394,8 +397,8 @@ export default function Header() {
                                                 <Link
                                                     href={item.href}
                                                     className={`block p-4 rounded-xl transition-all duration-200 ${activeSection === item.section
-                                                            ? 'bg-[#FF7A00] text-white'
-                                                            : 'hover:bg-[#FF7A00]/10 text-[#061E44]'
+                                                        ? 'bg-[#FF7A00] text-white'
+                                                        : 'hover:bg-[#FF7A00]/10 text-[#061E44]'
                                                         }`}
                                                     onClick={() => handleNavClick(item.section)}
                                                 >
@@ -407,7 +410,7 @@ export default function Header() {
                                         <motion.div variants={mobileMenuItemVariants}>
                                             <motion.button
                                                 className="w-full text-left p-4 rounded-xl hover:bg-[#FF7A00]/10 text-[#061E44] flex items-center justify-between"
-                                                onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
+                                                onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
                                             >
                                                 Layanan
                                                 <motion.svg
@@ -415,7 +418,7 @@ export default function Header() {
                                                     fill="none"
                                                     stroke="currentColor"
                                                     viewBox="0 0 24 24"
-                                                    animate={{ rotate: isServicesDropdownOpen ? 180 : 0 }}
+                                                    animate={{ rotate: isMobileServicesOpen ? 180 : 0 }}
                                                     transition={{ duration: 0.3 }}
                                                 >
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -423,7 +426,7 @@ export default function Header() {
                                             </motion.button>
 
                                             <AnimatePresence>
-                                                {isServicesDropdownOpen && (
+                                                {isMobileServicesOpen && (
                                                     <motion.div
                                                         className="mt-2 ml-4 space-y-1"
                                                         initial={{ opacity: 0, height: 0 }}
