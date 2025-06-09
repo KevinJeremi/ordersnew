@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
 // Package data interface
@@ -168,7 +168,43 @@ const ServiceCard = ({ service, index }: { service: ServiceData; index: number }
 
 // Main component
 export default function PricingSection() {
-    const pricingSectionRef = useRef<HTMLDivElement>(null);    // Define packages data
+    const pricingSectionRef = useRef<HTMLDivElement>(null);
+    const sliderRef = useRef<HTMLDivElement>(null);
+    const servicesSliderRef = useRef<HTMLDivElement>(null);
+    const [activeIdx, setActiveIdx] = useState(0);
+    const [servicesActiveIdx, setServicesActiveIdx] = useState(0);
+
+    // Update activeIdx on scroll for packages
+    useEffect(() => {
+        const slider = sliderRef.current;
+        if (!slider) return;
+
+        const onScroll = () => {
+            const scrollLeft = slider.scrollLeft;
+            const containerWidth = slider.clientWidth;
+            const newActiveIdx = Math.round(scrollLeft / containerWidth);
+            setActiveIdx(newActiveIdx);
+        };
+
+        slider.addEventListener("scroll", onScroll, { passive: true });
+        return () => slider.removeEventListener("scroll", onScroll);
+    }, []);
+
+    // Update activeIdx on scroll for services
+    useEffect(() => {
+        const slider = servicesSliderRef.current;
+        if (!slider) return;
+
+        const onScroll = () => {
+            const scrollLeft = slider.scrollLeft;
+            const containerWidth = slider.clientWidth;
+            const newActiveIdx = Math.round(scrollLeft / containerWidth);
+            setServicesActiveIdx(newActiveIdx);
+        };
+
+        slider.addEventListener("scroll", onScroll, { passive: true });
+        return () => slider.removeEventListener("scroll", onScroll);
+    }, []);// Define packages data
     const packages: PackageData[] = [
         {
             name: "Starter",
@@ -361,43 +397,63 @@ export default function PricingSection() {
                         </span>
                     </div>
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">Paket & Harga <span className="text-orange-500">Pembuatan Website</span></h2>
-                </div>                {/* Pricing cards grid */}
-                {/* Mobile: Horizontal Scroll */}
+                </div>                {/* Pricing cards grid */}                {/* Mobile: Horizontal Scroll */}
                 <div className="md:hidden">
-                    <div className="overflow-x-auto scrollbar-hide pb-4">
-                        <div className="flex space-x-4 px-4" style={{ width: 'max-content' }}>                            {packages.map((pkg, index) => (
-                            <motion.div
-                                key={pkg.name}
-                                variants={{
-                                    hidden: { opacity: 0 },
-                                    visible: { opacity: 1 }
-                                }}
-                                initial="hidden"
-                                animate="visible"
-                                transition={{ delay: 0.05 * index, duration: 0.5 }}
-                                className="flex-shrink-0 w-80"
-                            >
-                                <PricingCard
-                                    name={pkg.name}
-                                    price={pkg.price}
-                                    originalPrice={pkg.originalPrice}
-                                    discount={pkg.discount}
-                                    features={pkg.features}
-                                    estimatedTime={pkg.estimatedTime}
-                                    index={index}
-                                />
-                            </motion.div>
-                        ))}
+                    <div className="relative">
+                        <div
+                            ref={sliderRef}
+                            className="overflow-x-auto scrollbar-hide"
+                            style={{ scrollSnapType: 'x mandatory' }}
+                        >
+                            <div className="flex">
+                                {packages.map((pkg, index) => (
+                                    <div
+                                        key={pkg.name}
+                                        className="w-full flex-shrink-0 px-4"
+                                        style={{ scrollSnapAlign: 'start' }}
+                                    >
+                                        <motion.div
+                                            variants={{
+                                                hidden: { opacity: 0 },
+                                                visible: { opacity: 1 }
+                                            }}
+                                            initial="hidden"
+                                            animate="visible"
+                                            transition={{ delay: 0.05 * index, duration: 0.5 }}
+                                        >
+                                            <PricingCard
+                                                name={pkg.name}
+                                                price={pkg.price}
+                                                originalPrice={pkg.originalPrice}
+                                                discount={pkg.discount}
+                                                features={pkg.features}
+                                                estimatedTime={pkg.estimatedTime}
+                                                index={index}
+                                            />
+                                        </motion.div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                    {/* Scroll indicator for mobile */}
-                    <div className="flex justify-center mt-4">
-                        <div className="flex space-x-2">
-                            {packages.map((_, index) => (
-                                <div
-                                    key={index}
-                                    className="w-2 h-2 rounded-full bg-orange-300"
-                                ></div>
+                        {/* Slider Dots Indicator */}
+                        <div className="flex justify-center items-center mt-6 space-x-2 bg-transparent">
+                            {packages.map((_, idx) => (
+                                <button
+                                    key={idx}
+                                    type="button"
+                                    className={`h-3 w-3 rounded-full border-0 outline-none shadow-none focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 transition-all duration-300 ${activeIdx === idx
+                                        ? 'bg-orange-500 scale-110'
+                                        : 'bg-orange-500/30 hover:bg-orange-500/50'
+                                        }`}
+                                    onClick={() => {
+                                        const slider = sliderRef.current;
+                                        if (slider) {
+                                            const containerWidth = slider.clientWidth;
+                                            slider.scrollTo({ left: idx * containerWidth, behavior: 'smooth' });
+                                        }
+                                    }}
+                                    aria-label={`Go to slide ${idx + 1}`}
+                                />
                             ))}
                         </div>
                     </div>
@@ -469,24 +525,45 @@ export default function PricingSection() {
                     </h2>
 
                 </div>                {/* Services Grid */}
-                {/* Mobile: Horizontal Scroll */}                <div className="md:hidden mb-16">
-                    <div className="overflow-x-auto scrollbar-hide pb-4">
-                        <div className="flex space-x-6 px-4" style={{ width: 'max-content' }}>
-                            {services.map((service, index) => (
-                                <div key={service.name} className="flex-shrink-0 w-80">
-                                    <ServiceCard service={service} index={index} />
-                                </div>
-                            ))}
+                {/* Mobile: Horizontal Scroll */}
+                <div className="md:hidden mb-16">
+                    <div className="relative">
+                        <div
+                            ref={servicesSliderRef}
+                            className="overflow-x-auto scrollbar-hide"
+                            style={{ scrollSnapType: 'x mandatory' }}
+                        >
+                            <div className="flex">
+                                {services.map((service, index) => (
+                                    <div
+                                        key={service.name}
+                                        className="w-full flex-shrink-0 px-4"
+                                        style={{ scrollSnapAlign: 'start' }}
+                                    >
+                                        <ServiceCard service={service} index={index} />
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                    {/* Scroll indicator for mobile */}
-                    <div className="flex justify-center mt-4">
-                        <div className="flex space-x-2">
-                            {services.slice(0, 4).map((_, index) => (
-                                <div
-                                    key={index}
-                                    className="w-2 h-2 rounded-full bg-orange-300"
-                                ></div>
+                        {/* Slider Dots Indicator */}
+                        <div className="flex justify-center items-center mt-6 space-x-2 bg-transparent">
+                            {services.map((_, idx) => (
+                                <button
+                                    key={idx}
+                                    type="button"
+                                    className={`h-3 w-3 rounded-full border-0 outline-none shadow-none focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 transition-all duration-300 ${servicesActiveIdx === idx
+                                        ? 'bg-orange-500 scale-110'
+                                        : 'bg-orange-500/30 hover:bg-orange-500/50'
+                                        }`}
+                                    onClick={() => {
+                                        const slider = servicesSliderRef.current;
+                                        if (slider) {
+                                            const containerWidth = slider.clientWidth;
+                                            slider.scrollTo({ left: idx * containerWidth, behavior: 'smooth' });
+                                        }
+                                    }}
+                                    aria-label={`Go to slide ${idx + 1}`}
+                                />
                             ))}
                         </div>
                     </div>
