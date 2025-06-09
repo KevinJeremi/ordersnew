@@ -10,10 +10,12 @@ export default function Header() {
     const [activeSection, setActiveSection] = useState('home');
     const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [dropdownHeight, setDropdownHeight] = useState(0);
 
     // Refs untuk dropdown
     const dropdownRef = useRef<HTMLDivElement>(null);
     const mobileDropdownRef = useRef<HTMLDivElement>(null);
+    const mobileDropdownContentRef = useRef<HTMLDivElement>(null);
 
     // Services data for dropdown
     const services = [
@@ -26,6 +28,14 @@ export default function Header() {
         { title: "Photo Editing", description: "Penyuntingan foto profesional" },
         { title: "Video Editing", description: "Pembuatan dan editing video" }
     ];
+
+    // Calculate dropdown height for smooth animation
+    useEffect(() => {
+        if (mobileDropdownContentRef.current) {
+            const height = mobileDropdownContentRef.current.scrollHeight;
+            setDropdownHeight(height);
+        }
+    }, [services]);
 
     // Mendeteksi scroll untuk efek transparansi
     useEffect(() => {
@@ -78,12 +88,7 @@ export default function Header() {
         e.stopPropagation();
         console.log('Toggling dropdown, current state:', isServicesDropdownOpen);
         setIsServicesDropdownOpen(!isServicesDropdownOpen);
-    };    // Sync dropdown state when menu closes
-    useEffect(() => {
-        if (!isMenuOpen && isServicesDropdownOpen) {
-            setIsServicesDropdownOpen(false);
-        }
-    }, [isMenuOpen, isServicesDropdownOpen]);
+    };
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -145,14 +150,16 @@ export default function Header() {
                         >
                             Layanan
                             <svg
-                                className={`w-4 h-4 transition-transform duration-200 ${isServicesDropdownOpen ? 'rotate-180' : ''}`}
+                                className={`w-4 h-4 transition-transform duration-300 ${isServicesDropdownOpen ? 'rotate-180' : ''}`}
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
                             >
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
-                        </button>                        {/* Services Dropdown */}
+                        </button>
+
+                        {/* Desktop Services Dropdown */}
                         {isServicesDropdownOpen && (
                             <div className={styles.servicesDropdown}>
                                 <div className="p-4">
@@ -211,87 +218,130 @@ export default function Header() {
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     aria-label="Toggle menu"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" width="24" height="24">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        width="24"
+                        height="24"
+                        className={`transition-transform duration-300 ${isMenuOpen ? 'rotate-90' : ''}`}
+                    >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
                 </button>
 
                 {/* Mobile Menu */}
-                {isMenuOpen && (
-                    <div className={styles.mobileMenu}>
-                        <nav className={styles.mobileMenuNav}>
-                            <Link
-                                href="#tentang-kami"
-                                className={`${styles.nav_link} ${activeSection === 'about' ? styles.nav_link_active : ''}`}
-                                onClick={() => handleNavClick('about')}
-                            >
-                                Tentang Kami
-                            </Link>
+                <div
+                    className={`${styles.mobileMenu} ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+                    style={{
+                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        transform: isMenuOpen ? 'translateY(0)' : 'translateY(-10px)'
+                    }}
+                >
+                    <nav className={styles.mobileMenuNav}>
+                        <Link
+                            href="#tentang-kami"
+                            className={`${styles.nav_link} ${activeSection === 'about' ? styles.nav_link_active : ''}`}
+                            onClick={() => handleNavClick('about')}
+                        >
+                            Tentang Kami
+                        </Link>
 
-                            <div className="relative" ref={mobileDropdownRef}>
-                                <button
-                                    className={`${styles.nav_link} ${activeSection === 'services' ? styles.nav_link_active : ''} flex items-center justify-between w-full`}
-                                    onClick={toggleServicesDropdown}
+                        <div className="relative" ref={mobileDropdownRef}>
+                            <button
+                                className={`${styles.nav_link} ${activeSection === 'services' ? styles.nav_link_active : ''} flex items-center justify-between w-full transition-colors duration-200`}
+                                onClick={toggleServicesDropdown}
+                            >
+                                Layanan
+                                <svg
+                                    className={`w-4 h-4 transition-transform duration-300 ease-in-out ${isServicesDropdownOpen ? 'rotate-180' : ''}`}
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
                                 >
-                                    Layanan
-                                    <svg
-                                        className={`w-4 h-4 transition-transform duration-200 ${isServicesDropdownOpen ? 'rotate-180' : ''}`}
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </button>
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
 
-                                {/* Mobile Services Dropdown */}
-                                {isServicesDropdownOpen && (
-                                    <div className="mt-2 ml-4 space-y-1">
-                                        {services.map((service, index) => (
-                                            <button
-                                                key={index}
-                                                onClick={handleServiceClick}
-                                                className="text-left block w-full p-2 text-sm text-gray-600 hover:text-[#FF7A00] hover:bg-[#FF7A00]/5 rounded transition-all duration-200"
-                                            >
-                                                {service.title}
-                                            </button>
-                                        ))}
-                                    </div>
-                                )}
+                            {/* Mobile Services Dropdown with Smooth Animation */}
+                            <div
+                                className="overflow-hidden transition-all duration-300 ease-in-out"
+                                style={{
+                                    maxHeight: isServicesDropdownOpen ? `${dropdownHeight}px` : '0px',
+                                    opacity: isServicesDropdownOpen ? 1 : 0
+                                }}
+                            >
+                                <div
+                                    ref={mobileDropdownContentRef}
+                                    className="mt-2 ml-4 space-y-1"
+                                    style={{
+                                        transform: isServicesDropdownOpen ? 'translateY(0)' : 'translateY(-10px)',
+                                        transition: 'transform 0.3s ease-in-out'
+                                    }}
+                                >
+                                    {services.map((service, index) => (
+                                        <button
+                                            key={index}
+                                            onClick={handleServiceClick}
+                                            className="text-left block w-full p-3 text-sm text-gray-600 hover:text-[#FF7A00] hover:bg-[#FF7A00]/10 rounded-lg transition-all duration-200 hover:translate-x-1 hover:shadow-sm border border-transparent hover:border-[#FF7A00]/20"
+                                            style={{
+                                                animationDelay: isServicesDropdownOpen ? `${index * 50}ms` : '0ms',
+                                                animation: isServicesDropdownOpen ? 'fadeInUp 0.3s ease-out forwards' : 'none'
+                                            }}
+                                        >
+                                            <div className="font-medium">{service.title}</div>
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
+                        </div>
 
-                            <Link
-                                href="#pricing"
-                                className={`${styles.nav_link} ${activeSection === 'pricing' ? styles.nav_link_active : ''}`}
-                                onClick={() => handleNavClick('pricing')}
-                            >
-                                Harga
-                            </Link>
-                            <Link
-                                href="#portofolio"
-                                className={`${styles.nav_link} ${activeSection === 'portfolio' ? styles.nav_link_active : ''}`}
-                                onClick={() => handleNavClick('portfolio')}
-                            >
-                                Portofolio
-                            </Link>
-                            <Link
-                                href="#team"
-                                className={`${styles.nav_link} ${activeSection === 'team' ? styles.nav_link_active : ''}`}
-                                onClick={() => handleNavClick('team')}
-                            >
-                                Tim Kami
-                            </Link>
-                            <Link
-                                href="#kontak"
-                                className={`${styles.nav_link} ${activeSection === 'contact' ? styles.nav_link_active : ''}`}
-                                onClick={() => handleNavClick('contact')}
-                            >
-                                Kontak
-                            </Link>
-                        </nav>
-                    </div>
-                )}
+                        <Link
+                            href="#pricing"
+                            className={`${styles.nav_link} ${activeSection === 'pricing' ? styles.nav_link_active : ''}`}
+                            onClick={() => handleNavClick('pricing')}
+                        >
+                            Harga
+                        </Link>
+                        <Link
+                            href="#portofolio"
+                            className={`${styles.nav_link} ${activeSection === 'portfolio' ? styles.nav_link_active : ''}`}
+                            onClick={() => handleNavClick('portfolio')}
+                        >
+                            Portofolio
+                        </Link>
+                        <Link
+                            href="#team"
+                            className={`${styles.nav_link} ${activeSection === 'team' ? styles.nav_link_active : ''}`}
+                            onClick={() => handleNavClick('team')}
+                        >
+                            Tim Kami
+                        </Link>
+                        <Link
+                            href="#kontak"
+                            className={`${styles.nav_link} ${activeSection === 'contact' ? styles.nav_link_active : ''}`}
+                            onClick={() => handleNavClick('contact')}
+                        >
+                            Kontak
+                        </Link>
+                    </nav>
+                </div>
             </div>
+
+            <style jsx>{`
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(10px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `}</style>
         </header>
     );
 }
