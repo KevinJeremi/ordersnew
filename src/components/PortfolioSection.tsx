@@ -47,25 +47,13 @@ export default function PortfolioSection() {
             technologies: ["Flutter", "Firebase", "Dart"],
             image: "/images/portofolio/ss_solideo.jpg",
             imageAlt: "Solideo Kuliner App Screenshot"
-        }, {
+        },
+        {
             title: "Pharmacy Website",
             description: "Website sistem manajemen apotek dengan fitur inventory, penjualan, dan laporan yang terintegrasi dengan database.",
             technologies: ["CodeIgniter", "MySQL", "PHP"],
             image: "/images/portofolio/farmasi.png",
             imageAlt: "Pharmacy Website Screenshot"
-        }, {
-            title: "Library App",
-            description: "Aplikasi sistem manajemen perpustakaan dengan fitur peminjaman buku, manajemen anggota, dan laporan digital yang terintegrasi.",
-            technologies: ["Laravel", "MySQL", "PHP"],
-            image: "/images/portofolio/library.png",
-            imageAlt: "Library App Screenshot"
-        },
-        {
-            title: "Website Identifikasi Penyakit Mozaik Tanaman Nilam",
-            description: "Aplikasi web untuk identifikasi penyakit mozaik pada tanaman nilam menggunakan machine learning dan computer vision.",
-            technologies: ["React", "Next.js", "Python"],
-            image: "/images/portofolio/Identifikasi_nilam.jpg",
-            imageAlt: "Website Identifikasi Penyakit Mozaik Tanaman Nilam Screenshot"
         }
     ]; return (
         <section id="portofolio" className="bg-light py-16 md:py-24 relative overflow-hidden">

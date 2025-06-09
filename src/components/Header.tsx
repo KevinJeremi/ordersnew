@@ -78,7 +78,12 @@ export default function Header() {
         e.stopPropagation();
         console.log('Toggling dropdown, current state:', isServicesDropdownOpen);
         setIsServicesDropdownOpen(!isServicesDropdownOpen);
-    };
+    };    // Sync dropdown state when menu closes
+    useEffect(() => {
+        if (!isMenuOpen && isServicesDropdownOpen) {
+            setIsServicesDropdownOpen(false);
+        }
+    }, [isMenuOpen, isServicesDropdownOpen]);
 
     // Close dropdown when clicking outside
     useEffect(() => {

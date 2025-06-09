@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import emailjs from 'emailjs-com';
 
 export default function ContactSection() {
     const [formData, setFormData] = useState({
@@ -18,20 +17,16 @@ export default function ContactSection() {
             ...prev,
             [name]: value
         }));
-    }; const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitting(true);
 
         try {
-            // Send email using EmailJS
-            const result = await emailjs.sendForm(
-                'service_pagobbd',        // Service ID
-                'template_vi8fnck',       // Template ID  
-                e.currentTarget,          // Form element
-                'BHWYzWm-Mj-uB7xo2'      // Public Key
-            );
+            // Simulasi pengiriman form
+            await new Promise(resolve => setTimeout(resolve, 1000));
 
-            console.log('Email sent successfully:', result.text);
             alert('Pesan berhasil dikirim! Terima kasih telah menghubungi kami.');
 
             // Reset form
@@ -41,7 +36,6 @@ export default function ContactSection() {
                 message: ''
             });
         } catch (error) {
-            console.error('Error sending email:', error);
             alert('Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.');
         } finally {
             setIsSubmitting(false);
