@@ -183,7 +183,7 @@ export default function Header() {
                         className={`${styles.nav_link} ${activeSection === 'dashboard' ? styles.nav_link_active : ''}`}
                         onClick={() => handleNavClick('dashboard', true)}
                     >
-                        Dashboard
+                        Tentang Kami
                     </Link>
 
                     <div className="relative" ref={dropdownRef}>

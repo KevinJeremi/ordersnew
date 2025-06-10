@@ -51,11 +51,9 @@ export default function ContactSection() {
 
             <div className="container-content relative z-10">
                 <div className="text-center mb-12">
-                    <span className="inline-block text-[#FF7A00] font-semibold mb-2">HUBUNGI KAMI</span>
+
                     <h2 className="text-4xl font-bold mb-3">Mari Berkolaborasi</h2>
-                    <p className="max-w-2xl mx-auto text-gray-600">
-                        Siap untuk memulai proyek digital Anda? Hubungi kami untuk konsultasi gratis dan wujudkan ide bisnis Anda menjadi kenyataan.
-                    </p>
+
                 </div>                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                     <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl group transition-all duration-500 border border-gray-100/50 backdrop-blur-sm relative z-10 p-8">
                         {/* Background Pattern */}
