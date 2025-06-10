@@ -65,11 +65,9 @@ export default function PortfolioSection() {
 
             <div className="container-content relative z-10">
                 <div className="text-center mb-12">
-                    <span className="inline-block text-[#FF7A00] font-semibold mb-2">PORTOFOLIO</span>
-                    <h2 className="text-4xl font-bold mb-3">Karya Terbaik Kami</h2>
-                    <p className="max-w-2xl mx-auto text-gray-600">
-                        Beberapa proyek digital terbaik yang telah kami kerjakan dengan dedikasi dan inovasi untuk klien-klien kami.
-                    </p>
+
+                    <h2 className="text-4xl font-bold mb-3">Karya Kami</h2>
+
                 </div>
 
                 {/* Mobile Slider */}

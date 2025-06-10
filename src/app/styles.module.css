@@ -133,11 +133,34 @@
 }
 
 .mobileMenuButton {
-  display: block;
-  color: #4B5563;
-  background: none;
-  border: none;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, #FF7A00/5, #3D8C95/5);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.mobileMenuButton:hover {
+  border-color: #FF7A00;
+  background: linear-gradient(135deg, #FF7A00/10, #3D8C95/10);
+  box-shadow: 0 4px 12px rgba(255, 122, 0, 0.2);
+}
+
+.mobileMenuButton:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .mobileMenuButton {
+    width: 52px;
+    height: 52px;
+    border-width: 2px;
+  }
 }
 
 .mobileMenu {

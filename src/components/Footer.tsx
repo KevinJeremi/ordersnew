@@ -28,36 +28,35 @@ export default function Footer() {
                 </div>                    <div>
                         <h4 className="text-lg font-semibold text-white mb-4">Layanan</h4>
                         <ul className="space-y-2 text-white/70">
-                            <li><Link href="#layanan" className="hover:text-[#FF7A00] transition-colors">Pembuatan Aplikasi</Link></li>
-                            <li><Link href="#layanan" className="hover:text-[#FF7A00] transition-colors">Pembuatan Website</Link></li>
+                            <li><Link href="/dashboard" className="hover:text-[#FF7A00] transition-colors">Pembuatan Aplikasi</Link></li>
+                            <li><Link href="/dashboard" className="hover:text-[#FF7A00] transition-colors">Pembuatan Website</Link></li>
                             <li className="ml-4">
                                 <ul className="mt-1 space-y-1 text-sm">
-                                    <li><Link href="#layanan" className="hover:text-[#FF7A00] transition-colors">• Company Profile</Link></li>
-                                    <li><Link href="#layanan" className="hover:text-[#FF7A00] transition-colors">• E-commerce</Link></li>
-                                    <li><Link href="#layanan" className="hover:text-[#FF7A00] transition-colors">• Landing Page</Link></li>
-                                    <li><Link href="#layanan" className="hover:text-[#FF7A00] transition-colors">• Portfolio</Link></li>
-                                    <li><Link href="#layanan" className="hover:text-[#FF7A00] transition-colors">• Blog</Link></li>
+                                    <li><Link href="/dashboard" className="hover:text-[#FF7A00] transition-colors">• Company Profile</Link></li>
+                                    <li><Link href="/dashboard" className="hover:text-[#FF7A00] transition-colors">• E-commerce</Link></li>
+                                    <li><Link href="/dashboard" className="hover:text-[#FF7A00] transition-colors">• Landing Page</Link></li>
+                                    <li><Link href="/dashboard" className="hover:text-[#FF7A00] transition-colors">• Portfolio</Link></li>
+                                    <li><Link href="/dashboard" className="hover:text-[#FF7A00] transition-colors">• Blog</Link></li>
                                 </ul>
                             </li>
-                            <li><Link href="#layanan" className="hover:text-[#FF7A00] transition-colors">Desain Digital</Link></li>
-                            <li><Link href="#portfolio" className="hover:text-[#FF7A00] transition-colors">Portfolio</Link></li>
-                            <li><Link href="#kontak" className="hover:text-[#FF7A00] transition-colors">Konsultasi</Link></li>
-                        </ul>
-                    </div><div>
-                        <h4 className="text-lg font-semibold text-white mb-4">Perusahaan</h4>
-                        <ul className="space-y-2 text-white/70">
-                            <li><Link href="#tentang" className="hover:text-[#FF7A00] transition-colors">Tentang Kami</Link></li>
-                            <li><Link href="#tim" className="hover:text-[#FF7A00] transition-colors">Tim Kami</Link></li>
-                            <li><Link href="#kontak" className="hover:text-[#FF7A00] transition-colors">Karir</Link></li>
-                            <li><Link href="#kontak" className="hover:text-[#FF7A00] transition-colors">Kontak</Link></li>
+                            <li><Link href="/dashboard" className="hover:text-[#FF7A00] transition-colors">Desain Digital</Link></li>
+                            <li><Link href="/portfolio" className="hover:text-[#FF7A00] transition-colors">Portfolio</Link></li>
+                            <li><Link href="/contact" className="hover:text-[#FF7A00] transition-colors">Konsultasi</Link></li>
                         </ul>
                     </div>                    <div>
-                        <h4 className="text-lg font-semibold text-white mb-4">Dukungan</h4>
+                        <h4 className="text-lg font-semibold text-white mb-4">Perusahaan</h4>
                         <ul className="space-y-2 text-white/70">
-                            <li><Link href="#" className="hover:text-[#FF7A00] transition-colors">Dokumentasi</Link></li>
-                            <li><Link href="#" className="hover:text-[#FF7A00] transition-colors">FAQ</Link></li>
-                            <li><Link href="#kontak" className="hover:text-[#FF7A00] transition-colors">Dukungan 24/7</Link></li>
-                            <li><Link href="#" className="hover:text-[#FF7A00] transition-colors">Kebijakan Privasi</Link></li>
+                            <li><Link href="/dashboard" className="hover:text-[#FF7A00] transition-colors">Tentang Kami</Link></li>
+                            <li><Link href="/team" className="hover:text-[#FF7A00] transition-colors">Tim Kami</Link></li>
+                            <li><Link href="/contact" className="hover:text-[#FF7A00] transition-colors">Karir</Link></li>
+                            <li><Link href="/contact" className="hover:text-[#FF7A00] transition-colors">Kontak</Link></li>
+                        </ul>
+                    </div><div>
+                        <h4 className="text-lg font-semibold text-white mb-4">Dukungan</h4>                        <ul className="space-y-2 text-white/70">
+                            <li><Link href="/pricing" className="hover:text-[#FF7A00] transition-colors">Dokumentasi</Link></li>
+                            <li><Link href="/pricing" className="hover:text-[#FF7A00] transition-colors">FAQ</Link></li>
+                            <li><Link href="/contact" className="hover:text-[#FF7A00] transition-colors">Dukungan 24/7</Link></li>
+                            <li><Link href="/contact" className="hover:text-[#FF7A00] transition-colors">Kebijakan Privasi</Link></li>
                         </ul>
                     </div>
                 </div>          <div className="mt-12 pt-8 border-t border-white/10 text-center">

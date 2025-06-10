@@ -35,10 +35,7 @@ export default function AboutSection() {
                         <span className="bg-gradient-to-r from-orange-600 to-orange-400 text-white text-sm font-medium py-1 px-3 rounded-full">
                             TENTANG KAMI
                         </span>
-                    </div>                    <h2 className="text-3xl md:text-4xl font-bold mb-4">Kreativitas Digital <span className="text-orange-500">Anak Muda Indonesia</span></h2>
-                    <p className="max-w-2xl mx-auto text-gray-600">
-                        Orders adalah startup solusi digital yang lahir dari semangat dan ide segar anak muda Indonesia untuk mendorong kemajuan ekosistem digital lokal dengan sentuhan kreativitas unik.
-                    </p>
+                    </div>
                 </div>
 
                 {/* Split Layout Content */}
@@ -92,7 +89,7 @@ export default function AboutSection() {
                 <div className="mt-16 relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-teal-50 rounded-2xl opacity-30"></div>
                     <div className="relative p-8 border border-gray-100 rounded-2xl shadow-sm">
-                        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8">
                             <div className="flex-1">
                                 <h3 className="text-2xl font-bold mb-4 text-gray-800">Dari <span className="text-orange-500">Kami</span> Untuk <span className="text-teal-500">Indonesia</span></h3>
                                 <p className="text-gray-600 mb-4">
@@ -104,17 +101,15 @@ export default function AboutSection() {
                                     <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">Kolaboratif</span>
                                     <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">Passionate</span>
                                 </div>
-                            </div>
-
-                            <div className="flex flex-wrap gap-2 justify-center">
-                                <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm w-32 transform transition-all hover:scale-105 hover:shadow-md">
-                                    <FaLightbulb className="text-orange-500 text-2xl mb-2" />
-                                    <span className="text-lg font-bold text-gray-800">15+</span>
+                            </div>                            <div className="flex flex-row gap-3 justify-center md:justify-end">
+                                <div className="flex flex-col items-center p-3 md:p-4 bg-white rounded-lg shadow-sm w-28 md:w-32 transform transition-all hover:scale-105 hover:shadow-md">
+                                    <FaLightbulb className="text-orange-500 text-xl md:text-2xl mb-2" />
+                                    <span className="text-base md:text-lg font-bold text-gray-800">15+</span>
                                     <span className="text-xs text-gray-500 text-center">Ide Inovatif</span>
                                 </div>
-                                <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm w-32 transform transition-all hover:scale-105 hover:shadow-md">
-                                    <FaCode className="text-teal-500 text-2xl mb-2" />
-                                    <span className="text-lg font-bold text-gray-800">1000+</span>
+                                <div className="flex flex-col items-center p-3 md:p-4 bg-white rounded-lg shadow-sm w-28 md:w-32 transform transition-all hover:scale-105 hover:shadow-md">
+                                    <FaCode className="text-teal-500 text-xl md:text-2xl mb-2" />
+                                    <span className="text-base md:text-lg font-bold text-gray-800">1000+</span>
                                     <span className="text-xs text-gray-500 text-center">Baris Kode</span>
                                 </div>
                             </div>

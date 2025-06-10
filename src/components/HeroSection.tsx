@@ -51,7 +51,7 @@ export default function HeroSection() {
                     Kami membantu bisnis Anda berkembang dengan teknologi terkini yang inovatif dan terpercaya.
                 </p>
                 <div className={styles.buttonContainer}>
-                    <Link href="#kontak" className={styles.primaryButton}>
+                    <Link href="/contact" className={styles.primaryButton}>
                         Hubungi Kami
                     </Link>
                     <Link href="#layanan" className={styles.outlineButton}>

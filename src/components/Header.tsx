@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import {
     GlobeAltIcon,
     DevicePhoneMobileIcon,
@@ -24,6 +25,25 @@ export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
 
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
+    const pathname = usePathname();
+
+    // Update active section based on current pathname
+    useEffect(() => {
+        if (pathname === '/') {
+            setActiveSection('home');
+        } else if (pathname === '/dashboard') {
+            setActiveSection('dashboard');
+        } else if (pathname === '/pricing') {
+            setActiveSection('pricing');
+        } else if (pathname === '/portfolio') {
+            setActiveSection('portfolio');
+        } else if (pathname === '/team') {
+            setActiveSection('team');
+        } else if (pathname === '/contact') {
+            setActiveSection('contact');
+        }
+    }, [pathname]);
 
     // Services data with icons
     const services = [
@@ -67,15 +87,13 @@ export default function Header() {
             description: "Pembuatan dan editing video",
             icon: VideoCameraIcon
         }
-    ];
-
-    // Navigation items for mobile menu
+    ];    // Navigation items for mobile menu
     const navigationItems = [
-        { href: "#tentang-kami", label: "Tentang Kami", section: "about" },
-        { href: "#pricing", label: "Harga", section: "pricing" },
-        { href: "#portofolio", label: "Portofolio", section: "portfolio" },
-        { href: "#team", label: "Tim Kami", section: "team" },
-        { href: "#kontak", label: "Kontak", section: "contact" }
+        { href: "/dashboard", label: "Dashboard", section: "dashboard", isExternal: true },
+        { href: "/pricing", label: "Harga", section: "pricing", isExternal: true },
+        { href: "/portfolio", label: "Portofolio", section: "portfolio", isExternal: true },
+        { href: "/team", label: "Tim Kami", section: "team", isExternal: true },
+        { href: "/contact", label: "Kontak", section: "contact", isExternal: true }
     ];
 
     // Handle scroll for solid background effect
@@ -91,14 +109,15 @@ export default function Header() {
 
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [isMenuOpen]);
-
-    // Handle navigation click
-    const handleNavClick = (section: string) => {
-        setActiveSection(section);
+    }, [isMenuOpen]);    // Handle navigation click
+    const handleNavClick = (section: string, isExternal?: boolean) => {
+        // activeSection will be updated automatically by useEffect when pathname changes
         setIsMenuOpen(false);
         setIsServicesDropdownOpen(false);
         setIsMobileServicesOpen(false);
+
+        // All navigation now goes to separate pages
+        // No need for scroll handling
     };
 
     // Handle service click
@@ -109,12 +128,8 @@ export default function Header() {
         setActiveSection('services');
         setIsServicesDropdownOpen(false);
         setIsMobileServicesOpen(false);
-        setIsMenuOpen(false);
-
-        const servicesSection = document.getElementById('layanan');
-        if (servicesSection) {
-            servicesSection.scrollIntoView({ behavior: 'smooth' });
-        }
+        setIsMenuOpen(false);        // Navigate to dashboard page which contains services
+        router.push('/dashboard');
     };
 
     // Close dropdown when clicking outside
@@ -161,16 +176,14 @@ export default function Header() {
                             </div>
                         </div>
                     </Link>
-                </div>
-
-                {/* Desktop Navigation */}
+                </div>                {/* Desktop Navigation */}
                 <nav className={styles.nav}>
                     <Link
-                        href="#tentang-kami"
-                        className={`${styles.nav_link} ${activeSection === 'about' ? styles.nav_link_active : ''}`}
-                        onClick={() => handleNavClick('about')}
+                        href="/dashboard"
+                        className={`${styles.nav_link} ${activeSection === 'dashboard' ? styles.nav_link_active : ''}`}
+                        onClick={() => handleNavClick('dashboard', true)}
                     >
-                        Tentang Kami
+                        Dashboard
                     </Link>
 
                     <div className="relative" ref={dropdownRef}>
@@ -228,35 +241,71 @@ export default function Header() {
                                         );
                                     })}
                                 </div>
+
+                                {/* Call to Action for Pricing */}
+                                <div
+                                    className="mt-6 p-4 bg-gradient-to-r from-[#FF7A00]/10 to-[#3D8C95]/10 rounded-xl border border-[#FF7A00]/20"
+                                    style={{
+                                        opacity: isServicesDropdownOpen ? 1 : 0,
+                                        transform: isServicesDropdownOpen ? 'translateY(0)' : 'translateY(10px)',
+                                        transitionDelay: isServicesDropdownOpen ? '400ms' : '0ms',
+                                        transitionProperty: 'all',
+                                        transitionDuration: '0.3s',
+                                        transitionTimingFunction: 'ease'
+                                    }}
+                                >
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <h4 className="font-semibold text-[#061E44] text-sm mb-1">
+                                                Tertarik dengan layanan kami?
+                                            </h4>
+                                            <p className="text-xs text-gray-600">
+                                                Lihat paket harga dan penawaran terbaik
+                                            </p>
+                                        </div>
+                                        <Link
+                                            href="/pricing"
+                                            className="px-4 py-2 bg-[#FF7A00] text-white text-sm font-medium rounded-lg hover:bg-[#e56a00] transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg flex items-center gap-1"
+                                            onClick={() => {
+                                                setIsServicesDropdownOpen(false);
+                                                handleNavClick('pricing', true);
+                                            }}
+                                        >
+                                            <span>Cek Harga</span>
+                                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </Link>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <Link
-                        href="#pricing"
+                        href="/pricing"
                         className={`${styles.nav_link} ${activeSection === 'pricing' ? styles.nav_link_active : ''}`}
-                        onClick={() => handleNavClick('pricing')}
+                        onClick={() => handleNavClick('pricing', true)}
                     >
                         Harga
-                    </Link>
-                    <Link
-                        href="#portofolio"
+                    </Link>                    <Link
+                        href="/portfolio"
                         className={`${styles.nav_link} ${activeSection === 'portfolio' ? styles.nav_link_active : ''}`}
-                        onClick={() => handleNavClick('portfolio')}
+                        onClick={() => handleNavClick('portfolio', true)}
                     >
                         Portofolio
                     </Link>
                     <Link
-                        href="#team"
+                        href="/team"
                         className={`${styles.nav_link} ${activeSection === 'team' ? styles.nav_link_active : ''}`}
-                        onClick={() => handleNavClick('team')}
+                        onClick={() => handleNavClick('team', true)}
                     >
                         Tim Kami
                     </Link>
                     <Link
-                        href="#kontak"
+                        href="/contact"
                         className={`${styles.nav_link} ${activeSection === 'contact' ? styles.nav_link_active : ''}`}
-                        onClick={() => handleNavClick('contact')}
+                        onClick={() => handleNavClick('contact', true)}
                     >
                         Kontak
                     </Link>
@@ -264,7 +313,7 @@ export default function Header() {
 
                 {/* Mobile Menu Button */}
                 <button
-                    className={`${styles.mobileMenuButton} hover:scale-110 active:scale-90 transition-transform`}
+                    className={`${styles.mobileMenuButton} hover:scale-110 active:scale-90 transition-transform p-3 rounded-lg hover:bg-gray-100`}
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     aria-label="Toggle menu"
                 >
@@ -272,11 +321,11 @@ export default function Header() {
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        strokeWidth={1.5}
+                        strokeWidth={2}
                         stroke="currentColor"
-                        width="24"
-                        height="24"
-                        className={`transition-transform duration-300 ${isMenuOpen ? 'rotate-90' : 'rotate-0'}`}
+                        width="32"
+                        height="32"
+                        className={`transition-transform duration-300 ${isMenuOpen ? 'rotate-90' : 'rotate-0'} text-gray-700`}
                     >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
@@ -315,12 +364,17 @@ export default function Header() {
                                         style={{ transitionDelay: isMenuOpen ? `${index * 50}ms` : '0ms' }}
                                     >
                                         <Link
-                                            href={item.href}
+                                            href={item.isExternal ? item.href : "/"}
                                             className={`block p-4 rounded-xl transition-all duration-200 ${activeSection === item.section
                                                 ? 'bg-[#FF7A00] text-white'
                                                 : 'hover:bg-[#FF7A00]/10 text-[#061E44]'
                                                 }`}
-                                            onClick={() => handleNavClick(item.section)}
+                                            onClick={(e) => {
+                                                if (!item.isExternal) {
+                                                    e.preventDefault();
+                                                }
+                                                handleNavClick(item.section, item.isExternal);
+                                            }}
                                         >
                                             {item.label}
                                         </Link>
@@ -363,6 +417,36 @@ export default function Header() {
                                                 <div className="font-medium">{service.title}</div>
                                             </button>
                                         ))}
+
+                                        {/* Mobile CTA for Pricing */}
+                                        <div
+                                            className="mt-3 p-3 bg-[#FF7A00]/5 border border-[#FF7A00]/20 rounded-lg"
+                                            style={{
+                                                opacity: isMobileServicesOpen ? 1 : 0,
+                                                transform: isMobileServicesOpen ? 'translateX(0)' : 'translateX(-10px)',
+                                                transitionDelay: isMobileServicesOpen ? `${services.length * 50 + 100}ms` : '0ms',
+                                                transitionProperty: 'all',
+                                                transitionDuration: '0.3s',
+                                                transitionTimingFunction: 'ease'
+                                            }}
+                                        >
+                                            <div className="text-center">
+                                                <p className="text-xs text-[#061E44] font-medium mb-2">
+                                                    💰 Lihat Paket & Harga Terbaik
+                                                </p>
+                                                <Link
+                                                    href="/pricing"
+                                                    className="w-full block px-3 py-2 bg-[#FF7A00] text-white text-sm font-medium rounded-md hover:bg-[#e56a00] transition-all duration-200 text-center"
+                                                    onClick={() => {
+                                                        setIsMobileServicesOpen(false);
+                                                        setIsMenuOpen(false);
+                                                        handleNavClick('pricing', true);
+                                                    }}
+                                                >
+                                                    Cek Harga Sekarang
+                                                </Link>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </nav>

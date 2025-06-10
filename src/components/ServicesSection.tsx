@@ -168,7 +168,7 @@ export default function ServicesSection() {
                     width={400}
                     height={250}
                     className={`rounded-lg w-full h-auto object-contain ${service.title === 'Desain Digital' ? 'scale-150' :
-                        service.title === 'Pembuatan Aplikasi' ? 'scale-150' : ''
+                      service.title === 'Pembuatan Aplikasi' ? 'scale-150' : ''
                       }`}
                     priority={expandedService === index}
                   />
@@ -214,15 +214,15 @@ export default function ServicesSection() {
             {/* Previous Image - Exit Animation */}
             {isTransitioning && (
               <div className={`absolute inset-6 z-20 ${slideDirection === 'right'
-                  ? 'animate-[slideOutLeft_0.3s_ease-in_forwards]'
-                  : 'animate-[slideOutRight_0.3s_ease-in_forwards]'
+                ? 'animate-[slideOutLeft_0.3s_ease-in_forwards]'
+                : 'animate-[slideOutRight_0.3s_ease-in_forwards]'
                 }`}>                <Image
                   src={services[previousService].image}
                   alt={services[previousService].title}
                   width={600}
                   height={380}
                   className={`w-full h-auto object-contain ${services[previousService].title === 'Desain Digital' ? 'scale-150' :
-                      services[previousService].title === 'Pembuatan Aplikasi' ? 'scale-150' : ''
+                    services[previousService].title === 'Pembuatan Aplikasi' ? 'scale-150' : ''
                     }`}
                   priority
                 />
@@ -231,18 +231,18 @@ export default function ServicesSection() {
 
             {/* Current Image - Enter Animation */}
             <div className={`relative z-10 ${isTransitioning
-                ? `${slideDirection === 'right'
-                  ? 'animate-[slideInFromRight_0.6s_ease-out_0.3s_both]'
-                  : 'animate-[slideInFromLeft_0.6s_ease-out_0.3s_both]'
-                }`
-                : 'opacity-100'
+              ? `${slideDirection === 'right'
+                ? 'animate-[slideInFromRight_0.6s_ease-out_0.3s_both]'
+                : 'animate-[slideInFromLeft_0.6s_ease-out_0.3s_both]'
+              }`
+              : 'opacity-100'
               }`}>              <Image
                 src={services[selectedService].image}
                 alt={services[selectedService].title}
                 width={600}
                 height={380}
                 className={`w-full h-auto object-contain hover:scale-105 transition-transform duration-300 ${services[selectedService].title === 'Desain Digital' ? 'scale-150' :
-                    services[selectedService].title === 'Pembuatan Aplikasi' ? 'scale-150' : ''
+                  services[selectedService].title === 'Pembuatan Aplikasi' ? 'scale-150' : ''
                   }`}
                 priority
               />
@@ -272,6 +272,48 @@ export default function ServicesSection() {
               <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Call to Action Section */}
+      <div className="mt-16 text-center">
+        <div className="bg-gradient-to-r from-orange-500/10 via-orange-400/5 to-teal-500/10 rounded-2xl p-8 mx-auto max-w-4xl border border-orange-200/30 backdrop-blur-sm">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-center md:text-left">
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3">
+                Tertarik dengan layanan kami?
+              </h3>
+              <p className="text-gray-600 text-lg mb-2">
+                Dapatkan penawaran terbaik untuk kebutuhan digital Anda
+              </p>
+              <div className="flex items-center justify-center md:justify-start gap-2 text-sm text-orange-600 font-medium">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>Harga terjangkau & kualitas premium</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="/pricing"
+                className="group px-8 py-4 bg-orange-500 text-white font-semibold rounded-xl hover:bg-orange-600 transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center gap-3"
+              >
+                <span>Lihat Paket & Harga</span>
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </a>              <a
+                href="/contact"
+                className="px-8 py-4 bg-white text-orange-500 font-semibold rounded-xl border-2 border-orange-500 hover:bg-orange-50 transition-all duration-300 hover:shadow-md flex items-center gap-3"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+                <span>Konsultasi Gratis</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
