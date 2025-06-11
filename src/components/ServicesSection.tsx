@@ -117,14 +117,14 @@ export default function ServicesSection() {
 
   // Memisahkan services menjadi left dan right
   const leftServices = services.slice(0, 4);
-  const rightServices = services.slice(4, 8);
-
-  return (<section id="layanan" className="bg-gradient-to-br from-gray-50 to-orange-50/30 py-16 md:py-24 relative overflow-hidden">
-    <div className="container-content relative z-10">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold mb-3 bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">Layanan Kami</h2>
-      </div>      {/* Mobile View (Dropdown Layout) - Visible only on small screens */}
-      <div className="md:hidden space-y-4 px-2">
+  const rightServices = services.slice(4, 8); return (<section id="layanan" className="bg-gradient-to-br from-gray-50 to-orange-50/30 py-8 md:py-12 relative overflow-hidden">
+    <div className="container-content relative z-10">      <div className="text-center mb-8 md:mb-12 mt-16 md:mt-20">
+      <h2 className="text-3xl md:text-4xl font-bold mb-3 text-orange-600 md:bg-gradient-to-r md:from-orange-600 md:to-orange-500 md:bg-clip-text md:text-transparent">
+        Layanan Kami
+      </h2>
+      <div className="w-20 h-1 bg-orange-500 mx-auto rounded-full"></div>
+    </div>{/* Mobile View (Dropdown Layout) - Visible only on small screens */}
+      <div className="md:hidden space-y-3 px-2 mb-8">
         {services.map((service, index) => (
           <div key={index} className="bg-white rounded-2xl shadow hover:shadow-md transition-all duration-300">
             {/* Service Header - Always Visible */}
@@ -273,48 +273,43 @@ export default function ServicesSection() {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Call to Action Section */}
-      <div className="mt-16 text-center">
-        <div className="bg-gradient-to-r from-orange-500/10 via-orange-400/5 to-teal-500/10 rounded-2xl p-8 mx-auto max-w-4xl border border-orange-200/30 backdrop-blur-sm">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-center md:text-left">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3">
-                Tertarik dengan layanan kami?
-              </h3>
-              <p className="text-gray-600 text-lg mb-2">
-                Dapatkan penawaran terbaik untuk kebutuhan digital Anda
-              </p>
-              <div className="flex items-center justify-center md:justify-start gap-2 text-sm text-orange-600 font-medium">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>Harga terjangkau & kualitas premium</span>
-              </div>
+      </div>      {/* Call to Action Section */}
+      <div className="mt-12 md:mt-16 text-center">        <div className="bg-gradient-to-r from-orange-500/10 via-orange-400/5 to-teal-500/10 rounded-2xl p-6 md:p-8 mx-auto max-w-4xl border border-orange-200/30 backdrop-blur-sm">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
+          <div className="text-center md:text-left">
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-2 md:mb-3">
+              Tertarik dengan layanan kami?
+            </h3>
+            <p className="text-gray-600 text-base md:text-lg mb-2">
+              Dapatkan penawaran terbaik untuk kebutuhan digital Anda
+            </p>
+            <div className="flex items-center justify-center md:justify-start gap-2 text-sm text-orange-600 font-medium">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span>Harga terjangkau & kualitas premium</span>
             </div>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/pricing"
-                className="group px-8 py-4 bg-orange-500 text-white font-semibold rounded-xl hover:bg-orange-600 transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center gap-3"
-              >
-                <span>Lihat Paket & Harga</span>
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>              <a
-                href="/contact"
-                className="px-8 py-4 bg-white text-orange-500 font-semibold rounded-xl border-2 border-orange-500 hover:bg-orange-50 transition-all duration-300 hover:shadow-md flex items-center gap-3"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-                <span>Konsultasi Gratis</span>
-              </a>
-            </div>
+          </div>            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full sm:w-auto">
+            <a
+              href="/pricing"
+              className="group px-6 md:px-8 py-3 md:py-4 bg-orange-500 text-white font-semibold rounded-xl hover:bg-orange-600 transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center justify-center gap-2 md:gap-3 text-sm md:text-base"
+            >
+              <span>Lihat Paket & Harga</span>
+              <svg className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>              <a
+              href="/contact"
+              className="px-6 md:px-8 py-3 md:py-4 bg-white text-orange-500 font-semibold rounded-xl border-2 border-orange-500 hover:bg-orange-50 transition-all duration-300 hover:shadow-md flex items-center justify-center gap-2 md:gap-3 text-sm md:text-base"
+            >
+              <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+              <span>Konsultasi Gratis</span>
+            </a>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </section>

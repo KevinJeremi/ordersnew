@@ -49,6 +49,13 @@ export default function PortfolioSection() {
             imageAlt: "Solideo Kuliner App Screenshot"
         },
         {
+            title: "Website Desa Kapoya",
+            description: "Website resmi Desa Kapoya, Minahasa Selatan, Sulawesi Utara dengan sistem informasi desa dan layanan publik digital.",
+            technologies: ["Node.js", "Express", "MongoDB", "JavaScript"],
+            image: "/images/portofolio/webdes.jpg",
+            imageAlt: "Website Desa Kapoya Screenshot"
+        },
+        {
             title: "Pharmacy Website",
             description: "Website sistem manajemen apotek dengan fitur inventory, penjualan, dan laporan yang terintegrasi dengan database.",
             technologies: ["CodeIgniter", "MySQL", "PHP"],
@@ -56,7 +63,7 @@ export default function PortfolioSection() {
             imageAlt: "Pharmacy Website Screenshot"
         }
     ]; return (
-        <section id="portofolio" className="bg-light py-16 md:py-24 relative overflow-hidden">
+        <section id="portofolio" className="bg-light py-8 md:py-12 relative overflow-hidden">
             {/* Enhanced Background Elements */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#FF7A00]/10 to-transparent rounded-bl-full"></div>
             <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-[#3D8C95]/10 to-transparent rounded-tr-full"></div>

@@ -42,7 +42,7 @@ export default function ContactSection() {
         }
     };
     return (
-        <section id="kontak" className="bg-light py-16 md:py-24 relative overflow-hidden">
+        <section id="kontak" className="bg-light py-8 md:py-12 relative overflow-hidden">
             {/* Enhanced Background Elements */}
             <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-[#3D8C95]/10 to-transparent rounded-br-full"></div>
             <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tl from-[#FF7A00]/10 to-transparent rounded-tl-full"></div>

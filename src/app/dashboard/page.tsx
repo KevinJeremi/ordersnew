@@ -12,7 +12,7 @@ export default function DashboardPage() {
             <Header />            {/* Main Content */}
             <main>
                 {/* About Section */}
-                <AboutSection />
+
 
                 {/* Services Section */}
                 <ServicesSection />

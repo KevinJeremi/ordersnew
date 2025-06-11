@@ -22,7 +22,7 @@ const TeamSection = () => {
     },
     {
       name: 'Friestha Arikalang',
-      position: 'Secretary',
+      position: 'Team Creative',
       image: '/images/team/p4.png'
     },
     {

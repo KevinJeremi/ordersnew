@@ -1,6 +1,7 @@
 // filepath: c:\React\my-next-app\src\app\page.tsx
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
+import AboutSection from '@/components/AboutSection';
 import CTASection from '@/components/CTASection';
 import WhyOrdersSection from '@/components/WhyOrdersSection';
 import ScrollToTop from '@/components/ScrollToTop';
@@ -12,8 +13,9 @@ export default function Home() {
       <Header />
       <main style={{ paddingTop: '80px' }}>
         <HeroSection />
-        <CTASection />
+        <AboutSection />
         <WhyOrdersSection />
+        <CTASection />
       </main>
       <Footer />
       <ScrollToTop />

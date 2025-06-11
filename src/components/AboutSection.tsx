@@ -17,10 +17,8 @@ export default function AboutSection() {
         }, 300);
 
         return () => clearTimeout(timer);
-    }, []);
-
-    return (
-        <section id="tentang-kami" className="relative overflow-hidden py-20 md:py-28">
+    }, []); return (
+        <section id="tentang-kami" className="relative overflow-hidden py-12 md:py-16">
             {/* Background decorative elements */}
             <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-orange-50 to-orange-100 rounded-bl-full opacity-50"></div>
             <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-gradient-to-tr from-teal-50 to-teal-100 rounded-tr-full opacity-60"></div>
@@ -30,7 +28,7 @@ export default function AboutSection() {
             {/* Main Content Container */}
             <div className="container mx-auto px-4 relative z-10">
                 {/* Header Section */}
-                <div className={`text-center mb-16 transition-all duration-700 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                <div className={`text-center mb-12 transition-all duration-700 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                     <div className="inline-block mb-3">
                         <span className="bg-gradient-to-r from-orange-600 to-orange-400 text-white text-sm font-medium py-1 px-3 rounded-full">
                             TENTANG KAMI
@@ -71,24 +69,16 @@ export default function AboutSection() {
                                 <p className="text-gray-500 text-sm">Digerakkan oleh beragam talenta muda dengan jiwa inovatif dan semangat kolaborasi</p>
                             </div>
 
-                            <div className="bg-gradient-to-br from-white to-teal-50 p-5 rounded-xl shadow-sm border border-teal-100 transform transition-all hover:scale-105 hover:shadow-md group">
-                                <div className="flex items-center mb-3">
-                                    <div className="bg-teal-500 text-white p-2.5 rounded-lg mr-3 group-hover:scale-110 transition-all">
-                                        <FaRocket />
-                                    </div>
-                                    <h4 className="font-semibold text-gray-800">Berpikir Ke Depan</h4>
-                                </div>
-                                <p className="text-gray-500 text-sm">Kami menciptakan solusi yang tidak hanya untuk hari ini, tetapi juga untuk kebutuhan masa depan</p>
-                            </div>
+
                         </div>                        {/* Quote */}
                         <div className="mb-8 p-4 border-l-4 border-orange-500 bg-gradient-to-r from-orange-50 to-transparent italic text-gray-700">
                             "Kami percaya bahwa kemajuan digital harus dapat diakses oleh semua bisnis, besar maupun kecil. Inilah yang mendorong kami untuk terus berinovasi."
                         </div>
                     </div>
                 </div>                {/* Additional creative highlight section */}
-                <div className="mt-16 relative">
+                <div className="mt-12 relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-teal-50 rounded-2xl opacity-30"></div>
-                    <div className="relative p-8 border border-gray-100 rounded-2xl shadow-sm">
+                    <div className="relative p-6 md:p-8 border border-gray-100 rounded-2xl shadow-sm">
                         <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8">
                             <div className="flex-1">
                                 <h3 className="text-2xl font-bold mb-4 text-gray-800">Dari <span className="text-orange-500">Kami</span> Untuk <span className="text-teal-500">Indonesia</span></h3>
