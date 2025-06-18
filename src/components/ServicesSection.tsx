@@ -14,6 +14,9 @@ export default function ServicesSection() {
   // Add state for transition control
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right');
+  // Add state for image modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState<{src: string, alt: string} | null>(null);
   // Update activeIdx on scroll
   useEffect(() => {
     const slider = sliderRef.current;
@@ -29,7 +32,6 @@ export default function ServicesSection() {
     slider.addEventListener("scroll", onScroll, { passive: true });
     return () => slider.removeEventListener("scroll", onScroll);
   }, []);
-
   // Handle service selection with proper transition
   const handleServiceSelect = (index: number) => {
     if (selectedService !== index && !isTransitioning) {
@@ -47,6 +49,36 @@ export default function ServicesSection() {
       }, 300);
     }
   };
+
+  // Handle image click to open modal
+  const handleImageClick = (imageSrc: string, imageAlt: string) => {
+    setModalImage({ src: imageSrc, alt: imageAlt });
+    setIsModalOpen(true);
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+  };
+
+  // Handle modal close
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setModalImage(null);
+    // Restore body scroll
+    document.body.style.overflow = 'unset';
+  };
+
+  // Handle escape key to close modal
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isModalOpen) {
+        handleModalClose();
+      }
+    };
+
+    if (isModalOpen) {
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [isModalOpen]);
 
   const services = [
     {
@@ -166,19 +198,28 @@ export default function ServicesSection() {
 
             {/* Expanded Content - Image and Description */}
             <div className={`overflow-hidden transition-all duration-500 ${expandedService === index ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
-              <div className="px-4 pb-6 border-t border-gray-100">
-                {/* Service Image */}
+              <div className="px-4 pb-6 border-t border-gray-100">                {/* Service Image */}
                 <div className="mt-4 mb-4 flex justify-center">
-                  <div className="relative w-full max-w-sm bg-white p-3 rounded-xl shadow-lg">                    <Image
-                    src={service.image}
-                    alt={service.title}
-                    width={400}
-                    height={250}
-                    className={`rounded-lg w-full h-auto object-contain ${service.title === 'Desain Digital' ? 'scale-150' :
-                      service.title === 'Pembuatan Aplikasi' ? 'scale-150' : ''
-                      }`}
-                    priority={expandedService === index}
-                  />
+                  <div className="relative w-full max-w-sm bg-white p-3 rounded-xl shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
+                       onClick={() => handleImageClick(service.image, service.title)}>
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      width={400}
+                      height={250}
+                      className={`rounded-lg w-full h-auto object-contain hover:scale-105 transition-transform duration-300 ${service.title === 'Desain Digital' ? 'scale-150' :
+                        service.title === 'Pembuatan Aplikasi' ? 'scale-150' : ''
+                        }`}
+                      priority={expandedService === index}
+                    />
+                    {/* Zoom Icon Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-20 rounded-lg">
+                      <div className="bg-white bg-opacity-80 p-2 rounded-full">
+                        <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -217,7 +258,9 @@ export default function ServicesSection() {
           ))}
         </div>        {/* Center Image Column */}
         <div className="flex justify-center items-center">
-          <div className="relative w-full max-w-lg bg-white p-6 overflow-hidden" style={{ minHeight: '300px' }}>
+          <div className="relative w-full max-w-lg bg-white p-6 overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300" 
+               style={{ minHeight: '300px' }}
+               onClick={() => handleImageClick(services[selectedService].image, services[selectedService].title)}>
             {/* Previous Image - Exit Animation */}
             {isTransitioning && (
               <div className={`absolute inset-6 z-20 ${slideDirection === 'right'
@@ -253,6 +296,15 @@ export default function ServicesSection() {
                   }`}
                 priority
               />
+            </div>
+
+            {/* Zoom Icon Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-20">
+              <div className="bg-white bg-opacity-80 p-3 rounded-full">
+                <svg className="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
@@ -315,10 +367,55 @@ export default function ServicesSection() {
               <span>Konsultasi Gratis</span>
             </a>
           </div>
-        </div>
-      </div>
+        </div>      </div>
       </div>
     </div>
+
+    {/* Image Modal */}
+    {isModalOpen && modalImage && (
+      <div 
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-md"
+        onClick={handleModalClose}
+      >
+        <div className="relative max-w-4xl max-h-screen w-full h-full flex items-center justify-center p-4">
+          {/* Close Button */}
+          <button
+            onClick={handleModalClose}
+            className="absolute top-4 right-4 z-10 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm"
+            aria-label="Close modal"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Modal Image */}
+          <div 
+            className="relative max-w-full max-h-full animate-[zoomIn_0.3s_ease-out]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={modalImage.src}
+              alt={modalImage.alt}
+              width={800}
+              height={600}
+              className="w-auto h-auto max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              priority
+            />
+            
+            {/* Image Title */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 rounded-b-lg">
+              <h3 className="text-white text-lg font-semibold text-center">{modalImage.alt}</h3>
+            </div>
+          </div>
+
+          {/* Click Outside Hint */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm opacity-70">
+            Klik di luar gambar atau tekan ESC untuk menutup
+          </div>
+        </div>
+      </div>
+    )}
   </section>
   );
 }
