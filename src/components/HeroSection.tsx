@@ -15,11 +15,23 @@ const slides = [
 export default function HeroSection() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [scrollY, setScrollY] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
 
-    // Parallax effect handler
+    // Check if device is mobile
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);    // Parallax effect handler (optimized for mobile)
     useEffect(() => {
         const handleScroll = () => setScrollY(window.scrollY);
-        window.addEventListener('scroll', handleScroll);
+        
+        // Use passive listener for better performance
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -53,17 +65,19 @@ export default function HeroSection() {
                 rel="stylesheet" 
             />            <section 
                 className="relative min-h-screen flex items-center justify-center text-white font-inter overflow-hidden"
-            >
-                {/* Parallax Background Layer */}
+                style={{ minHeight: '100vh' }}
+            >                {/* Parallax Background Layer */}
                 <div 
-                    className="absolute inset-0 w-full h-full"
+                    className="absolute inset-0 w-full h-full parallax-element"
                     style={{
                         backgroundImage: 'url(/images/ling.png)',
                         backgroundSize: 'cover',
-                        backgroundPosition: 'center',
+                        backgroundPosition: 'center center',
                         backgroundRepeat: 'no-repeat',
-                        transform: `translateY(${scrollY * 0.3}px)`,
-                        willChange: 'transform'
+                        backgroundAttachment: 'scroll', // Always scroll for mobile compatibility
+                        transform: `translate3d(0, ${scrollY * (isMobile ? 0.1 : 0.3)}px, 0)`, // Hardware accelerated with translate3d
+                        willChange: 'transform',
+                        minHeight: '120vh'
                     }}
                 />
                 
@@ -71,43 +85,40 @@ export default function HeroSection() {
                 <div className="absolute inset-0 bg-black/60 z-1" />
                 
                 {/* Dot pattern overlay */}
-                <div className="absolute inset-0 dot-pattern opacity-20 z-2" />
-                <div className="container mx-auto px-6 lg:px-8 py-20 relative z-10">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        
-                        {/* Kolom Kiri - Konten Statis */}                        <div 
-                            className="flex flex-col gap-8 order-2 lg:order-1"
+                <div className="absolute inset-0 dot-pattern opacity-20 z-2" />                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh] lg:min-h-auto">                        {/* Kolom Kiri - Konten Statis */}                        <div 
+                            className="flex flex-col gap-6 lg:gap-8 order-2 lg:order-1 text-center lg:text-left parallax-element"
                             style={{
-                                transform: `translateY(${scrollY * -0.1}px)`,
+                                transform: `translate3d(0, ${scrollY * (isMobile ? -0.05 : -0.1)}px, 0)`, // Hardware accelerated
                             }}
-                        >                            <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
+                        ><h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
                                 <span className="text-white">Solusi Digital Terdepan untuk </span><span className="text-custom-orange">Bisnis Masa Depan</span>
                             </h1>
                             
-                            <p className="text-lg text-gray-200 max-w-lg">
+                            <p className="text-base sm:text-lg text-gray-200 max-w-lg mx-auto lg:mx-0">
                                 ORDERS hadir sebagai partner digital terpercaya yang menghadirkan inovasi teknologi untuk mengakselerasi pertumbuhan bisnis Anda.
                             </p>
                             
-                            <div className="flex flex-wrap gap-4 mt-4">                                <Link href="/contact">
-                                    <button className="bg-custom-orange text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                            <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-4 justify-center lg:justify-start">                                <Link href="/contact">
+                                    <button className="bg-custom-orange text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 w-full sm:w-auto">
                                         Hubungi Kami
                                     </button>
                                 </Link>
                                 <Link href="/services">
-                                    <button className="bg-gray-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-600 transition-colors duration-300 hover:shadow-lg transform hover:scale-105">
+                                    <button className="bg-gray-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-600 transition-colors duration-300 hover:shadow-lg transform hover:scale-105 w-full sm:w-auto">
                                         Lihat Layanan
                                     </button>
                                 </Link>
                             </div>                            {/* Eco Digital Initiative Card */}                            <SpotlightCard 
-                                className="mt-12 hover:bg-gray-900/80 transition-all duration-300" 
+                                className="mt-8 lg:mt-12 hover:bg-gray-900/80 transition-all duration-300" 
                                 spotlightColor="rgba(34, 197, 94, 0.4)"
                             >
                                 <p className="font-bold text-green-400 text-sm tracking-wider">🌱 ECO DIGITAL INITIATIVE</p>
-                                <h3 className="text-2xl font-bold mt-2 text-white">Teknologi Ramah Lingkungan</h3>
-                                <p className="text-gray-200 mt-2">
+                                <h3 className="text-xl lg:text-2xl font-bold mt-2 text-white">Teknologi Ramah Lingkungan</h3>
+                                <p className="text-gray-200 mt-2 text-sm lg:text-base">
                                     Komitmen ORDERS dalam mengembangkan solusi digital yang berkelanjutan dan mendukung praktik ramah lingkungan.
                                 </p>
-                                <Link href="/ecodigital" className="inline-block text-green-400 font-semibold mt-4 group">
+                                <Link href="/ecodigital" className="inline-block text-green-400 font-semibold mt-4 group text-sm lg:text-base">
                                     Pelajari Lebih Lanjut
                                     <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none ml-1">
                                         →
@@ -115,42 +126,40 @@ export default function HeroSection() {
                                 </Link>
                             </SpotlightCard>
                             
-                            {/* Mitra Lingkungan */}                            <div className="mt-8">
-                                <p className="text-sm text-gray-300 font-medium tracking-wider">SUPPORTED BY:</p>                                <div className="flex flex-wrap items-center gap-x-6 gap-y-4 mt-4">
-                                    <div className="hover:scale-105 transition-all duration-300 bg-white/10 p-3 rounded-xl backdrop-blur-sm">
+                            {/* Mitra Lingkungan */}                            <div className="mt-6 lg:mt-8">
+                                <p className="text-xs lg:text-sm text-gray-300 font-medium tracking-wider">SUPPORTED BY:</p>                                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-4 lg:gap-x-8 gap-y-3 lg:gap-y-4 mt-3 lg:mt-4">
+                                    <div className="hover:scale-105 transition-all duration-300 bg-white/10 p-2 lg:p-4 rounded-xl backdrop-blur-sm">
                                         <Image
                                             src="/images/sponsor/Baciraro.png"
                                             alt="Baciraro"
-                                            width={80}
-                                            height={40}
-                                            className="object-contain rounded-lg"
+                                            width={60}
+                                            height={30}
+                                            className="lg:w-28 lg:h-14 object-contain rounded-lg"
                                         />
                                     </div>
-                                    <div className="hover:scale-105 transition-all duration-300 bg-white/10 p-3 rounded-xl backdrop-blur-sm">
+                                    <div className="hover:scale-105 transition-all duration-300 bg-white/10 p-2 lg:p-4 rounded-xl backdrop-blur-sm">
                                         <Image
                                             src="/images/sponsor/TanaNyiurLestari.png"
                                             alt="Tana Nyiur Lestari"
-                                            width={80}
-                                            height={40}
-                                            className="object-contain rounded-lg"
+                                            width={60}
+                                            height={30}
+                                            className="lg:w-28 lg:h-14 object-contain rounded-lg"
                                         />
                                     </div>
-                                    <div className="hover:scale-105 transition-all duration-300 bg-white/10 p-3 rounded-xl backdrop-blur-sm">
+                                    <div className="hover:scale-105 transition-all duration-300 bg-white/10 p-2 lg:p-4 rounded-xl backdrop-blur-sm">
                                         <Image
                                             src="/images/sponsor/TrashRecycleCenter.png"
                                             alt="Trash Recycle Center"
-                                            width={80}
-                                            height={40}
-                                            className="object-contain rounded-lg"
+                                            width={60}
+                                            height={30}
+                                            className="lg:w-28 lg:h-14 object-contain rounded-lg"
                                         />
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        {/* Kolom Kanan - Slideshow Dinamis */}
+                        </div>                        {/* Kolom Kanan - Slideshow Dinamis */}
                         <div className="order-1 lg:order-2">
-                            <div className="relative w-full h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+                            <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[600px] rounded-2xl overflow-hidden shadow-2xl mx-auto max-w-lg lg:max-w-none">
                                 
                                 {/* Slides Container */}
                                 <div className="relative w-full h-full">
@@ -249,10 +258,60 @@ export default function HeroSection() {
 
                 .bg-custom-orange:hover {
                     background-color: #e55a00;
+                }                .bg-custom-orange-glow {
+                    background-color: rgba(255, 108, 0, 0.1);
                 }
 
-                .bg-custom-orange-glow {
-                    background-color: rgba(255, 108, 0, 0.1);
+                /* Parallax Performance Optimization */
+                .parallax-element {
+                    will-change: transform;
+                    transform: translate3d(0, 0, 0);
+                    backface-visibility: hidden;
+                    perspective: 1000px;
+                }
+
+                /* Mobile Touch Optimization */
+                @media (hover: none) and (pointer: coarse) {
+                    /* Enable hardware acceleration for smooth parallax on touch devices */
+                    .parallax-element {
+                        -webkit-transform: translate3d(0, 0, 0);
+                        transform: translate3d(0, 0, 0);
+                        -webkit-backface-visibility: hidden;
+                        backface-visibility: hidden;
+                        -webkit-perspective: 1000px;
+                        perspective: 1000px;
+                        -webkit-overflow-scrolling: touch;
+                    }
+                }                /* Mobile Optimization for Background with Parallax */
+                @media (max-width: 768px) {
+                    section {
+                        min-height: 100vh !important;
+                        min-height: 100dvh !important; /* Dynamic viewport height for mobile */
+                    }
+                    
+                    /* Optimize background for mobile parallax */
+                    .absolute.inset-0 {
+                        background-attachment: scroll !important;
+                        background-size: cover !important;
+                        background-position: center center !important;
+                        min-height: 120vh !important;
+                        /* Transform will be handled by inline styles for mobile */
+                    }
+                    
+                    /* Ensure smooth scrolling on mobile */
+                    * {
+                        -webkit-transform: translate3d(0, 0, 0);
+                        transform: translate3d(0, 0, 0);
+                    }
+                }
+
+                @media (max-width: 640px) {
+                    /* Extra small screens */
+                    .absolute.inset-0 {
+                        background-size: cover !important;
+                        background-position: center 20% !important; /* Adjust vertical position */
+                        min-height: 130vh !important;
+                    }
                 }
 
                 /* Smooth scrolling for better UX */
