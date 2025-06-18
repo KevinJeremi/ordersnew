@@ -106,14 +106,22 @@ const WebsitePackageCard = ({
         )}
     </div>
 
-    <a
-        href={`https://wa.me/6282195965483?text=Halo!%20Saya%20tertarik%20dengan%20paket%20${encodeURIComponent(pkg.name)}.%20Bisakah%20Anda%20memberikan%20informasi%20lebih%20lanjut?`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-full py-3 px-6 bg-[#061E44] hover:bg-[#FF7A00] text-white font-medium rounded-lg transition-all duration-300 text-center block"
-    >
-        Pesan Sekarang
-    </a>
+    <div className="flex flex-col gap-2">
+        <a
+            href={`https://wa.me/6282195965483?text=Halo!%20Saya%20tertarik%20dengan%20paket%20${encodeURIComponent(pkg.name)}.%20Bisakah%20Anda%20memberikan%20informasi%20lebih%20lanjut?`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full py-3 px-6 bg-[#061E44] hover:bg-[#FF7A00] text-white font-medium rounded-lg transition-all duration-300 text-center block"
+        >
+            Pesan Sekarang
+        </a>
+        <a
+            href="/portfolio?kategori=website"
+            className="w-full py-2 px-6 bg-transparent border-2 border-[#FF7A00] text-[#FF7A00] hover:bg-[#FF7A00] hover:text-white font-medium rounded-lg transition-all duration-300 text-center block"
+        >
+            Lihat Contoh
+        </a>
+    </div>
 </motion.div>
 );
 
@@ -145,14 +153,22 @@ const MobileAppPackageCard = ({
             ))}
         </div>
 
-        <a
-            href={`https://wa.me/6282195965483?text=Halo!%20Saya%20tertarik%20dengan%20paket%20${encodeURIComponent(pkg.name)}.%20Bisakah%20Anda%20memberikan%20informasi%20lebih%20lanjut?`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full py-3 px-6 bg-[#061E44] hover:bg-[#FF7A00] text-white font-medium rounded-lg transition-all duration-300 text-center block"
-        >
-            Pesan Sekarang
-        </a>
+        <div className="flex flex-col gap-2">
+            <a
+                href={`https://wa.me/6282195965483?text=Halo!%20Saya%20tertarik%20dengan%20paket%20${encodeURIComponent(pkg.name)}.%20Bisakah%20Anda%20memberikan%20informasi%20lebih%20lanjut?`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 px-6 bg-[#061E44] hover:bg-[#FF7A00] text-white font-medium rounded-lg transition-all duration-300 text-center block"
+            >
+                Pesan Sekarang
+            </a>
+            <a
+                href="/portfolio?kategori=mobile-app"
+                className="w-full py-2 px-6 bg-transparent border-2 border-[#FF7A00] text-[#FF7A00] hover:bg-[#FF7A00] hover:text-white font-medium rounded-lg transition-all duration-300 text-center block"
+            >
+                Lihat Contoh
+            </a>
+        </div>
     </motion.div>
 );
 
@@ -186,14 +202,22 @@ const DesignServiceCard = ({
     </div>
     <div className="flex items-center justify-between">
         <span className="text-2xl font-bold text-[#FF7A00]">{service.price}</span>
-        <a
-            href={`https://wa.me/6282195965483?text=Halo!%20Saya%20tertarik%20dengan%20layanan%20${encodeURIComponent(service.name)}.%20Bisakah%20Anda%20memberikan%20informasi%20lebih%20lanjut?`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 bg-[#061E44] hover:bg-[#FF7A00] text-white text-sm font-medium rounded-lg transition-all duration-300 transform hover:scale-105"
-        >
-            Pesan
-        </a>
+        <div className="flex gap-2">
+            <a
+                href={`https://wa.me/6282195965483?text=Halo!%20Saya%20tertarik%20dengan%20layanan%20${encodeURIComponent(service.name)}.%20Bisakah%20Anda%20memberikan%20informasi%20lebih%20lanjut?`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-[#061E44] hover:bg-[#FF7A00] text-white text-sm font-medium rounded-lg transition-all duration-300 transform hover:scale-105"
+            >
+                Pesan
+            </a>
+            <a
+                href="/portfolio?kategori=desain"
+                className="px-4 py-2 bg-transparent border border-[#FF7A00] text-[#FF7A00] hover:bg-[#FF7A00] hover:text-white text-sm font-medium rounded-lg transition-all duration-300 transform hover:scale-105"
+            >
+                Contoh
+            </a>
+        </div>
     </div>
 </motion.div>
 );
@@ -284,37 +308,89 @@ export default function PricingSection() {
         if (designSliderRef.current) {
             designSliderRef.current.scrollTo({ left: 0, behavior: 'smooth' });
         }
-    }, [activeTab]);
-
-    // Website packages data
-    const websitePackages: WebsitePackage[] = [
-        {
+    }, [activeTab]);    // Website packages data
+    const websitePackages: WebsitePackage[] = [        {
             name: 'Starter',
             price: 'Mulai dari Rp 300.000',
-            features: [],
+            features: [
+                '✅ Landing Page/Company Profile (1-3 Halaman)',
+                '✅ Responsive Design (Mobile & Desktop)',
+                '✅ Contact Form & Google Maps Integration',
+                '✅ Basic SEO Setup (Meta Tags, Keywords)',
+                '✅ SSL Certificate & Domain Setup'
+            ],
             maintenance: 'Biaya Maintenance: Rp 100.000 / bulan',
-            revisions: 'Maksimal 3x Revisi',
-            bonus: 'Bonus: Termasuk Website Undangan Pernikahan'
-        },
-        {
+            revisions: 'Maksimal 3x Revisi'
+        },{
             name: 'Company',
             price: 'Mulai dari Rp 750.000',
-            features: [],
+            features: [
+                '✅ Multi Page Website (5-8 Halaman)',
+                '✅ Gallery & Portfolio Section',
+                '✅ Advanced SEO Optimization',
+                '✅ Social Media Integration',
+                '✅ Admin Panel Lengkap dengan User Management',
+                '✅ Contact Form dengan Email Notification',
+                '✅ Testimonial & Review System'
+            ],
             maintenance: 'Biaya Maintenance: Rp 200.000 / bulan',
             revisions: 'Maksimal 5x Revisi'
-        }, {
+        },        {
             name: 'Business',
             price: 'Mulai dari Rp 1.700.000',
-            features: [],
+            features: [
+                '✅ E-commerce Platform dengan Katalog Produk',
+                '✅ Payment Gateway Integration (Midtrans/Xendit)',
+                '✅ Inventory Management System',
+                '✅ User Registration & Login System',
+                '✅ Email Marketing Integration',
+                '✅ Analytics Dashboard & Reports',
+                '✅ API Integration (Shipping, Payment)',
+                '✅ Advanced Admin Panel dengan Multi-Role',
+                '✅ Shopping Cart & Wishlist'
+            ],
             maintenance: 'Biaya Maintenance: Rp 500.000 / bulan',
             revisions: 'Maksimal 10x Revisi'
-        },
-        {
+        },        {
             name: 'Ultimate',
-            price: 'Mulai dari Rp 3.000.000',
-            features: [],
+            price: 'Mulai dari Rp 5.000.000',
+            features: [
+                '✅ Custom Web Application (Unlimited Pages)',
+                '✅ Complex Database Architecture',
+                '✅ Multiple User Roles & Permissions',
+                '✅ Advanced Security Features (2FA, Encryption)',
+                '✅ Third-party API Integrations',
+                '✅ Custom CMS Development',
+                '✅ Performance Optimization & CDN',
+                '✅ Dedicated Support Team',
+                '✅ Mobile App Integration Ready',
+                '✅ Advanced Analytics & Reporting',
+                '✅ Automated Backup & Recovery',
+                '✅ Enterprise-level Scalability & Architecture'
+            ],
             maintenance: 'Biaya Maintenance: Rp 1.000.000 / bulan',
             revisions: 'Maksimal 15x Revisi'
+        },
+        {
+            name: 'Undangan Digital',
+            price: 'Rp 150.000',
+            features: [
+                '✅ Doa & Ucapan Interaktif',
+                '✅ Animation Menarik & Modern',
+                '✅ Sistem Reservasi Kehadiran',
+                '✅ Google Calendar Integration',
+                '✅ Fitur Music Background',
+                '✅ Galeri Foto & Video',
+                '✅ Peta Lokasi Interaktif',
+                '✅ Fitur Cerita Cinta',
+                '✅ Tombol Share Social Media',
+                '✅ Request Desain Custom',
+                '✅ Countdown Timer Pernikahan',
+                '✅ Template Design Premium'
+            ],
+            maintenance: 'Tanpa Biaya Maintenance',
+            revisions: 'Maksimal 3x Revisi',
+            bonus: '🆕 PAKET BARU! Special Price!'
         }
     ];
 
@@ -353,9 +429,7 @@ export default function PricingSection() {
         'Integrasi API Pihak Ketiga',
         'Pengujian & Peluncuran Aplikasi',
         'Free Maintenance & Dukungan Selama 1 Bulan'
-    ];
-
-    // Design services data
+    ];    // Design services data
     const designServices: DesignService[] = [
         {
             name: 'UI/UX Desain',
@@ -369,18 +443,18 @@ export default function PricingSection() {
         },
         {
             name: 'Desain Poster',
-            price: 'Mulai dari Rp 100.000',
-            description: 'Termasuk 3x Revisi'
-        },
-        {
-            name: 'Konten Social Media',
             price: 'Mulai dari Rp 50.000',
-            description: 'Konten visual untuk berbagai platform media sosial'
+            description: 'Termasuk 3x Revisi (+ sertifikat jika diperlukan)'
         },
         {
-            name: 'Foto & Video Produk',
-            price: 'Hubungi untuk Penawaran',
-            description: 'Fotografi dan videografi produk profesional'
+            name: 'Edit Foto',
+            price: 'Mulai dari Rp 25.000',
+            description: 'Editing foto profesional untuk berbagai kebutuhan'
+        },
+        {
+            name: 'Edit Video',
+            price: 'Mulai dari Rp 75.000',
+            description: 'Editing video untuk konten marketing dan media sosial'
         }
     ];
 
@@ -569,18 +643,17 @@ export default function PricingSection() {
                                                 ref={designSliderRef}
                                                 className="overflow-x-auto scrollbar-hide"
                                                 style={{ scrollSnapType: 'x mandatory' }}
-                                            >
-                                                <div className="flex">
-                                                    {designServices.map((service, index) => (
-                                                        <div
-                                                            key={index}
-                                                            className="w-full flex-shrink-0 px-4"
-                                                            style={{ scrollSnapAlign: 'start' }}
-                                                        >
-                                                            <DesignServiceCard service={service} index={index} />
-                                                        </div>
-                                                    ))}
-                                                </div>
+                                            >                                            <div className="flex">
+                                                {designServices.map((service, index) => (
+                                                    <div
+                                                        key={index}
+                                                        className="w-full flex-shrink-0 px-4"
+                                                        style={{ scrollSnapAlign: 'start' }}
+                                                    >
+                                                        <DesignServiceCard service={service} index={index} />
+                                                    </div>
+                                                ))}
+                                            </div>
                                             </div>                                        {/* Slider Dots Indicator */}
                                             <div className="flex justify-center items-center mt-6 space-x-2">
                                                 {designServices.map((service, idx) => (
@@ -604,10 +677,7 @@ export default function PricingSection() {
                                                 ))}
                                             </div>
                                         </div>
-                                    </div>
-
-                                    {/* Desktop Grid */}
-                                    <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    </div>                                    {/* Desktop Grid */}                                    <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {designServices.map((service, index) => (
                                             <DesignServiceCard key={service.name} service={service} index={index} />
                                         ))}
@@ -659,15 +729,14 @@ export function HostingSection() {
         };
 
         slider.addEventListener("scroll", onScroll, { passive: true });
-        return () => slider.removeEventListener("scroll", onScroll);
-    }, []);
+        return () => slider.removeEventListener("scroll", onScroll);    }, []);
 
-    // Hosting packages data
+    // Hosting packages data - Updated pricing based on market reference  
     const hostingPackages: HostingPackage[] = [
         { duration: '3 Bulan', price: 'Rp 350.000' },
-        { duration: '6 Bulan', price: 'Rp 500.000' },
-        { duration: '1 Tahun', price: 'Rp 750.000' },
-        { duration: '3 Tahun', price: 'Rp 1.800.000' }
+        { duration: '6 Bulan', price: 'Rp 650.000' },
+        { duration: '1 Tahun', price: 'Rp 1.200.000' },
+        { duration: '3 Tahun', price: 'Rp 3.200.000' }
     ]; return (
         <section className="py-8 md:py-16 bg-gradient-to-br from-gray-50 to-white">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

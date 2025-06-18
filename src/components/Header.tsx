@@ -13,9 +13,7 @@ export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
     const [isScrolled, setIsScrolled] = useState(false); const router = useRouter();
-    const pathname = usePathname();
-
-    // Update active section based on current pathname
+    const pathname = usePathname();    // Update active section based on current pathname
     useEffect(() => {
         if (pathname === '/') {
             setActiveSection('home');
@@ -29,14 +27,17 @@ export default function Header() {
             setActiveSection('team');
         } else if (pathname === '/contact') {
             setActiveSection('contact');
+        } else if (pathname === '/ecodigital') {
+            setActiveSection('ecodigital');
         }
     }, [pathname]);    // Navigation items for mobile menu
     const navigationItems = [
         { href: "/dashboard", label: "Layanan Kami", section: "dashboard", isExternal: true },
         { href: "/pricing", label: "Harga", section: "pricing", isExternal: true },
         { href: "/portfolio", label: "Portofolio", section: "portfolio", isExternal: true },
+        { href: "/ecodigital", label: "EcoDigital", section: "ecodigital", isExternal: true },
         { href: "/team", label: "Tim Kami", section: "team", isExternal: true },
-        { href: "/contact", label: "Kontak", section: "contact", isExternal: true }
+        { href: "/contact", label: "Kontak", section: "contact", isExternal: true },
     ];
 
     // Handle scroll for solid background effect
@@ -96,19 +97,34 @@ export default function Header() {
                         onClick={() => handleNavClick('dashboard', true)}
                     >
                         Layanan Kami
-                    </Link>                    <Link
+                    </Link>
+
+                    <Link
                         href="/pricing"
                         className={`${styles.nav_link} ${activeSection === 'pricing' ? styles.nav_link_active : ''}`}
                         onClick={() => handleNavClick('pricing', true)}
                     >
                         Harga
-                    </Link>                    <Link
+                    </Link>
+
+                    <Link
                         href="/portfolio"
                         className={`${styles.nav_link} ${activeSection === 'portfolio' ? styles.nav_link_active : ''}`}
                         onClick={() => handleNavClick('portfolio', true)}
                     >
                         Portofolio
                     </Link>
+
+                    <Link
+                        href="/ecodigital"
+                        className={`${styles.nav_link} ${activeSection === 'ecodigital' ? styles.nav_link_active : ''} text-green-600 font-medium relative`}
+                        onClick={() => handleNavClick('ecodigital', true)}
+                    >
+                        <span className="flex items-center gap-1">
+                            🌱 EcoDigital
+                        </span>
+                    </Link>
+
                     <Link
                         href="/team"
                         className={`${styles.nav_link} ${activeSection === 'team' ? styles.nav_link_active : ''}`}

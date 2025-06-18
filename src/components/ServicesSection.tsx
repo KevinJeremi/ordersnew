@@ -76,14 +76,22 @@ export default function ServicesSection() {
     {
       title: "Desain Digital",
       description: "UI/UX, Logo, Poster, Social Media Content",
-      icon: "M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 018.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42",
+      icon: "M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42",
       bgColor: "bg-teal-50",
       iconBgColor: "text-teal-500",
       image: "/images/services/desaingrafis.png"
     },
     {
-      title: "Moodboard",
-      description: "Konsep visual yang menjadi panduan dalam proses pengembangan desain",
+      title: "Solusi Digital Khusus Mahasiswa",
+      description: "Butuh bantuan untuk tugas kuliah atau proyek pribadi? Kami siap membantu! Mulai dari pembuatan website portofolio, aplikasi sederhana, desain poster, hingga edit konten digital. Harga? Tenang, sangat ramah di kantong. #TanyaAjaDulu",
+      icon: "M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5",
+      bgColor: "bg-blue-50",
+      iconBgColor: "text-blue-500",
+      image: "/images/services/less.png"
+    },
+    {
+      title: "Kerja Sama Bisnis",
+      description: "Konsep visual yang menjadi panduan dalam proses pengembangan desain dan strategi bisnis berkelanjutan",
       icon: "M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z",
       bgColor: "bg-orange-50",
       iconBgColor: "text-orange-500",
@@ -114,10 +122,9 @@ export default function ServicesSection() {
       image: "/images/services/video.png"
     },
   ];
-
   // Memisahkan services menjadi left dan right
-  const leftServices = services.slice(0, 4);
-  const rightServices = services.slice(4, 8); return (<section id="layanan" className="bg-gradient-to-br from-gray-50 to-orange-50/30 py-8 md:py-12 relative overflow-hidden">
+  const leftServices = services.slice(0, 5);
+  const rightServices = services.slice(5, 9);return (<section id="layanan" className="bg-gradient-to-br from-gray-50 to-orange-50/30 py-8 md:py-12 relative overflow-hidden">
     <div className="container-content relative z-10">      <div className="text-center mb-8 md:mb-12 mt-16 md:mt-20">
       <h2 className="text-3xl md:text-4xl font-bold mb-3 text-orange-600 md:bg-gradient-to-r md:from-orange-600 md:to-orange-500 md:bg-clip-text md:text-transparent">
         Layanan Kami

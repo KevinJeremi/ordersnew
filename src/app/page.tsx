@@ -2,9 +2,8 @@
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
-import CTASection from '@/components/CTASection';
 import WhyOrdersSection from '@/components/WhyOrdersSection';
-import ScrollToTop from '@/components/ScrollToTop';
+import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -18,7 +17,6 @@ export default function Home() {
         <CTASection />
       </main>
       <Footer />
-      <ScrollToTop />
     </>
   );
 }

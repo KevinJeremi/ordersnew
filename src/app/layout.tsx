@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from 'next/font/google';
 import "./globals.css";
+import FloatingActionButtons from '@/components/FloatingActionButtons';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,6 +21,9 @@ export default function RootLayout({
         className={`${inter.className} antialiased`}
       >
         {children}
+
+        {/* Floating Action Buttons */}
+        <FloatingActionButtons />
       </body>
     </html>
   );

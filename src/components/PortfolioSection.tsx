@@ -1,10 +1,114 @@
 'use client';
 
 import { useRef, useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import Lightbox from "./Lightbox";
+
+interface PortfolioItem {
+    title: string;
+    description: string;
+    technologies: string[];
+    image: string;
+    imageAlt: string;
+    category: string;
+}
 
 export default function PortfolioSection() {
     const sliderRef = useRef<HTMLDivElement>(null);
     const [activeIdx, setActiveIdx] = useState(0);
+    const [filteredItems, setFilteredItems] = useState<PortfolioItem[]>([]);
+    const [currentFilter, setCurrentFilter] = useState('all');
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [lightboxIndex, setLightboxIndex] = useState(0);
+    const searchParams = useSearchParams();
+
+    const portfolioItems = [
+        {
+            title: "Rumah Sampah Digital",
+            description: "Aplikasi mobile untuk manajemen rumah sampah digital dengan sistem tracking dan reward untuk pengguna.",
+            technologies: ["Flutter", "Firebase", "Dart"],
+            image: "/images/portofolio/RSD.png",
+            imageAlt: "Rumah Sampah Digital App Screenshot",
+            category: "mobile-app"
+        },
+        {
+            title: "Bank Sampah Pinabetengan",
+            description: "Platform digital untuk manajemen bank sampah dengan sistem pencatatan transaksi dan laporan otomatis.",
+            technologies: ["React Native", "Django", "Python"],
+            image: "/images/portofolio/PInabengan.png",
+            imageAlt: "Bank Sampah Pinabetengan App Screenshot",
+            category: "mobile-app"
+        },
+        {
+            title: "Website Tanah Nyiur Lestari",
+            description: "Website company profile dengan sistem informasi dan manajemen konten yang dinamis.",
+            technologies: ["Django", "Python", "JavaScript"],
+            image: "/images/portofolio/TNL.png",
+            imageAlt: "Tanah Nyiur Lestari Website Screenshot",
+            category: "website"
+        }, 
+        {
+            title: "Solideo Kuliner App",
+            description: "Aplikasi pemesanan makanan dengan sistem real-time ordering dan manajemen resto yang terintegrasi.",
+            technologies: ["Flutter", "Firebase", "Dart"],
+            image: "/images/portofolio/ss_solideo.jpg",
+            imageAlt: "Solideo Kuliner App Screenshot",
+            category: "mobile-app"
+        },
+        {
+            title: "Website Desa Kapoya",
+            description: "Website resmi Desa Kapoya, Minahasa Selatan, Sulawesi Utara dengan sistem informasi desa dan layanan publik digital.",
+            technologies: ["Node.js", "Express", "MongoDB", "JavaScript"],
+            image: "/images/portofolio/webdes.jpg",
+            imageAlt: "Website Desa Kapoya Screenshot",
+            category: "website"
+        },
+        {
+            title: "Pharmacy Website",
+            description: "Website sistem manajemen apotek dengan fitur inventory, penjualan, dan laporan yang terintegrasi dengan database.",
+            technologies: ["CodeIgniter", "MySQL", "PHP"],
+            image: "/images/portofolio/farmasi.png",
+            imageAlt: "Pharmacy Website Screenshot",
+            category: "website"
+        },
+        {
+            title: "Identifikasi Tanaman Nilam",
+            description: "Aplikasi mobile untuk identifikasi tanaman nilam menggunakan teknologi AI dan machine learning.",
+            technologies: ["Flutter", "TensorFlow", "Python"],
+            image: "/images/portofolio/Identifikasi_nilam.jpg",
+            imageAlt: "Identifikasi Nilam App Screenshot",
+            category: "mobile-app"
+        },
+        {
+            title: "Desain Poster Modern",
+            description: "Koleksi desain poster modern untuk berbagai kebutuhan branding dan marketing.",
+            technologies: ["Adobe Illustrator", "Photoshop", "Figma"],
+            image: "/images/services/desaingrafis.png",
+            imageAlt: "Modern Poster Design Collection",
+            category: "desain"
+        }
+    ];
+
+    // Filter functionality
+    const filterItems = (category: string) => {
+        if (category === 'all') {
+            setFilteredItems(portfolioItems);
+        } else {
+            setFilteredItems(portfolioItems.filter(item => item.category === category));
+        }
+        setCurrentFilter(category);
+        setActiveIdx(0);
+    };
+
+    // Initialize filter on component mount and when search params change
+    useEffect(() => {
+        const kategori = searchParams?.get('kategori');
+        if (kategori) {
+            filterItems(kategori);
+        } else {
+            filterItems('all');
+        }
+    }, [searchParams]);
 
     // Update activeIdx on scroll
     useEffect(() => {
@@ -20,49 +124,41 @@ export default function PortfolioSection() {
 
         slider.addEventListener("scroll", onScroll, { passive: true });
         return () => slider.removeEventListener("scroll", onScroll);
-    }, []); const portfolioItems = [
-        {
-            title: "Rumah Sampah Digital",
-            description: "Aplikasi mobile untuk manajemen rumah sampah digital dengan sistem tracking dan reward untuk pengguna.",
-            technologies: ["Flutter", "Firebase", "Dart"],
-            image: "/images/portofolio/RSD.png",
-            imageAlt: "Rumah Sampah Digital App Screenshot"
-        },
-        {
-            title: "Bank Sampah Pinabetengan",
-            description: "Platform digital untuk manajemen bank sampah dengan sistem pencatatan transaksi dan laporan otomatis.",
-            technologies: ["React Native", "Django", "Python"],
-            image: "/images/portofolio/PInabengan.png",
-            imageAlt: "Bank Sampah Pinabetengan App Screenshot"
-        },
-        {
-            title: "Website Tanah Nyiur Lestari",
-            description: "Website company profile dengan sistem informasi dan manajemen konten yang dinamis.",
-            technologies: ["Django", "Python", "JavaScript"],
-            image: "/images/portofolio/TNL.png",
-            imageAlt: "Tanah Nyiur Lestari Website Screenshot"
-        }, {
-            title: "Solideo Kuliner App",
-            description: "Aplikasi pemesanan makanan dengan sistem real-time ordering dan manajemen resto yang terintegrasi.",
-            technologies: ["Flutter", "Firebase", "Dart"],
-            image: "/images/portofolio/ss_solideo.jpg",
-            imageAlt: "Solideo Kuliner App Screenshot"
-        },
-        {
-            title: "Website Desa Kapoya",
-            description: "Website resmi Desa Kapoya, Minahasa Selatan, Sulawesi Utara dengan sistem informasi desa dan layanan publik digital.",
-            technologies: ["Node.js", "Express", "MongoDB", "JavaScript"],
-            image: "/images/portofolio/webdes.jpg",
-            imageAlt: "Website Desa Kapoya Screenshot"
-        },
-        {
-            title: "Pharmacy Website",
-            description: "Website sistem manajemen apotek dengan fitur inventory, penjualan, dan laporan yang terintegrasi dengan database.",
-            technologies: ["CodeIgniter", "MySQL", "PHP"],
-            image: "/images/portofolio/farmasi.png",
-            imageAlt: "Pharmacy Website Screenshot"
-        }
-    ]; return (
+    }, [filteredItems]);
+
+    const filterButtons = [
+        { id: 'all', label: 'Semua', count: portfolioItems.length },
+        { id: 'website', label: 'Website', count: portfolioItems.filter(item => item.category === 'website').length },
+        { id: 'mobile-app', label: 'Mobile App', count: portfolioItems.filter(item => item.category === 'mobile-app').length },
+        { id: 'desain', label: 'Desain', count: portfolioItems.filter(item => item.category === 'desain').length }
+    ];
+
+    // Lightbox functions
+    const openLightbox = (index: number) => {
+        setLightboxIndex(index);
+        setLightboxOpen(true);
+    };
+
+    const closeLightbox = () => {
+        setLightboxOpen(false);
+    };
+
+    const nextImage = () => {
+        setLightboxIndex((prev) => (prev + 1) % filteredItems.length);
+    };
+
+    const prevImage = () => {
+        setLightboxIndex((prev) => (prev - 1 + filteredItems.length) % filteredItems.length);
+    };
+
+    // Prepare lightbox images
+    const lightboxImages = filteredItems.map(item => ({
+        src: item.image,
+        alt: item.imageAlt,
+        title: item.title
+    }));
+
+    return (
         <section id="portofolio" className="bg-light py-8 md:py-12 relative overflow-hidden">
             {/* Enhanced Background Elements */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#FF7A00]/10 to-transparent rounded-bl-full"></div>
@@ -72,9 +168,24 @@ export default function PortfolioSection() {
 
             <div className="container-content relative z-10">
                 <div className="text-center mb-12">
-
                     <h2 className="text-4xl font-bold mb-3">Karya Kami</h2>
-
+                    
+                    {/* Filter Buttons */}
+                    <div className="flex flex-wrap justify-center gap-2 mt-8">
+                        {filterButtons.map((button) => (
+                            <button
+                                key={button.id}
+                                onClick={() => filterItems(button.id)}
+                                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                                    currentFilter === button.id
+                                        ? 'bg-[#FF7A00] text-white shadow-lg'
+                                        : 'bg-white text-gray-600 hover:bg-[#FF7A00]/10 hover:text-[#FF7A00] border border-gray-200'
+                                }`}
+                            >
+                                {button.label} ({button.count})
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Mobile Slider */}
@@ -86,7 +197,7 @@ export default function PortfolioSection() {
                             style={{ scrollSnapType: 'x mandatory' }}
                         >
                             <div className="flex">
-                                {portfolioItems.map((item, index) => (
+                                {filteredItems.map((item, index) => (
                                     <div
                                         key={index}
                                         className="w-full flex-shrink-0 px-4"
@@ -98,7 +209,8 @@ export default function PortfolioSection() {
                                                 <img
                                                     src={item.image}
                                                     alt={item.imageAlt}
-                                                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                                                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 cursor-pointer"
+                                                    onClick={() => openLightbox(index)}
                                                 />
                                             </div>
 
@@ -125,7 +237,7 @@ export default function PortfolioSection() {
                             </div>
                         </div>                        {/* Slider Dots Indicator */}
                         <div className="flex justify-center items-center mt-6 space-x-2 bg-transparent">
-                            {portfolioItems.map((_, idx) => (
+                            {filteredItems.map((_, idx) => (
                                 <button
                                     key={idx}
                                     type="button"
@@ -147,14 +259,15 @@ export default function PortfolioSection() {
                     </div>
                 </div>                {/* Desktop Grid */}
                 <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-2 gap-8 mt-12">
-                    {portfolioItems.map((item, index) => (<div key={index} className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl group transition-all duration-500 hover:-translate-y-3 border border-gray-100/50 backdrop-blur-sm relative before:absolute before:inset-0 before:bg-gradient-to-br before:from-[#FF7A00]/5 before:via-transparent before:to-[#3D8C95]/5 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100">
+                    {filteredItems.map((item, index) => (<div key={index} className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl group transition-all duration-500 hover:-translate-y-3 border border-gray-100/50 backdrop-blur-sm relative before:absolute before:inset-0 before:bg-gradient-to-br before:from-[#FF7A00]/5 before:via-transparent before:to-[#3D8C95]/5 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100">
                         {/* Project Image */}
                         <div className="relative h-56 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/10 via-transparent to-[#3D8C95]/10 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                             <img
                                 src={item.image}
                                 alt={item.imageAlt}
-                                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 cursor-pointer"
+                                onClick={() => openLightbox(index)}
                             />
                         </div>
 
@@ -176,8 +289,17 @@ export default function PortfolioSection() {
                             </div>
                         </div>
                     </div>
-                    ))}
-                </div>
+                    ))}                </div>
+
+                {/* Lightbox Component */}
+                <Lightbox
+                    images={lightboxImages}
+                    currentIndex={lightboxIndex}
+                    isOpen={lightboxOpen}
+                    onClose={closeLightbox}
+                    onNext={nextImage}
+                    onPrev={prevImage}
+                />
             </div>
         </section>
     );
