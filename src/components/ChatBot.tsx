@@ -353,36 +353,34 @@ Ketik angka 1, 2, 3, atau 4.`;
             e.preventDefault();
             handleSendMessage();
         }
-    };
-
-    return (
-        <div className={`${useCustomPosition ? 'relative' : 'fixed bottom-6 right-6 z-50'} ${
+    };    return (
+        <div className={`${useCustomPosition ? 'relative' : 'fixed bottom-4 right-4 z-50'} ${
             useCustomPosition 
-                ? 'w-[400px] sm:w-[450px] md:w-[500px] h-[600px] sm:h-[650px]' 
-                : 'w-80 h-96'
-        } bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden backdrop-blur-sm`}>
-            {/* Header */}
-            <div className="bg-gradient-to-r from-[#FF7A00] to-orange-500 text-white p-4 sm:p-6 flex justify-between items-center">                <div className="flex items-center space-x-3 flex-1">
-                    <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                ? 'w-full max-w-[300px] sm:max-w-[350px] md:max-w-[400px] h-[400px] sm:h-[480px] md:h-[550px]' 
+                : 'w-[calc(100vw-3rem)] max-w-64 h-[calc(100vh-12rem)] max-h-72 sm:w-72 sm:h-80'
+        } bg-white rounded-xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden backdrop-blur-sm`}>            {/* Header */}
+            <div className="bg-gradient-to-r from-[#FF7A00] to-orange-500 text-white p-2 sm:p-3 md:p-4 flex justify-between items-center">
+                <div className="flex items-center space-x-2 sm:space-x-3 flex-1 min-w-0">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                         </svg>
                     </div>
-                    <div>
-                        <h3 className="font-bold text-lg">ORDERS Assistant</h3>
-                        <div className="flex items-center space-x-2">
-                            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                            <p className="text-sm opacity-90">Online - Siap membantu!</p>
+                    <div className="min-w-0 flex-1">
+                        <h3 className="font-bold text-xs sm:text-sm md:text-base truncate">ORDERS Assistant</h3>
+                        <div className="flex items-center space-x-1 sm:space-x-2">
+                            <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-green-400 rounded-full animate-pulse"></div>
+                            <p className="text-xs opacity-90 truncate">Online - Siap membantu!</p>
                         </div>
                     </div>
                 </div>
-                <div className="flex space-x-2">                    <button
+                <div className="flex space-x-1 flex-shrink-0">                    <button
                         onClick={resetChat}
-                        className={`text-white/80 hover:text-white hover:bg-white/20 rounded-full p-2 transition-all duration-200 ${isResetting ? 'animate-spin' : ''}`}
+                        className={`text-white/80 hover:text-white hover:bg-white/20 rounded-full p-1 sm:p-1.5 transition-all duration-200 ${isResetting ? 'animate-spin' : ''}`}
                         title="Reset Chat"
                         disabled={isResetting}
                     >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                         </svg>
                     </button>
@@ -392,35 +390,33 @@ Ketik angka 1, 2, 3, atau 4.`;
                                 onClose();
                             }
                         }}
-                        className="text-white/80 hover:text-white hover:bg-white/20 rounded-full p-2 transition-all duration-200"
+                        className="text-white/80 hover:text-white hover:bg-white/20 rounded-full p-1 sm:p-1.5 transition-all duration-200"
                         title="Close Chat"
                     >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
-                </div></div>
-
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 bg-gradient-to-b from-gray-50 to-white scrollbar-hide">
+                </div>
+            </div>            {/* Messages */}
+            <div className="flex-1 overflow-y-auto p-2 sm:p-3 space-y-2 sm:space-y-3 bg-gradient-to-b from-gray-50 to-white scrollbar-hide">
                 {messages.map((message) => (
                     <div
                         key={message.id}
                         className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
                     >
-                        <div className={`flex ${message.isUser ? 'flex-row-reverse' : 'flex-row'} items-end space-x-2 max-w-[85%]`}>
+                        <div className={`flex ${message.isUser ? 'flex-row-reverse' : 'flex-row'} items-end space-x-1 sm:space-x-2 max-w-[95%] sm:max-w-[90%]`}>
                             {/* Avatar */}
-                            <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
+                            <div className={`flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center ${
                                 message.isUser 
                                     ? 'bg-[#FF7A00] text-white' 
                                     : 'bg-gray-200 text-gray-600'
-                            }`}>
-                                {message.isUser ? (
-                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            }`}>                                {message.isUser ? (
+                                    <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                                     </svg>
                                 ) : (
-                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                                     </svg>
                                 )}
@@ -428,7 +424,7 @@ Ketik angka 1, 2, 3, atau 4.`;
                             
                             {/* Message Bubble */}
                             <div
-                                className={`px-4 py-3 rounded-2xl text-sm shadow-sm ${
+                                className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-xl text-xs sm:text-sm shadow-sm ${
                                     message.isUser
                                         ? 'bg-[#FF7A00] text-white rounded-br-md'
                                         : 'bg-white text-gray-800 border border-gray-200 rounded-bl-md'
@@ -437,7 +433,7 @@ Ketik angka 1, 2, 3, atau 4.`;
                                 <div className="whitespace-pre-wrap break-words leading-relaxed">
                                     {message.text}
                                 </div>
-                                <div className={`text-xs mt-2 ${
+                                <div className={`text-[9px] sm:text-xs mt-1 ${
                                     message.isUser ? 'text-orange-100' : 'text-gray-400'
                                 }`}>
                                     {message.timestamp.toLocaleTimeString('id-ID', { 
@@ -450,18 +446,17 @@ Ketik angka 1, 2, 3, atau 4.`;
                     </div>
                 ))}
                 {isLoading && (
-                    <div className="flex justify-start">
-                        <div className="flex items-end space-x-2">
-                            <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                                <svg className="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                    <div className="flex justify-start">                        <div className="flex items-end space-x-1 sm:space-x-2">
+                            <div className="w-4 h-4 sm:w-5 sm:h-5 bg-gray-200 rounded-full flex items-center justify-center">
+                                <svg className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                                 </svg>
                             </div>
-                            <div className="bg-white border border-gray-200 px-4 py-3 rounded-2xl rounded-bl-md shadow-sm">
-                                <div className="flex space-x-1">
-                                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                            <div className="bg-white border border-gray-200 px-2 py-1.5 sm:px-3 sm:py-2 rounded-xl rounded-bl-md shadow-sm">
+                                <div className="flex space-x-0.5 sm:space-x-1">
+                                    <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-gray-400 rounded-full animate-bounce"></div>
+                                    <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                                    <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                                 </div>
                             </div>
                         </div>
@@ -469,9 +464,9 @@ Ketik angka 1, 2, 3, atau 4.`;
                 )}
                 <div ref={messagesEndRef} /> {/* Scroll target */}
             </div>            {/* Input */}
-            <div className="border-t border-gray-100 bg-white p-4 sm:p-6">
+            <div className="border-t border-gray-100 bg-white p-2 sm:p-3">
                 {/* Quick Reply Buttons */}
-                <div className="mb-4 flex flex-wrap gap-2">
+                <div className="mb-2 sm:mb-3 flex flex-wrap gap-1">
                     {['1', '2', '3', '4'].map((num) => (
                         <button
                             key={num}
@@ -479,53 +474,53 @@ Ketik angka 1, 2, 3, atau 4.`;
                                 setInputValue(num);
                                 setTimeout(handleSendMessage, 100);
                             }}
-                            className="px-3 py-1.5 text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full transition-colors border border-gray-200 hover:border-gray-300"
+                            className="px-2 py-1 text-[9px] sm:text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full transition-colors border border-gray-200 hover:border-gray-300"
                         >
                             Menu {num}
                         </button>
                     ))}
                 </div>
                 
-                <div className="flex space-x-3 items-end">
-                    <div className="flex-1 relative">
+                <div className="flex space-x-1 sm:space-x-2 items-end">                    <div className="flex-1 relative">
                         <input
                             type="text"
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyPress={handleKeyPress}
-                            placeholder="Ketik pesan atau pilih menu di atas..."
-                            className="w-full px-4 py-3 pr-12 border-2 border-gray-200 rounded-2xl focus:outline-none focus:border-[#FF7A00] transition-colors text-sm bg-gray-50 focus:bg-white"
+                            placeholder="Ketik pesan atau pilih menu..."
+                            className="w-full px-2 py-1.5 sm:px-3 sm:py-2 pr-6 sm:pr-8 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#FF7A00] transition-colors text-xs sm:text-sm bg-gray-50 focus:bg-white"
                         />
                         {inputValue && (
                             <button
                                 onClick={() => setInputValue('')}
-                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                                className="absolute right-1.5 sm:right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                             >
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
-                        )}                    </div>                    <button
+                        )}
+                    </div>
+                    <button
                         onClick={resetChat}
-                        className={`text-gray-500 hover:text-[#FF7A00] hover:bg-orange-50 p-3 rounded-2xl transition-all duration-200 ${isResetting ? 'animate-spin text-[#FF7A00]' : ''}`}
+                        className={`text-gray-500 hover:text-[#FF7A00] hover:bg-orange-50 p-1.5 sm:p-2 rounded-xl transition-all duration-200 ${isResetting ? 'animate-spin text-[#FF7A00]' : ''}`}
                         title="Reset Chat"
                         disabled={isResetting}
                     >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                         </svg>
                     </button>
                     <button
                         onClick={handleSendMessage}
                         disabled={!inputValue.trim() || isLoading}
-                        className="bg-[#FF7A00] hover:bg-orange-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white p-3 rounded-2xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:transform-none"
-                    >
-                        {isLoading ? (
-                            <svg className="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        className="bg-[#FF7A00] hover:bg-orange-600 disabled:bg-gray-300 disabled:cursor-not-allowed text-white p-1.5 sm:p-2 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:transform-none"
+                    >                        {isLoading ? (
+                            <svg className="w-3 h-3 sm:w-4 sm:h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                             </svg>
                         ) : (
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                             </svg>
                         )}
