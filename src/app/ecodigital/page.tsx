@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { FaLeaf, FaRecycle, FaSolarPanel, FaWater, FaWind, FaGlobe } from 'react-icons/fa';
+import { FaLeaf, FaRecycle, FaWater, FaGlobe } from 'react-icons/fa';
 
 export default function EcodigitalPage() {
     return (
@@ -48,8 +48,7 @@ export default function EcodigitalPage() {
                         <div className="mb-16">
                             <h2 className="text-3xl font-bold text-gray-800 mb-12 text-center">
                                 Inisiatif <span className="text-teal-600">Berkelanjutan</span> Kami
-                            </h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            </h2>                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                 <div className="bg-white rounded-xl shadow-lg p-6 border border-green-100 hover:shadow-xl transition-shadow">
                                     <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
                                         <FaRecycle className="text-green-600 text-2xl" />
@@ -60,16 +59,6 @@ export default function EcodigitalPage() {
                                     </p>
                                 </div>
 
-                                <div className="bg-white rounded-xl shadow-lg p-6 border border-teal-100 hover:shadow-xl transition-shadow">
-                                    <div className="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
-                                        <FaSolarPanel className="text-teal-600 text-2xl" />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-gray-800 mb-3 text-center">Green Hosting</h3>
-                                    <p className="text-gray-600 text-center">
-                                        Menggunakan server dan hosting yang diperkayai dengan energi terbarukan.
-                                    </p>
-                                </div>
-
                                 <div className="bg-white rounded-xl shadow-lg p-6 border border-emerald-100 hover:shadow-xl transition-shadow">
                                     <div className="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
                                         <FaWater className="text-emerald-600 text-2xl" />
@@ -77,16 +66,6 @@ export default function EcodigitalPage() {
                                     <h3 className="text-xl font-bold text-gray-800 mb-3 text-center">Sustainable Design</h3>
                                     <p className="text-gray-600 text-center">
                                         Mendesain interface yang mengoptimalkan penggunaan energi pada perangkat pengguna.
-                                    </p>
-                                </div>
-
-                                <div className="bg-white rounded-xl shadow-lg p-6 border border-cyan-100 hover:shadow-xl transition-shadow">
-                                    <div className="bg-cyan-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
-                                        <FaWind className="text-cyan-600 text-2xl" />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-gray-800 mb-3 text-center">Carbon Neutral</h3>
-                                    <p className="text-gray-600 text-center">
-                                        Berkomitmen mencapai carbon neutral dalam semua operasional bisnis kami.
                                     </p>
                                 </div>
 
