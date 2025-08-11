@@ -46,6 +46,22 @@ export default function PortfolioSection() {
             image: "/images/portofolio/TNL.png",
             imageAlt: "Tanah Nyiur Lestari Website Screenshot",
             category: "website"
+        },
+        {
+            title: "TRC Blockchain - Waste Management System",
+            description: "TRC (Tonsea Recycle Center) adalah sistem manajemen sampah inovatif yang mengintegrasikan teknologi blockchain untuk memberikan reward berupa token TRC kepada pengguna yang berkontribusi dalam program daur ulang sampah.",
+            technologies: ["Blockchain", "Smart Contract", "React", "Node.js"],
+            image: "/images/portofolio/TRC.png",
+            imageAlt: "TRC Blockchain Waste Management System Screenshot",
+            category: "website"
+        },
+        {
+            title: "Wisata Rakit Malalayang",
+            description: "Aplikasi Android untuk wisata rakit di Malalayang dengan fitur reservasi online, pembayaran digital, manajemen jadwal terintegrasi, dan fitur ulasan pengunjung untuk meningkatkan layanan wisata lokal.",
+            technologies: ["Flutter", "Dart", "Firebase"],
+            image: "/images/portofolio/ChatGPT Image 8 Jun 2025, 23.43.03.png",
+            imageAlt: "Wisata Rakit Malalayang App Screenshot",
+            category: "mobile-app"
         }, 
         {
             title: "Solideo Kuliner App",
