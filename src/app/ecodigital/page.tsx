@@ -8,18 +8,33 @@ export default function EcodigitalPage() {
             <Header />
             <main style={{ paddingTop: '80px' }}>
                 {/* Hero Section */}
-                <section className="py-20 bg-gradient-to-br from-green-50 via-teal-50 to-emerald-50">
-                    <div className="container mx-auto px-4">
+                <section className="py-20 relative overflow-hidden" style={{
+                    backgroundImage: 'url(/images/ecosistem/p1.jpg)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
+                }}>
+                    {/* Background Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-green-900/80 via-teal-800/70 to-emerald-900/80"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                    
+                    {/* Decorative Elements */}
+                    <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-green-400/10 to-transparent rounded-full -translate-y-32 -translate-x-32"></div>
+                    <div className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-tl from-teal-400/10 to-transparent rounded-full translate-y-24 translate-x-24"></div>
+                    <div className="absolute top-1/2 left-1/4 w-4 h-4 bg-green-400/50 rounded-full"></div>
+                    <div className="absolute top-1/4 right-1/3 w-6 h-6 bg-teal-400/40 rounded-full"></div>
+                    
+                    <div className="container mx-auto px-4 relative z-10">
                         <div className="text-center max-w-4xl mx-auto">                            <div className="inline-block mb-6">
-                                <span className="bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full flex items-center gap-2 w-fit mx-auto">
+                                <span className="bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full flex items-center gap-2 w-fit mx-auto shadow-lg">
                                     <FaLeaf className="text-sm" />
                                     ECODIGITAL INITIATIVE
                                 </span>
                             </div>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6">
-                                Inisiatif <span className="text-green-600">Ecodigital</span> Kami
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 drop-shadow-lg">
+                                Inisiatif <span className="text-green-400">Ecodigital</span> Kami
                             </h1>
-                            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                            <p className="text-xl text-gray-100 mb-8 leading-relaxed drop-shadow">
                                 Komitmen kami untuk mengurangi jejak karbon digital dan mengintegrasikan teknologi ramah lingkungan dalam setiap layanan yang kami berikan.
                             </p>
                         </div>

@@ -59,7 +59,7 @@ export default function PortfolioSection() {
             title: "Wisata Rakit Malalayang",
             description: "Aplikasi Android untuk wisata rakit di Malalayang dengan fitur reservasi online, pembayaran digital, manajemen jadwal terintegrasi, dan fitur ulasan pengunjung untuk meningkatkan layanan wisata lokal.",
             technologies: ["Flutter", "Dart", "Firebase"],
-            image: "/images/portofolio/ChatGPT Image 8 Jun 2025, 23.43.03.png",
+            image: "/images/portofolio/rakit.png",
             imageAlt: "Wisata Rakit Malalayang App Screenshot",
             category: "mobile-app"
         }, 
@@ -274,37 +274,38 @@ export default function PortfolioSection() {
                         </div>
                     </div>
                 </div>                {/* Desktop Grid */}
-                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-2 gap-8 mt-12">
-                    {filteredItems.map((item, index) => (<div key={index} className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl group transition-all duration-500 hover:-translate-y-3 border border-gray-100/50 backdrop-blur-sm relative before:absolute before:inset-0 before:bg-gradient-to-br before:from-[#FF7A00]/5 before:via-transparent before:to-[#3D8C95]/5 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100">
-                        {/* Project Image */}
-                        <div className="relative h-56 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/10 via-transparent to-[#3D8C95]/10 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <img
-                                src={item.image}
-                                alt={item.imageAlt}
-                                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 cursor-pointer"
-                                onClick={() => openLightbox(index)}
-                            />
-                        </div>
+                <div className="hidden md:grid md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 mt-12">
+                    {filteredItems.map((item, index) => (
+                        <div key={index} className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl group transition-all duration-500 hover:-translate-y-2 border border-gray-100/50 backdrop-blur-sm relative before:absolute before:inset-0 before:bg-gradient-to-br before:from-[#FF7A00]/5 before:via-transparent before:to-[#3D8C95]/5 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100">
+                            {/* Project Image */}
+                            <div className="relative h-48 lg:h-56 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#FF7A00]/10 via-transparent to-[#3D8C95]/10 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                <img
+                                    src={item.image}
+                                    alt={item.imageAlt}
+                                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 cursor-pointer"
+                                    onClick={() => openLightbox(index)}
+                                />
+                            </div>
 
-                        {/* Modern Content Section */}
-                        <div className="p-6 relative z-10">
-                            {/* Background Pattern */}
-                            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#FF7A00]/5 to-transparent rounded-bl-full group-hover:from-[#FF7A00]/10 transition-all duration-500"></div>
+                            {/* Modern Content Section */}
+                            <div className="p-5 lg:p-6 relative z-10">
+                                {/* Background Pattern */}
+                                <div className="absolute top-0 right-0 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-bl from-[#FF7A00]/5 to-transparent rounded-bl-full group-hover:from-[#FF7A00]/10 transition-all duration-500"></div>
 
-                            <h3 className="text-xl font-bold text-[#061E44] mb-3 group-hover:text-[#FF7A00] transition-colors duration-300">{item.title}</h3>
-                            <p className="text-gray-600 mb-4 leading-relaxed">{item.description}</p>
+                                <h3 className="text-lg lg:text-xl font-bold text-[#061E44] mb-2 lg:mb-3 group-hover:text-[#FF7A00] transition-colors duration-300 line-clamp-2">{item.title}</h3>
+                                <p className="text-gray-600 mb-3 lg:mb-4 leading-relaxed text-sm lg:text-base line-clamp-3">{item.description}</p>
 
-                            {/* Technology Tags */}
-                            <div className="flex flex-wrap gap-2">
-                                {item.technologies.map((tech, techIndex) => (
-                                    <span key={techIndex} className="bg-gradient-to-r from-[#FF7A00]/10 to-[#3D8C95]/10 text-[#061E44] px-3 py-1.5 rounded-full text-sm font-medium border border-[#FF7A00]/20 hover:border-[#FF7A00]/40 hover:bg-gradient-to-r hover:from-[#FF7A00]/20 hover:to-[#3D8C95]/20 transition-all duration-300">
-                                        {tech}
-                                    </span>
-                                ))}
+                                {/* Technology Tags */}
+                                <div className="flex flex-wrap gap-1.5 lg:gap-2">
+                                    {item.technologies.map((tech, techIndex) => (
+                                        <span key={techIndex} className="bg-gradient-to-r from-[#FF7A00]/10 to-[#3D8C95]/10 text-[#061E44] px-2.5 lg:px-3 py-1 lg:py-1.5 rounded-full text-xs lg:text-sm font-medium border border-[#FF7A00]/20 hover:border-[#FF7A00]/40 hover:bg-gradient-to-r hover:from-[#FF7A00]/20 hover:to-[#3D8C95]/20 transition-all duration-300">
+                                            {tech}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
                         </div>
-                    </div>
                     ))}                </div>
 
                 {/* Lightbox Component */}

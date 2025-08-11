@@ -53,11 +53,6 @@ Mau tanya lagi? Ketik 1, 2, 3, atau 4.`,
    - Web App (Fullstack)
    - Integrasi API & Database
 
-⚡ **Less Coding**
-   - Pemrograman cepat & efisien
-   - Pendekatan low-code
-   - Editing & maintenance
-
 🎨 **Desain Digital**
    - UI/UX Design
    - Logo & Branding

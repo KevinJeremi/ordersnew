@@ -98,14 +98,6 @@ export default function ServicesSection() {
       image: "/images/services/android.png"
     },
     {
-      title: "Less Coding",
-      description: "Pemrograman cepat dan efisien dengan pendekatan low-code dan editing",
-      icon: "M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z",
-      bgColor: "bg-orange-50",
-      iconBgColor: "text-orange-500",
-      image: "/images/services/less.png"
-    },
-    {
       title: "Desain Digital",
       description: "UI/UX, Logo, Poster, Social Media Content",
       icon: "M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42",
@@ -114,11 +106,11 @@ export default function ServicesSection() {
       image: "/images/services/desaingrafis.png"
     },
     {
-      title: "Solusi Digital Khusus Mahasiswa",
-      description: "Butuh bantuan untuk tugas kuliah atau proyek pribadi? Kami siap membantu! Mulai dari pembuatan website portofolio, aplikasi sederhana, desain poster, hingga edit konten digital. Harga? Tenang, sangat ramah di kantong. #TanyaAjaDulu",
+      title: "Layanan Digital Khusus Mahasiswa",
+      description: "Website portfolio, aplikasi skripsi, desain presentasi akademik dengan harga terjangkau untuk mahasiswa",
       icon: "M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5",
-      bgColor: "bg-blue-50",
-      iconBgColor: "text-blue-500",
+      bgColor: "bg-purple-50",
+      iconBgColor: "text-purple-500",
       image: "/images/services/less.png"
     },
     {
@@ -128,14 +120,6 @@ export default function ServicesSection() {
       bgColor: "bg-orange-50",
       iconBgColor: "text-orange-500",
       image: "/images/services/mood_board.png"
-    },
-    {
-      title: "Prototype",
-      description: "Model awal yang interaktif untuk pengujian dan pengembangan lebih lanjut",
-      icon: "M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25",
-      bgColor: "bg-teal-50",
-      iconBgColor: "text-teal-500",
-      image: "/images/services/prototype.png"
     },
     {
       title: "Photo Editing",
@@ -155,8 +139,10 @@ export default function ServicesSection() {
     },
   ];
   // Memisahkan services menjadi left dan right
-  const leftServices = services.slice(0, 5);
-  const rightServices = services.slice(5, 9);return (<section id="layanan" className="bg-gradient-to-br from-gray-50 to-orange-50/30 py-8 md:py-12 relative overflow-hidden">
+  const leftServices = services.slice(0, 4); // 4 services di kiri
+  const rightServices = services.slice(4, 7); // 3 services di kanan
+
+  return (<section id="layanan" className="bg-gradient-to-br from-gray-50 to-orange-50/30 py-8 md:py-12 relative overflow-hidden">
     <div className="container-content relative z-10">      <div className="text-center mb-8 md:mb-12 mt-16 md:mt-20">
       <h2 className="text-3xl md:text-4xl font-bold mb-3 text-orange-600 md:bg-gradient-to-r md:from-orange-600 md:to-orange-500 md:bg-clip-text md:text-transparent">
         Layanan Kami
