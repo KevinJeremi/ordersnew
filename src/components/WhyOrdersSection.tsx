@@ -98,7 +98,6 @@ export default function WhyOrdersSection() {
                                     <h3 className="font-bold text-white text-sm">
                                         {feature.title}
                                     </h3>
-                                    <p className="text-gray-400 text-xs">@orders.digital</p>
                                 </div>
                                 <div className="ml-auto">
                                     <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center">
@@ -167,7 +166,6 @@ export default function WhyOrdersSection() {
                                                 <h3 className="font-bold text-white text-sm">
                                                     {feature.title}
                                                 </h3>
-                                                <p className="text-gray-400 text-xs">@orders.digital</p>
                                             </div>
                                             <div className="ml-auto">
                                                 <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center">

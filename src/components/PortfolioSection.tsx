@@ -27,7 +27,7 @@ export default function PortfolioSection() {
             title: "Rumah Sampah Digital",
             description: "Aplikasi mobile untuk manajemen rumah sampah digital dengan sistem tracking dan reward untuk pengguna.",
             technologies: ["Flutter", "Firebase", "Dart"],
-            image: "/images/portofolio/RSD.png",
+            image: "/images/portofolio/3.png",
             imageAlt: "Rumah Sampah Digital App Screenshot",
             category: "mobile-app"
         },
@@ -35,7 +35,7 @@ export default function PortfolioSection() {
             title: "Bank Sampah Pinabetengan",
             description: "Platform digital untuk manajemen bank sampah dengan sistem pencatatan transaksi dan laporan otomatis.",
             technologies: ["React Native", "Django", "Python"],
-            image: "/images/portofolio/PInabengan.png",
+            image: "/images/portofolio/1.png",
             imageAlt: "Bank Sampah Pinabetengan App Screenshot",
             category: "mobile-app"
         },
@@ -59,7 +59,7 @@ export default function PortfolioSection() {
             title: "Wisata Rakit Malalayang",
             description: "Aplikasi Android untuk wisata rakit di Malalayang dengan fitur reservasi online, pembayaran digital, manajemen jadwal terintegrasi, dan fitur ulasan pengunjung untuk meningkatkan layanan wisata lokal.",
             technologies: ["Flutter", "Dart", "Firebase"],
-            image: "/images/portofolio/rakit.png",
+            image: "/images/portofolio/2.png",
             imageAlt: "Wisata Rakit Malalayang App Screenshot",
             category: "mobile-app"
         }, 
@@ -67,8 +67,24 @@ export default function PortfolioSection() {
             title: "Solideo Kuliner App",
             description: "Aplikasi pemesanan makanan dengan sistem real-time ordering dan manajemen resto yang terintegrasi.",
             technologies: ["Flutter", "Firebase", "Dart"],
-            image: "/images/portofolio/ss_solideo.jpg",
+            image: "/images/portofolio/4.png",
             imageAlt: "Solideo Kuliner App Screenshot",
+            category: "mobile-app"
+        },
+        {
+            title: "Orders Management Startup",
+            description: "Aplikasi manajemen startup dengan fitur task management, financial tracking, team collaboration, dashboard analytics, dan sistem inventaris terintegrasi untuk membantu startup mengelola operasional bisnis secara efisien.",
+            technologies: ["Flutter", "Supabase", "Dart"],
+            image: "/images/portofolio/5.png",
+            imageAlt: "Orders Management Startup App Screenshot",
+            category: "mobile-app"
+        },
+        {
+            title: "Personal Finance Tracker",
+            description: "Aplikasi manajemen keuangan pribadi dengan fitur expense tracker, laporan keuangan bulanan, kategorisasi pengeluaran otomatis, analisis spending pattern dengan chart visualization, dan monitoring saldo real-time untuk kontrol finansial yang lebih baik.",
+            technologies: ["Flutter", "SQLite", "Dart"],
+            image: "/images/portofolio/6.png",
+            imageAlt: "Personal Finance Tracker App Screenshot",
             category: "mobile-app"
         },
         {
