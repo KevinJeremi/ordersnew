@@ -55,6 +55,22 @@ const Tab = ({
     </button>
 );
 
+// Function to get demo URL based on package name
+const getDemoUrl = (packageName: string): string => {
+    switch (packageName) {
+        case 'Starter':
+            return '/1.html';
+        case 'Company':
+            return '/2.html';
+        case 'Business':
+            return '/3.html';
+        case 'Ultimate':
+            return '/4.html';
+        default:
+            return '/portfolio?kategori=website';
+    }
+};
+
 // Website Package Card component
 const WebsitePackageCard = ({
     pkg,
@@ -115,12 +131,35 @@ const WebsitePackageCard = ({
         >
             Pesan Sekarang
         </a>
-        <a
-            href="/portfolio?kategori=website"
-            className="w-full py-2 px-6 bg-transparent border-2 border-[#FF7A00] text-[#FF7A00] hover:bg-[#FF7A00] hover:text-white font-medium rounded-lg transition-all duration-300 text-center block"
-        >
-            Lihat Contoh
-        </a>
+        {pkg.name === 'Undangan Digital' ? (
+            <div className="flex flex-col gap-2">
+                <a
+                    href="/undangan1.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2 px-6 bg-transparent border-2 border-[#FF7A00] text-[#FF7A00] hover:bg-[#FF7A00] hover:text-white font-medium rounded-lg transition-all duration-300 text-center block"
+                >
+                    Lihat Contoh 1
+                </a>
+                <a
+                    href="/udangan2.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2 px-6 bg-transparent border-2 border-[#FF7A00] text-[#FF7A00] hover:bg-[#FF7A00] hover:text-white font-medium rounded-lg transition-all duration-300 text-center block"
+                >
+                    Lihat Contoh 2
+                </a>
+            </div>
+        ) : (
+            <a
+                href={getDemoUrl(pkg.name)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-2 px-6 bg-transparent border-2 border-[#FF7A00] text-[#FF7A00] hover:bg-[#FF7A00] hover:text-white font-medium rounded-lg transition-all duration-300 text-center block"
+            >
+                Lihat Contoh
+            </a>
+        )}
     </div>
 </motion.div>
 );
