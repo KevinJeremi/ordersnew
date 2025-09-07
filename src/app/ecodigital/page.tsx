@@ -1,123 +1,110 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { FaLeaf, FaRecycle, FaWater, FaGlobe } from 'react-icons/fa';
+import EcodigitalSection from '@/components/EcodigitalSection'; // Impor komponen baru
+import { FaLeaf, FaRecycle, FaWater, FaGlobe, FaServer, FaUsers, FaArrowRight } from 'react-icons/fa';
+
+// Data untuk kartu inisiatif agar lebih mudah dikelola
+const initiatives = [
+    {
+        icon: FaServer,
+        title: "Hosting Ramah Lingkungan",
+        description: "Kami bermitra dengan penyedia hosting yang menggunakan 100% energi terbarukan.",
+        color: "green"
+    },
+    {
+        icon: FaRecycle,
+        title: "Pengembangan Efisien",
+        description: "Menerapkan kode yang dioptimalkan untuk mengurangi beban server dan konsumsi energi.",
+        color: "teal"
+    },
+    {
+        icon: FaWater,
+        title: "Desain Berkelanjutan",
+        description: "Mendesain antarmuka yang ringan dan cepat untuk mengurangi penggunaan energi di perangkat pengguna.",
+        color: "emerald"
+    },
+    {
+        icon: FaUsers,
+        title: "Edukasi & Transparansi",
+        description: "Mengedukasi klien tentang praktik digital berkelanjutan dan melaporkan jejak karbon proyek.",
+        color: "sky"
+    }
+];
 
 export default function EcodigitalPage() {
     return (
         <>
             <Header />
-            <main style={{ paddingTop: '80px' }}>
-                {/* Hero Section */}
-                <section className="py-20 relative overflow-hidden" style={{
-                    backgroundImage: 'url(/images/ecosistem/p1.jpg)',
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat'
-                }}>
-                    {/* Background Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-green-900/80 via-teal-800/70 to-emerald-900/80"></div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    
-                    {/* Decorative Elements */}
-                    <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-green-400/10 to-transparent rounded-full -translate-y-32 -translate-x-32"></div>
-                    <div className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-tl from-teal-400/10 to-transparent rounded-full translate-y-24 translate-x-24"></div>
-                    <div className="absolute top-1/2 left-1/4 w-4 h-4 bg-green-400/50 rounded-full"></div>
-                    <div className="absolute top-1/4 right-1/3 w-6 h-6 bg-teal-400/40 rounded-full"></div>
-                    
-                    <div className="container mx-auto px-4 relative z-10">
-                        <div className="text-center max-w-4xl mx-auto">                            <div className="inline-block mb-6">
-                                <span className="bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full flex items-center gap-2 w-fit mx-auto shadow-lg">
-                                    <FaLeaf className="text-sm" />
-                                    ECODIGITAL INITIATIVE
-                                </span>
-                            </div>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 drop-shadow-lg">
-                                Inisiatif <span className="text-green-400">Ecodigital</span> Kami
-                            </h1>
-                            <p className="text-xl text-gray-100 mb-8 leading-relaxed drop-shadow">
-                                Komitmen kami untuk mengurangi jejak karbon digital dan mengintegrasikan teknologi ramah lingkungan dalam setiap layanan yang kami berikan.
-                            </p>
-                        </div>
-                    </div>
-                </section>
+            <main>
+                {/* 1. Hero Section Baru yang Imersif */}
+                <EcodigitalSection />
 
-                {/* Main Content */}
-                <section className="py-16">
+                {/* 2. Konten Utama dengan Desain yang Disesuaikan */}
+                <section className="py-20 sm:py-24 bg-gray-50">
                     <div className="container mx-auto px-4">
-                        {/* What is Ecodigital */}
-                        <div className="max-w-4xl mx-auto mb-16">
-                            <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+
+                        {/* Penjelasan Apa itu Ecodigital */}
+                        <div className="max-w-4xl mx-auto mb-20 text-center">
+                            <h2 className="text-4xl font-bold text-gray-800 mb-6">
                                 Apa itu <span className="text-green-600">Ecodigital</span>?
                             </h2>
-                            <div className="bg-white rounded-2xl shadow-lg p-8 border border-green-100">
-                                <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                                    Ecodigital adalah pendekatan holistik kami dalam mengintegrasikan praktik ramah lingkungan ke dalam setiap aspek layanan digital yang kami tawarkan. Dari pengembangan website yang energy-efficient hingga strategi pemasaran digital yang berkelanjutan.
+                            <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+                                <p className="text-lg text-gray-600 leading-relaxed mb-4">
+                                    Ecodigital adalah pendekatan holistik kami dalam mengintegrasikan praktik ramah lingkungan ke dalam setiap aspek layanan digital. Ini bukan hanya tentang menggunakan server 'hijau', tetapi tentang keseluruhan siklus hidup produk digital—mulai dari konsep, desain, pengembangan, hingga pemeliharaan.
                                 </p>
-                                <p className="text-lg text-gray-600 leading-relaxed">
-                                    Kami percaya bahwa teknologi digital harus berkontribusi positif terhadap lingkungan, bukan sebaliknya. Oleh karena itu, kami berkomitmen untuk terus berinovasi dalam menciptakan solusi digital yang tidak hanya efektif untuk bisnis Anda, tetapi juga ramah lingkungan.
+                                <p className="text-lg text-gray-600 leading-relaxed font-medium text-gray-700">
+                                    Tujuan kami adalah menciptakan solusi digital yang tidak hanya efektif untuk bisnis Anda, tetapi juga memberikan dampak positif bagi planet kita.
                                 </p>
                             </div>
                         </div>
 
-                        {/* Our Initiatives */}
-                        <div className="mb-16">
-                            <h2 className="text-3xl font-bold text-gray-800 mb-12 text-center">
-                                Inisiatif <span className="text-teal-600">Berkelanjutan</span> Kami
-                            </h2>                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                <div className="bg-white rounded-xl shadow-lg p-6 border border-green-100 hover:shadow-xl transition-shadow">
-                                    <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
-                                        <FaRecycle className="text-green-600 text-2xl" />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-gray-800 mb-3 text-center">Zero Waste Development</h3>
-                                    <p className="text-gray-600 text-center">
-                                        Menerapkan prinsip zero waste dalam proses pengembangan, dari coding hingga deployment.
-                                    </p>
-                                </div>
+                        {/* Inisiatif Kami */}
+                        <div className="mb-20">
+                            <h2 className="text-4xl font-bold text-gray-800 mb-12 text-center">
+                                Pilar Inisiatif <span className="text-teal-600">Berkelanjutan</span> Kami
+                            </h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                {initiatives.map((item, index) => {
+                                    const Icon = item.icon;
+                                    const colors = {
+                                        green: { bg: 'bg-green-100', text: 'text-green-700', shadow: 'hover:shadow-green-500/20' },
+                                        teal: { bg: 'bg-teal-100', text: 'text-teal-700', shadow: 'hover:shadow-teal-500/20' },
+                                        emerald: { bg: 'bg-emerald-100', text: 'text-emerald-700', shadow: 'hover:shadow-emerald-500/20' },
+                                        sky: { bg: 'bg-sky-100', text: 'text-sky-700', shadow: 'hover:shadow-sky-500/20' },
+                                    };
+                                    const color = colors[item.color as keyof typeof colors] || colors.green;
 
-                                <div className="bg-white rounded-xl shadow-lg p-6 border border-emerald-100 hover:shadow-xl transition-shadow">
-                                    <div className="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
-                                        <FaWater className="text-emerald-600 text-2xl" />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-gray-800 mb-3 text-center">Sustainable Design</h3>
-                                    <p className="text-gray-600 text-center">
-                                        Mendesain interface yang mengoptimalkan penggunaan energi pada perangkat pengguna.
-                                    </p>
-                                </div>
-
-                                <div className="bg-white rounded-xl shadow-lg p-6 border border-blue-100 hover:shadow-xl transition-shadow">
-                                    <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
-                                        <FaGlobe className="text-blue-600 text-2xl" />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-gray-800 mb-3 text-center">Digital Education</h3>
-                                    <p className="text-gray-600 text-center">
-                                        Mengedukasi klien tentang praktik digital yang ramah lingkungan.
-                                    </p>
-                                </div>
-
-                                <div className="bg-white rounded-xl shadow-lg p-6 border border-indigo-100 hover:shadow-xl transition-shadow">
-                                    <div className="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
-                                        <FaLeaf className="text-indigo-600 text-2xl" />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-gray-800 mb-3 text-center">Green Innovation</h3>
-                                    <p className="text-gray-600 text-center">
-                                        Terus berinovasi menciptakan teknologi yang mendukung keberlanjutan.
-                                    </p>
-                                </div>
-                            </div>                        </div>
+                                    return (
+                                        <div key={index} className={`bg-white rounded-2xl p-8 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl ${color.shadow}`}>
+                                            <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 ${color.bg}`}>
+                                                <Icon className={`text-3xl ${color.text}`} />
+                                            </div>
+                                            <h3 className="text-xl font-bold text-gray-800 mb-3">
+                                                {item.title}
+                                            </h3>
+                                            <p className="text-gray-600">
+                                                {item.description}
+                                            </p>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
 
                         {/* Call to Action */}
-                        <div className="text-center">
-                            <h2 className="text-3xl font-bold text-gray-800 mb-6">
-                                Bergabunglah dengan <span className="text-green-600">Gerakan</span> Ecodigital
+                        <div className="text-center bg-white p-10 rounded-3xl shadow-lg border border-gray-100 max-w-4xl mx-auto">
+                            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+                                Bergabunglah dengan Gerakan Ecodigital
                             </h2>
                             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
                                 Mari bersama-sama menciptakan masa depan digital yang lebih hijau dan berkelanjutan untuk generasi mendatang.
-                            </p>                            <a
+                            </p>
+                            <a
                                 href="/contact"
-                                className="inline-flex items-center px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white font-bold text-lg rounded-xl shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-105 group"
                             >
-                                <FaLeaf className="mr-2" />
                                 Mulai Proyek Berkelanjutan
+                                <FaArrowRight className="ml-3 text-base group-hover:translate-x-1 transition-transform" />
                             </a>
                         </div>
                     </div>

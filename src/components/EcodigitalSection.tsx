@@ -1,109 +1,115 @@
 'use client';
 import Link from 'next/link';
-import { FaLeaf, FaArrowRight, FaRecycle, FaSolarPanel, FaWater } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { FaLeaf, FaArrowRight, FaUsers, FaLightbulb, FaBriefcase } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+
+// Konsep baru dengan fokus pada Green Jobs
+const features = [
+    { icon: FaLightbulb, text: 'Inovasi Berkelanjutan' },
+    { icon: FaUsers, text: 'Pengembangan Talenta' },
+    { icon: FaBriefcase, text: 'Peluang Karir Hijau' },
+];
 
 export default function EcodigitalSection() {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsVisible(true);
-        }, 300);
-
-        return () => clearTimeout(timer);
-    }, []);
-
     return (
-        <section id="ecodigital" className="relative overflow-hidden py-16 md:py-20" style={{
-            backgroundImage: 'url(/images/ecosistem/p1.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'right center', // Posisi ke kanan
-            backgroundRepeat: 'no-repeat'
-        }}>
-            {/* Background Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-green-900/80 via-teal-800/70 to-emerald-900/80 z-0"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-0"></div>
+        <section id="ecodigital" className="relative h-screen min-h-[800px] w-full flex items-center justify-center text-white overflow-hidden pt-20 sm:pt-24">
+            {/* 1. Background Image (Optimized with next/image) */}
+            <Image
+                src="/images/ecosistem/p1.jpg"
+                alt="Lingkungan hijau dan teknologi berkelanjutan"
+                layout="fill"
+                objectFit="cover"
+                className="-z-20"
+                quality={90}
+            />
+            {/* 2. Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-green-900/80 via-teal-800/70 to-emerald-900/80 -z-10"></div>
 
-            {/* Background decorative elements */}
-            <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-green-400/10 to-transparent rounded-full -translate-y-32 -translate-x-32 z-10"></div>
-            <div className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-tl from-teal-400/10 to-transparent rounded-full translate-y-24 translate-x-24 z-10"></div>
-            <div className="absolute top-1/2 left-1/4 w-4 h-4 bg-green-400/50 rounded-full z-10"></div>
-            <div className="absolute top-1/4 right-1/3 w-6 h-6 bg-teal-400/40 rounded-full z-10"></div>
-
-            <div className="container mx-auto px-4 relative z-20">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    {/* Left Column - Content */}
-                    <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-                        <div className="inline-block mb-4">
-                            <span className="bg-gradient-to-r from-green-600 to-teal-600 text-white text-sm font-medium py-2 px-4 rounded-full flex items-center gap-2 shadow-lg">
-                                <FaLeaf className="text-sm" />
-                                ECODIGITAL INITIATIVE
-                            </span>
-                        </div>
-
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-                            Inisiatif <span className="text-green-400">Ecodigital</span> Kami
-                        </h2>
-
-                        <p className="text-lg text-gray-100 mb-8 leading-relaxed drop-shadow">
-                            Kami berkomitmen untuk mengurangi jejak karbon digital. Temukan bagaimana kami mengintegrasikan teknologi ramah lingkungan dalam layanan kami.
-                        </p>
-
-                        {/* Features Grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                            <div className="bg-white/90 backdrop-blur-sm p-4 rounded-xl border border-green-200/50 text-center transform transition-all hover:scale-105 hover:bg-white shadow-lg">
-                                <FaRecycle className="text-green-600 text-2xl mx-auto mb-2" />
-                                <span className="text-sm font-medium text-gray-700">Zero Waste</span>
-                            </div>
-                            <div className="bg-white/90 backdrop-blur-sm p-4 rounded-xl border border-teal-200/50 text-center transform transition-all hover:scale-105 hover:bg-white shadow-lg">
-                                <FaSolarPanel className="text-teal-600 text-2xl mx-auto mb-2" />
-                                <span className="text-sm font-medium text-gray-700">Green Energy</span>
-                            </div>
-                            <div className="bg-white/90 backdrop-blur-sm p-4 rounded-xl border border-emerald-200/50 text-center transform transition-all hover:scale-105 hover:bg-white shadow-lg">
-                                <FaWater className="text-emerald-600 text-2xl mx-auto mb-2" />
-                                <span className="text-sm font-medium text-gray-700">Sustainable</span>
-                            </div>
-                        </div>
-
-                        <Link
-                            href="/ecodigital"
-                            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group"
-                        >
-                            Pelajari Lebih Lanjut
-                            <FaArrowRight className="ml-2 text-sm group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                    </div>
-
-                    {/* Right Column - Visual */}
-                    <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-                        <div className="relative">
-                            {/* Main Illustration */}
-                            <div className="relative bg-white/20 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-white/30">
-                                <img
-                                    src="/images/ecosistem/p1.jpg"
-                                    alt="Ecodigital Initiative Illustration"
-                                    className="w-full h-auto rounded-2xl shadow-lg"
-                                />
-                                
-                                {/* Floating Elements */}
-                                <div className="absolute -top-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg animate-bounce">
-                                    🌱 Eco-Friendly
-                                </div>
-                                <div className="absolute -bottom-4 -left-4 bg-teal-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
-                                    💚 Sustainable Tech
-                                </div>
-                            </div>
-
-                            {/* Background Decorative Circle */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-teal-400/20 rounded-3xl transform rotate-3 -z-10 blur-sm"></div>
+            {/* 3. Main Content Layout - Centered */}
+            <div className="container mx-auto px-4 relative">
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="flex justify-center"
+                >
+                    <div className="max-w-3xl text-center">
+                        <div className="bg-black/40 border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl">
                             
-                            {/* Additional Decorative Elements */}
-                            <div className="absolute top-8 right-8 w-8 h-8 bg-green-400/50 rounded-full animate-pulse shadow-lg"></div>
-                            <div className="absolute bottom-12 left-12 w-6 h-6 bg-teal-400/60 rounded-full animate-pulse shadow-lg" style={{ animationDelay: '1.5s' }}></div>
+                            {/* Badge */}
+                            <motion.div 
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                            >
+                                <span className="bg-green-500/30 text-green-200 text-sm font-medium py-2 px-4 rounded-full flex items-center gap-2 w-fit mx-auto shadow-lg border border-green-400/50">
+                                    <FaLeaf />
+                                    GREEN JOB INITIATIVE
+                                </span>
+                            </motion.div>
+
+                            {/* Title */}
+                            <motion.h2 
+                                className="text-4xl md:text-5xl lg:text-6xl font-bold text-white my-6 leading-tight drop-shadow-lg"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+                            >
+                                Membangun Masa Depan Kerja yang Berkelanjutan
+                            </motion.h2>
+
+                            {/* Description */}
+                            <motion.p 
+                                className="text-lg text-gray-200 mb-8 leading-relaxed drop-shadow max-w-2xl mx-auto"
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" }}
+                            >
+                                Kami tidak hanya menciptakan teknologi hijau, tapi juga membuka jalan bagi generasi baru talenta digital di sektor ekonomi berkelanjutan.
+                            </motion.p>
+
+                            {/* Features Icons */}
+                            <motion.div 
+                                className="flex gap-4 mb-10 max-w-md mx-auto"
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.7, delay: 0.8, ease: "easeOut" }}
+                            >
+                                {features.map((feature, index) => {
+                                    const Icon = feature.icon;
+                                    return (
+                                        <div key={index} className="bg-white/10 p-4 rounded-xl border border-white/20 text-center flex-1 transform transition-all hover:scale-110 hover:bg-white/20 shadow-lg cursor-pointer">
+                                            <Icon className="text-green-300 text-3xl mx-auto mb-2" />
+                                            <span className="text-sm font-medium text-white">{feature.text}</span>
+                                        </div>
+                                    );
+                                })}
+                            </motion.div>
+
+                            {/* Action Button */}
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.7, delay: 1, ease: "easeOut" }}
+                            >
+                                <Link
+                                    href="/contact"
+                                    className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white font-bold text-lg rounded-xl shadow-2xl shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-105 group"
+                                >
+                                    Hubungi Kami
+                                    <FaArrowRight className="ml-3 text-base group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                            </motion.div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     );
