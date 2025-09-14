@@ -45,6 +45,22 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  icons: {
+    icon: [
+      {
+        url: '/images/Orders.png',
+        sizes: '32x32',
+        type: 'image/png',
+      },
+      {
+        url: '/images/Orders.png',
+        sizes: '16x16',
+        type: 'image/png',
+      },
+    ],
+    shortcut: '/images/Orders.png',
+    apple: '/images/Orders.png',
+  },
 };
 
 export default function RootLayout({
@@ -98,6 +114,9 @@ export default function RootLayout({
   return (
     <html lang="id">
       <head>
+        <link rel="icon" href="/images/Orders.png" type="image/png" sizes="32x32" />
+        <link rel="shortcut icon" href="/images/Orders.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/images/Orders.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
