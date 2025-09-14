@@ -37,9 +37,9 @@ export default function EcodigitalSection() {
                 >
                     <div className="max-w-3xl text-center">
                         <div className="bg-black/40 border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl">
-                            
+
                             {/* Badge */}
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
@@ -52,18 +52,18 @@ export default function EcodigitalSection() {
                             </motion.div>
 
                             {/* Title */}
-                            <motion.h2 
+                            <motion.h2
                                 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white my-6 leading-tight drop-shadow-lg"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
                             >
-                                Membangun Masa Depan Kerja yang Berkelanjutan
+                                Membangun Masa Depan yang Berkelanjutan
                             </motion.h2>
 
                             {/* Description */}
-                            <motion.p 
+                            <motion.p
                                 className="text-lg text-gray-200 mb-8 leading-relaxed drop-shadow max-w-2xl mx-auto"
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
@@ -74,7 +74,7 @@ export default function EcodigitalSection() {
                             </motion.p>
 
                             {/* Features Icons */}
-                            <motion.div 
+                            <motion.div
                                 className="flex gap-4 mb-10 max-w-md mx-auto"
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
