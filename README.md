@@ -1,4 +1,4 @@
-# 🌟 ORDERS - Digital Solution for Sustainable Future
+# 🌟 ORDERS WEBSITE - Digital Solution for Sustainable Future
 
 <div align="center">
   <img src="public/images/Orders.png" alt="ORDERS Logo" width="120" height="120">
