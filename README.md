@@ -1,7 +1,7 @@
 # 🌟 ORDERS - Digital Solution for Sustainable Future
 
 <div align="center">
-  <img src="public/images/logo.png" alt="ORDERS Logo" width="120" height="120">
+  <img src="public/images/logo_about.png" alt="ORDERS Logo" width="120" height="120">
   
   [![Next.js](https://img.shields.io/badge/Next.js-15.3.2-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org)
   [![React](https://img.shields.io/badge/React-19.0.0-blue?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org)
