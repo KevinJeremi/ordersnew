@@ -1,14 +1,13 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaLeaf, FaArrowRight, FaUsers, FaLightbulb, FaBriefcase } from 'react-icons/fa';
+import { FaLeaf, FaArrowRight, FaUsers, FaLightbulb } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 // Konsep baru dengan fokus pada Green Jobs
 const features = [
     { icon: FaLightbulb, text: 'Inovasi Berkelanjutan' },
     { icon: FaUsers, text: 'Pengembangan Talenta' },
-    { icon: FaBriefcase, text: 'Peluang Karir Hijau' },
 ];
 
 export default function EcodigitalSection() {
