@@ -48,18 +48,18 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/images/Orders.png',
+        url: '/images/logo.png',
         sizes: '32x32',
         type: 'image/png',
       },
       {
-        url: '/images/Orders.png',
+        url: '/images/logo.png',
         sizes: '16x16',
         type: 'image/png',
       },
     ],
-    shortcut: '/images/Orders.png',
-    apple: '/images/Orders.png',
+    shortcut: '/images/logo.png',
+    apple: '/images/logo.png',
   },
 };
 
@@ -114,9 +114,9 @@ export default function RootLayout({
   return (
     <html lang="id">
       <head>
-        <link rel="icon" href="/images/Orders.png" type="image/png" sizes="32x32" />
-        <link rel="shortcut icon" href="/images/Orders.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/images/Orders.png" />
+        <link rel="icon" href="/images/logo.png" type="image/png" sizes="32x32" />
+        <link rel="shortcut icon" href="/images/logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/images/logo.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
