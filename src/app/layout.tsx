@@ -83,7 +83,7 @@ export default function RootLayout({
         "description": "Modern, responsive websites with cutting-edge technology"
       },
       {
-        "@type": "Service", 
+        "@type": "Service",
         "name": "Mobile Applications",
         "description": "Cross-platform apps with native performance"
       },
