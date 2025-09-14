@@ -6,8 +6,24 @@ import FloatingActionButtons from '@/components/FloatingActionButtons';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Order | Digital Solutions Company",
-  description: "Professional digital solutions for your business needs",
+  title: "ORDERS | Digital Solutions Company",
+  description: "Professional digital solutions for your business needs. Web development, mobile apps, graphic design, and digital transformation services.",
+  metadataBase: new URL('https://ordersapp.tech'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: "ORDERS | Digital Solutions Company",
+    description: "Professional digital solutions for your business needs",
+    url: 'https://ordersapp.tech',
+    siteName: 'ORDERS Digital Solutions',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "ORDERS | Digital Solutions Company",
+    description: "Professional digital solutions for your business needs",
+  },
 };
 
 export default function RootLayout({
