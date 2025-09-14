@@ -192,7 +192,7 @@ export default function HeroSection() {
                         </div>
                     </div>                        {/* Kolom Kanan - Slideshow Dinamis */}
                         <div className="order-1 lg:order-2">
-                            <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[600px] rounded-2xl overflow-hidden shadow-2xl mx-auto max-w-lg lg:max-w-none">
+                            <div className="relative w-full h-[280px] sm:h-[350px] md:h-[400px] lg:h-[500px] xl:h-[600px] rounded-2xl overflow-hidden shadow-2xl mx-auto max-w-lg lg:max-w-none bg-gray-900">
 
                                 {/* Slides Container */}
                                 <div className="relative w-full h-full">
@@ -206,7 +206,11 @@ export default function HeroSection() {
                                                 src={slide.image}
                                                 alt={slide.alt}
                                                 fill
-                                                className="object-cover"
+                                                className="w-full h-full"
+                                                style={{
+                                                    objectFit: isMobile ? 'contain' : 'cover',
+                                                    objectPosition: isMobile ? 'center top' : 'center center'
+                                                }}
                                                 priority={index === 0}
                                                 sizes="(max-width: 768px) 100vw, 50vw"
                                             />
@@ -341,10 +345,24 @@ export default function HeroSection() {
                         /* Transform will be handled by inline styles for mobile */
                     }
                     
+                    /* Mobile slideshow container optimization */
+                    .order-1.lg\\:order-2 > div {
+                        height: 280px !important;
+                        background-color: #1f2937 !important; /* Darker background to make contained images stand out */
+                    }
+                    
                     /* Ensure smooth scrolling on mobile */
                     * {
                         -webkit-transform: translate3d(0, 0, 0);
                         transform: translate3d(0, 0, 0);
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    /* Very small screens - slightly shorter container */
+                    .order-1.lg\\:order-2 > div {
+                        height: 250px !important;
+                        margin: 0 auto !important;
                     }
                 }
 
