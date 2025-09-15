@@ -114,6 +114,7 @@ export default function RootLayout({
   return (
     <html lang="id">
       <head>
+        <meta name="google-site-verification" content="IyjlYsTJg62vvuVcwjS-TpxLCN5MU29dClzbI4TQolQ" />
         <link rel="icon" href="/images/logo.png" type="image/png" sizes="32x32" />
         <link rel="shortcut icon" href="/images/logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/images/logo.png" />
