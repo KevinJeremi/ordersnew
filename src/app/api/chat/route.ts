@@ -96,12 +96,7 @@ KONTAK:
 📱 WhatsApp: +62 821-9596-5483
 📧 Email: info@orders.id
 🌐 Website: www.orders.id
-📍 Alamat: Jl. Digital Solutions No. 123, Jakarta, Indonesia
-
-🕒 JAM OPERASIONAL:
-Senin - Jumat: 09:00 - 17:00 WIB
-Sabtu: 09:00 - 15:00 WIB
-Minggu: Libur
+📍 Alamat: Manado, Sulawesi Utara, Indonesia
 
 📱 SOCIAL MEDIA:
 - Instagram: @teamorders25
