@@ -21,17 +21,7 @@ export default function ChatBot({ className = '', useCustomPosition = false, onC
     const [messages, setMessages] = useState<Message[]>([
         {
             id: '1',
-            text: `Halo! 👋 Saya Owen, AI Assistant dari ORDERS Digital Solutions!
-
-🤖 Saya siap membantu Anda dengan:
-• Informasi layanan & harga
-• Konsultasi project digital
-• Rekomendasi solusi terbaik
-• Kontak & info perusahaan
-
-💬 Silakan tanya apa saja tentang kebutuhan digital Anda! Saya akan memberikan jawaban yang personal dan akurat.
-
-Yuk, mulai obrolan! 🚀`,
+            text: `Halo! 👋 Saya Owen, AI Assistant dari ORDERS Digital Solutions! Saya siap membantu Anda😉`,
             isUser: false,
             timestamp: new Date()
         }
