@@ -38,6 +38,7 @@ export default function HeroSection() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [scrollY, setScrollY] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
+    const [showOwenNotification, setShowOwenNotification] = useState(false);
 
     // Check if device is mobile
     useEffect(() => {
@@ -66,6 +67,30 @@ export default function HeroSection() {
         }, SLIDE_INTERVAL_MS);
 
         return () => clearInterval(timer);
+    }, []);
+
+    // Chatbot event listener - Updated to trigger FloatingActionButtons
+    useEffect(() => {
+        const handleOpenChatbot = () => {
+            // Trigger chatbot opening in FloatingActionButtons
+            const chatbotButton = document.querySelector('[aria-label="Buka chat"]') as HTMLButtonElement;
+            if (chatbotButton) {
+                chatbotButton.click();
+            }
+            setShowOwenNotification(false); // Hide notification when chatbot opens
+        };
+
+        window.addEventListener('openChatbot', handleOpenChatbot);
+        return () => window.removeEventListener('openChatbot', handleOpenChatbot);
+    }, []);
+
+    // Show Owen notification after 8 seconds
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowOwenNotification(true);
+        }, 8000);
+
+        return () => clearTimeout(timer);
     }, []);
 
     // Navigation functions
@@ -123,14 +148,47 @@ export default function HeroSection() {
                             ORDERS hadir sebagai partner digital terpercaya yang menghadirkan inovasi teknologi untuk mengakselerasi pertumbuhan bisnis Anda.
                         </p>
 
-                        <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-4 justify-center lg:justify-start">                                <Link href="/contact">
-                            <button className="bg-custom-orange text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 w-full sm:w-auto">
-                                Hubungi Kami
-                            </button>
-                        </Link>
-                            <Link href="/services">
-                                <button className="bg-gray-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-600 transition-colors duration-300 hover:shadow-lg transform hover:scale-105 w-full sm:w-auto">
-                                    Lihat Layanan
+                        <div className="button-grid-container mt-4">
+                            {/* Owen Chatbot CTA Button - Takes 2x2 grid space */}
+                            <div
+                                className="owen-button cursor-pointer transform hover:scale-105 transition-all duration-300"
+                                onClick={() => {
+                                    // Trigger chatbot opening in FloatingActionButtons
+                                    const chatbotButton = document.querySelector('[aria-label="Buka chat"]') as HTMLButtonElement;
+                                    if (chatbotButton) {
+                                        chatbotButton.click();
+                                    }
+                                }}
+                            >
+                                <SpotlightCard
+                                    className="hover:bg-gray-900/80 transition-all duration-300 h-full"
+                                    spotlightColor="rgba(34, 197, 94, 0.4)"
+                                >
+                                    <div className="flex items-center gap-4 p-4 h-full">
+                                        <div className="text-4xl animate-bounce">🤖</div>
+                                        <div className="flex-1">
+                                            <p className="font-bold text-green-400 text-sm tracking-wider">💬 AI ASSISTANT</p>
+                                            <h3 className="text-xl font-bold text-white mt-1">Tanya Owen AI</h3>
+                                            <p className="text-gray-200 text-sm mt-2">
+                                                Assistant Digital ORDERS siap membantu Anda
+                                            </p>
+                                        </div>
+                                        <div className="text-green-400 text-2xl">→</div>
+                                    </div>
+                                </SpotlightCard>
+                            </div>
+
+                            {/* Contact Button */}
+                            <Link href="/contact" className="contact-button">
+                                <button className="bg-custom-orange text-white font-bold py-4 px-6 rounded-lg transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 w-full h-full">
+                                    Hubungi Kami
+                                </button>
+                            </Link>
+
+                            {/* Services Button */}
+                            <Link href="/portfolio" className="services-button">
+                                <button className="bg-gray-700 text-white font-bold py-4 px-6 rounded-lg hover:bg-gray-600 transition-colors duration-300 hover:shadow-lg transform hover:scale-105 w-full h-full">
+                                    Lihat Portfolio
                                 </button>
                             </Link>
                         </div>                            {/* Eco Digital Initiative Card */}                            <SpotlightCard
@@ -142,12 +200,29 @@ export default function HeroSection() {
                             <p className="text-gray-200 mt-2 text-sm lg:text-base">
                                 Komitmen ORDERS dalam mengembangkan solusi digital yang berkelanjutan dan mendukung praktik ramah lingkungan.
                             </p>
-                            <Link href="/ecodigital" className="inline-block text-green-400 font-semibold mt-4 group text-sm lg:text-base">
-                                Pelajari Lebih Lanjut
-                                <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none ml-1">
-                                    →
-                                </span>
-                            </Link>
+                            <div className="flex items-center justify-between mt-4">
+                                <Link href="/ecodigital" className="inline-block text-green-400 font-semibold group text-sm lg:text-base">
+                                    Pelajari Lebih Lanjut
+                                    <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none ml-1">
+                                        →
+                                    </span>
+                                </Link>
+
+                                {/* Mini Owen CTA */}
+                                <button
+                                    onClick={() => {
+                                        // Trigger chatbot opening in FloatingActionButtons
+                                        const chatbotButton = document.querySelector('[aria-label="Buka chat"]') as HTMLButtonElement;
+                                        if (chatbotButton) {
+                                            chatbotButton.click();
+                                        }
+                                    }}
+                                    className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 hover:scale-105 flex items-center gap-1"
+                                >
+                                    <span>🤖</span>
+                                    <span>Tanya Owen</span>
+                                </button>
+                            </div>
                         </SpotlightCard>
 
                         {/* Mitra Lingkungan */}                            <div className="mt-6 lg:mt-8">
@@ -279,6 +354,51 @@ export default function HeroSection() {
                 </div>                {/* Decorative Elements */}
                 <div className="absolute top-20 left-10 w-32 h-32 bg-custom-orange-glow rounded-full blur-3xl animate-pulse" style={{ zIndex: 3 }} />
                 <div className="absolute bottom-20 right-10 w-40 h-40 bg-green-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s', zIndex: 3 }} />
+
+                {/* Owen Notification Popup */}
+                {showOwenNotification && (
+                    <div className="fixed bottom-20 right-4 bg-gray-900/80 backdrop-blur-lg text-white p-4 rounded-xl shadow-2xl z-40 max-w-sm animate-slide-in-right border border-green-500/30">
+                        <div className="flex items-start gap-3">
+                            <span className="text-2xl animate-bounce">🤖</span>
+                            <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                    <span className="text-xs font-bold text-green-400 tracking-wider">💬 AI ASSISTANT</span>
+                                </div>
+                                <h4 className="font-bold text-sm text-white">Hai! Saya Owen 👋</h4>
+                                <p className="text-xs mt-1 text-gray-200 opacity-90">
+                                    Ada yang bisa saya bantu tentang layanan digital ORDERS?
+                                </p>
+                                <div className="flex gap-2 mt-3">
+                                    <button
+                                        onClick={() => {
+                                            // Trigger chatbot opening in FloatingActionButtons
+                                            const chatbotButton = document.querySelector('[aria-label="Buka chat"]') as HTMLButtonElement;
+                                            if (chatbotButton) {
+                                                chatbotButton.click();
+                                            }
+                                            setShowOwenNotification(false);
+                                        }}
+                                        className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-lg text-xs font-medium transition-colors"
+                                    >
+                                        Mulai Chat
+                                    </button>
+                                    <button
+                                        onClick={() => setShowOwenNotification(false)}
+                                        className="text-gray-300 hover:text-white text-xs transition-colors"
+                                    >
+                                        Nanti saja
+                                    </button>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => setShowOwenNotification(false)}
+                                className="text-gray-400 hover:text-white text-lg leading-none transition-colors"
+                            >
+                                ×
+                            </button>
+                        </div>
+                    </div>
+                )}
             </section>            {/* Custom Styles */}
             <style jsx>{`
                 .dot-pattern {
@@ -307,6 +427,79 @@ export default function HeroSection() {
                     background-color: #e55a00;
                 }                .bg-custom-orange-glow {
                     background-color: rgba(255, 108, 0, 0.1);
+                }
+
+                /* Button Grid Layout */
+                .button-grid-container {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-template-rows: repeat(2, 1fr);
+                    gap: 16px;
+                    max-width: 600px;
+                    margin: 0 auto;
+                }
+
+                .owen-button {
+                    grid-column: span 2 / span 2;
+                    grid-row: span 2 / span 2;
+                }
+
+                .contact-button {
+                    grid-column-start: 3;
+                    grid-row-start: 1;
+                }
+
+                .services-button {
+                    grid-column-start: 3;
+                    grid-row-start: 2;
+                }
+
+                /* Responsive adjustments for mobile */
+                @media (max-width: 768px) {
+                    .button-grid-container {
+                        grid-template-columns: 1fr;
+                        grid-template-rows: auto auto auto;
+                        gap: 12px;
+                        max-width: 100%;
+                    }
+
+                    .owen-button {
+                        grid-column: 1;
+                        grid-row: 1;
+                    }
+
+                    .contact-button {
+                        grid-column: 1;
+                        grid-row: 2;
+                    }
+
+                    .services-button {
+                        grid-column: 1;
+                        grid-row: 3;
+                    }
+                }
+
+                /* Ensure proper centering on larger screens */
+                @media (min-width: 1024px) {
+                    .button-grid-container {
+                        margin: 0;
+                    }
+                }
+
+                /* Owen Notification Animation */
+                @keyframes slide-in-right {
+                    0% {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    100% {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+
+                .animate-slide-in-right {
+                    animation: slide-in-right 0.5s ease-out;
                 }
 
                 /* Parallax Performance Optimization */
