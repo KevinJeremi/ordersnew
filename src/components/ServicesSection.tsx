@@ -14,6 +14,9 @@ export default function ServicesSection() {
   // Add state for transition control
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right');
+  // Add state for image modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState<{src: string, alt: string} | null>(null);
   // Update activeIdx on scroll
   useEffect(() => {
     const slider = sliderRef.current;
@@ -29,7 +32,6 @@ export default function ServicesSection() {
     slider.addEventListener("scroll", onScroll, { passive: true });
     return () => slider.removeEventListener("scroll", onScroll);
   }, []);
-
   // Handle service selection with proper transition
   const handleServiceSelect = (index: number) => {
     if (selectedService !== index && !isTransitioning) {
@@ -47,6 +49,36 @@ export default function ServicesSection() {
       }, 300);
     }
   };
+
+  // Handle image click to open modal
+  const handleImageClick = (imageSrc: string, imageAlt: string) => {
+    setModalImage({ src: imageSrc, alt: imageAlt });
+    setIsModalOpen(true);
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+  };
+
+  // Handle modal close
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setModalImage(null);
+    // Restore body scroll
+    document.body.style.overflow = 'unset';
+  };
+
+  // Handle escape key to close modal
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isModalOpen) {
+        handleModalClose();
+      }
+    };
+
+    if (isModalOpen) {
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [isModalOpen]);
 
   const services = [
     {
@@ -66,36 +98,28 @@ export default function ServicesSection() {
       image: "/images/services/android.png"
     },
     {
-      title: "Less Coding",
-      description: "Pemrograman cepat dan efisien dengan pendekatan low-code dan editing",
-      icon: "M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z",
-      bgColor: "bg-orange-50",
-      iconBgColor: "text-orange-500",
-      image: "/images/services/less.png"
-    },
-    {
       title: "Desain Digital",
       description: "UI/UX, Logo, Poster, Social Media Content",
-      icon: "M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 018.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42",
+      icon: "M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42",
       bgColor: "bg-teal-50",
       iconBgColor: "text-teal-500",
       image: "/images/services/desaingrafis.png"
     },
     {
-      title: "Moodboard",
-      description: "Konsep visual yang menjadi panduan dalam proses pengembangan desain",
+      title: "Layanan Digital Khusus Mahasiswa",
+      description: "Website portfolio, aplikasi skripsi, desain presentasi akademik dengan harga terjangkau untuk mahasiswa",
+      icon: "M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5",
+      bgColor: "bg-purple-50",
+      iconBgColor: "text-purple-500",
+      image: "/images/services/less.png"
+    },
+    {
+      title: "Kerja Sama Bisnis",
+      description: "Konsep visual yang menjadi panduan dalam proses pengembangan desain dan strategi bisnis berkelanjutan",
       icon: "M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z",
       bgColor: "bg-orange-50",
       iconBgColor: "text-orange-500",
       image: "/images/services/mood_board.png"
-    },
-    {
-      title: "Prototype",
-      description: "Model awal yang interaktif untuk pengujian dan pengembangan lebih lanjut",
-      icon: "M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25",
-      bgColor: "bg-teal-50",
-      iconBgColor: "text-teal-500",
-      image: "/images/services/prototype.png"
     },
     {
       title: "Photo Editing",
@@ -114,10 +138,11 @@ export default function ServicesSection() {
       image: "/images/services/video.png"
     },
   ];
-
   // Memisahkan services menjadi left dan right
-  const leftServices = services.slice(0, 4);
-  const rightServices = services.slice(4, 8); return (<section id="layanan" className="bg-gradient-to-br from-gray-50 to-orange-50/30 py-8 md:py-12 relative overflow-hidden">
+  const leftServices = services.slice(0, 4); // 4 services di kiri
+  const rightServices = services.slice(4, 7); // 3 services di kanan
+
+  return (<section id="layanan" className="bg-gradient-to-br from-gray-50 to-orange-50/30 py-8 md:py-12 relative overflow-hidden">
     <div className="container-content relative z-10">      <div className="text-center mb-8 md:mb-12 mt-16 md:mt-20">
       <h2 className="text-3xl md:text-4xl font-bold mb-3 text-orange-600 md:bg-gradient-to-r md:from-orange-600 md:to-orange-500 md:bg-clip-text md:text-transparent">
         Layanan Kami
@@ -159,19 +184,28 @@ export default function ServicesSection() {
 
             {/* Expanded Content - Image and Description */}
             <div className={`overflow-hidden transition-all duration-500 ${expandedService === index ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
-              <div className="px-4 pb-6 border-t border-gray-100">
-                {/* Service Image */}
+              <div className="px-4 pb-6 border-t border-gray-100">                {/* Service Image */}
                 <div className="mt-4 mb-4 flex justify-center">
-                  <div className="relative w-full max-w-sm bg-white p-3 rounded-xl shadow-lg">                    <Image
-                    src={service.image}
-                    alt={service.title}
-                    width={400}
-                    height={250}
-                    className={`rounded-lg w-full h-auto object-contain ${service.title === 'Desain Digital' ? 'scale-150' :
-                      service.title === 'Pembuatan Aplikasi' ? 'scale-150' : ''
-                      }`}
-                    priority={expandedService === index}
-                  />
+                  <div className="relative w-full max-w-sm bg-white p-3 rounded-xl shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
+                       onClick={() => handleImageClick(service.image, service.title)}>
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      width={400}
+                      height={250}
+                      className={`rounded-lg w-full h-auto object-contain hover:scale-105 transition-transform duration-300 ${service.title === 'Desain Digital' ? 'scale-150' :
+                        service.title === 'Pembuatan Aplikasi' ? 'scale-150' : ''
+                        }`}
+                      priority={expandedService === index}
+                    />
+                    {/* Zoom Icon Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-20 rounded-lg">
+                      <div className="bg-white bg-opacity-80 p-2 rounded-full">
+                        <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -210,7 +244,9 @@ export default function ServicesSection() {
           ))}
         </div>        {/* Center Image Column */}
         <div className="flex justify-center items-center">
-          <div className="relative w-full max-w-lg bg-white p-6 overflow-hidden" style={{ minHeight: '300px' }}>
+          <div className="relative w-full max-w-lg bg-white p-6 overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300" 
+               style={{ minHeight: '300px' }}
+               onClick={() => handleImageClick(services[selectedService].image, services[selectedService].title)}>
             {/* Previous Image - Exit Animation */}
             {isTransitioning && (
               <div className={`absolute inset-6 z-20 ${slideDirection === 'right'
@@ -246,6 +282,15 @@ export default function ServicesSection() {
                   }`}
                 priority
               />
+            </div>
+
+            {/* Zoom Icon Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-20">
+              <div className="bg-white bg-opacity-80 p-3 rounded-full">
+                <svg className="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
@@ -308,10 +353,55 @@ export default function ServicesSection() {
               <span>Konsultasi Gratis</span>
             </a>
           </div>
-        </div>
-      </div>
+        </div>      </div>
       </div>
     </div>
+
+    {/* Image Modal */}
+    {isModalOpen && modalImage && (
+      <div 
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-md"
+        onClick={handleModalClose}
+      >
+        <div className="relative max-w-4xl max-h-screen w-full h-full flex items-center justify-center p-4">
+          {/* Close Button */}
+          <button
+            onClick={handleModalClose}
+            className="absolute top-4 right-4 z-10 bg-white bg-opacity-20 hover:bg-opacity-30 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm"
+            aria-label="Close modal"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Modal Image */}
+          <div 
+            className="relative max-w-full max-h-full animate-[zoomIn_0.3s_ease-out]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={modalImage.src}
+              alt={modalImage.alt}
+              width={800}
+              height={600}
+              className="w-auto h-auto max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              priority
+            />
+            
+            {/* Image Title */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 rounded-b-lg">
+              <h3 className="text-white text-lg font-semibold text-center">{modalImage.alt}</h3>
+            </div>
+          </div>
+
+          {/* Click Outside Hint */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm opacity-70">
+            Klik di luar gambar atau tekan ESC untuk menutup
+          </div>
+        </div>
+      </div>
+    )}
   </section>
   );
 }

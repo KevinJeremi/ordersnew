@@ -20,7 +20,7 @@
 /* Default state - saat tidak scroll */
 .headerVisible {
   background-color: white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 /* State saat scroll - efek transparan dengan blur */
@@ -33,7 +33,7 @@
 
 .headerHidden {
   /* Tetap ditampilkan tetapi mengubah shadow jadi lebih subtle */
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .header_inner {
@@ -46,7 +46,7 @@
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #FF7A00;
+  color: #ff7a00;
 }
 
 .nav {
@@ -54,7 +54,7 @@
 }
 
 .nav_link {
-  color: #4B5563;
+  color: #4b5563;
   margin-left: 2rem;
   transition: color 0.2s, transform 0.2s;
   padding: 0.25rem 0;
@@ -64,24 +64,24 @@
 }
 
 .nav_link:hover {
-  color: #FF7A00;
+  color: #ff7a00;
   transform: translateY(-1px);
   opacity: 1;
 }
 
 .nav_link_active {
-  color: #FF7A00;
+  color: #ff7a00;
   font-weight: 500;
 }
 
 .nav_link_active:after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -4px;
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(to right, #FF7A00, #3D8C95);
+  background: linear-gradient(to right, #ff7a00, #3d8c95);
   border-radius: 2px;
 }
 
@@ -117,18 +117,18 @@
 }
 
 .dropdownItem:hover .dropdownTitle {
-  color: #FF7A00;
+  color: #ff7a00;
 }
 
 .dropdownTitle {
   font-weight: 500;
-  color: #061E44;
+  color: #061e44;
   transition: color 0.2s ease;
 }
 
 .dropdownDescription {
   font-size: 0.875rem;
-  color: #6B7280;
+  color: #6b7280;
   margin-top: 0.25rem;
 }
 
@@ -146,7 +146,7 @@
 }
 
 .mobileMenuButton:hover {
-  border-color: #FF7A00;
+  border-color: #ff7a00;
   background: linear-gradient(135deg, #FF7A00/10, #3D8C95/10);
   box-shadow: 0 4px 12px rgba(255, 122, 0, 0.2);
 }
@@ -200,58 +200,48 @@
 
 .mobileMenuNav a {
   padding: 0.5rem 0;
-  color: #4B5563;
+  color: #4b5563;
 }
 
 .mobileMenuNav a:hover {
-  color: #2F80ED;
+  color: #2f80ed;
 }
 
 .heroSection {
-  background: 
-    linear-gradient(135deg, rgba(0, 0, 0, 0.65), rgba(6, 30, 68, 0.75)),
-    url('/images/bg_hero_section.jpg');
-  background-size: cover;  /* Mengubah ke cover untuk memastikan gambar menutup seluruh area */
-  background-position: top center;  /* Memastikan background mulai dari atas */
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+    url("/images/ling.png");
+  background-size: cover;
+  background-position: center center;
   background-repeat: no-repeat;
-  background-attachment: fixed;  /* Membuat background tetap saat scroll */
+  background-attachment: fixed;
   color: white;
-  padding: 6rem 0;  /* Tambah padding untuk memastikan cukup ruang untuk gambar */
   position: relative;
   overflow: hidden;
-  min-height: 100vh;  /* Tinggi penuh viewport untuk memastikan gambar terlihat sepenuhnya */
+  min-height: 100vh;
   will-change: background-position;
 }
 
 .heroContainer {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  min-height: 100vh;
   position: relative;
   z-index: 10;
-  padding-top: 2rem; /* Tambahkan padding atas untuk memberi ruang di bagian atas */
 }
 
 .heroContent {
-  width: 100%;
-  margin-bottom: 2rem;
-  margin-top: 1rem; /* Sedikit margin atas untuk jarak dengan bagian atas */
+  max-width: 100%;
 }
 
 @media (min-width: 768px) {
   .heroContainer {
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 3rem;
+    padding: 2rem 0;
   }
-  
-  .heroContent {
-    flex: 1;
-    margin-bottom: 0;
-  }
-  
-  .heroImage {
-    flex: 1;
+}
+
+@media (min-width: 1024px) {
+  .heroContainer {
+    padding: 3rem 0;
   }
 }
 
@@ -272,7 +262,7 @@
   .heroTitle {
     font-size: 2.5rem;
   }
-  
+
   .heroText {
     font-size: 1.25rem;
   }
@@ -289,7 +279,7 @@
   align-items: center;
   justify-content: center;
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #FF7A00, #FF9500);
+  background: linear-gradient(135deg, #ff7a00, #ff9500);
   color: white;
   font-weight: 600;
   border-radius: 0.5rem;
@@ -298,7 +288,7 @@
 }
 
 .primaryButton:hover {
-  background: linear-gradient(135deg, #FF9500, #FFB000);
+  background: linear-gradient(135deg, #ff9500, #ffb000);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 122, 0, 0.4);
 }
@@ -326,8 +316,8 @@
 
 .outlineButton:hover {
   background: rgba(255, 255, 255, 0.2);
-  border-color: #FF7A00;
-  color: #FF7A00;
+  border-color: #ff7a00;
+  color: #ff7a00;
   transform: translateY(-2px);
 }
 
@@ -346,7 +336,7 @@
 }
 
 .aboutSection {
-  background-color: #F9FAFB;
+  background-color: #f9fafb;
   padding: 4rem 0;
 }
 
@@ -359,13 +349,13 @@
   font-size: 1.75rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  color: #1F2937;
+  color: #1f2937;
 }
 
 .sectionTitle p {
   max-width: 48rem;
   margin: 0 auto;
-  color: #4B5563;
+  color: #4b5563;
 }
 
 .statsGrid {
@@ -386,18 +376,18 @@
 .statNumber {
   font-size: 1.875rem;
   font-weight: bold;
-  color: #FF7A00;
+  color: #ff7a00;
   margin-bottom: 0.5rem;
 }
 
 .statTitle {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
-  color: #1F2937;
+  color: #1f2937;
 }
 
 .statDescription {
-  color: #4B5563;
+  color: #4b5563;
 }
 
 .servicesSection {
@@ -433,11 +423,11 @@
 .serviceIcon svg {
   width: 2rem;
   height: 2rem;
-  color: #FF7A00;
+  color: #ff7a00;
 }
 
 .portfolioSection {
-  background-color: #F9FAFB;
+  background-color: #f9fafb;
   padding: 4rem 0;
 }
 
@@ -472,7 +462,7 @@
 }
 
 .portfolioImageText {
-  color: #FF7A00;
+  color: #ff7a00;
   font-weight: 500;
 }
 
@@ -483,12 +473,12 @@
 .portfolioTitle {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
-  color: #1F2937;
+  color: #1f2937;
 }
 
 .portfolioDescription {
   margin-bottom: 1rem;
-  color: #4B5563;
+  color: #4b5563;
 }
 
 .tagsContainer {
@@ -499,14 +489,14 @@
 
 .tag {
   background-color: rgba(255, 122, 0, 0.1);
-  color: #FF7A00;
+  color: #ff7a00;
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   font-size: 0.875rem;
 }
 
 .contactSection {
-  background-color: #F9FAFB;
+  background-color: #f9fafb;
   padding: 4rem 0;
 }
 
@@ -526,7 +516,7 @@
 .formTitle {
   font-size: 1.25rem;
   margin-bottom: 1.5rem;
-  color: #1F2937;
+  color: #1f2937;
 }
 
 .formGroup {
@@ -535,7 +525,7 @@
 
 .formLabel {
   display: block;
-  color: #4B5563;
+  color: #4b5563;
   margin-bottom: 0.25rem;
 }
 
@@ -548,7 +538,7 @@
 }
 
 .formInput:focus {
-  border-color: #FF7A00;
+  border-color: #ff7a00;
   box-shadow: 0 0 0 2px rgba(255, 122, 0, 0.3);
   outline: none;
 }
@@ -576,13 +566,13 @@
 }
 
 .contactInfoIcon {
-  color: #FF7A00;
+  color: #ff7a00;
   margin-right: 0.75rem;
   flex-shrink: 0;
 }
 
 .contactInfoText {
-  color: #4B5563;
+  color: #4b5563;
 }
 
 .statsGrid2 {
@@ -598,11 +588,11 @@
 .statNumber2 {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #FF7A00;
+  color: #ff7a00;
 }
 
 .footer {
-  background-color: #061E44;
+  background-color: #061e44;
   color: white;
   padding: 3rem 0;
 }
@@ -648,7 +638,7 @@
 }
 
 .footerLinks a:hover {
-  color: #FF7A00;
+  color: #ff7a00;
 }
 
 .socialLinksContainer {
@@ -662,7 +652,7 @@
 }
 
 .socialLink:hover {
-  color: #FF7A00;
+  color: #ff7a00;
 }
 
 .footerBottom {
@@ -691,7 +681,7 @@
   .heroSection {
     background-attachment: scroll;
   }
-  
+
   .parallaxElement,
   .heroContentParallax {
     transform: none !important;
@@ -702,34 +692,65 @@
 @media (max-width: 768px) {
   .heroSection {
     background-attachment: scroll;
-    background-size: cover;  /* Pada mobile, gunakan cover untuk tampilan yang lebih baik */
-    background-position: top center;  /* Pastikan background dimulai dari atas */
-    padding: 5rem 0 3rem;  /* Padding dikurangi sedikit */
-    min-height: 100vh;  /* Tinggi penuh viewport */
+    background-size: cover; /* Pada mobile, gunakan cover untuk tampilan yang lebih baik */
+    background-position: top center; /* Pastikan background dimulai dari atas */
+    padding: 4rem 0 2rem; /* Padding dikurangi sedikit */
+    min-height: 100vh; /* Tinggi penuh viewport */
   }
-  
+
   .heroContainer {
-    padding-top: 4rem;  /* Tambah padding atas pada mobile */
+    padding: 2rem 1rem; /* Tambah padding horizontal pada mobile */
   }
-  
+
+  .heroContent {
+    margin-bottom: 2rem;
+  }
+
+  .buttonContainer {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .primaryButton,
+  .outlineButton {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
   .whyOrdersFeatures {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
   }
-  
+
   .whyOrdersFeatureItem {
     padding: 0.5rem;
   }
-  
+
   .whyOrdersFeatureItem h4 {
     font-size: 1rem;
   }
-  
+
   .whyOrdersCheckIcon {
     width: 1.5rem;
     height: 1.5rem;
     min-width: 1.5rem;
+  }
+}
+
+/* Additional responsive improvements for tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .heroSection {
+    padding: 5rem 0 3rem;
+  }
+
+  .heroContainer {
+    padding: 2rem;
+  }
+
+  .heroContent {
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -738,40 +759,40 @@
   .heroContainer {
     flex-direction: row;
   }
-  
+
   .heroContent {
     width: 50%;
   }
-  
+
   .heroImage {
     width: 50%;
   }
-  
+
   .heroTitle {
     font-size: 3rem;
   }
-  
+
   .nav {
     display: flex;
   }
-  
+
   .mobileMenuButton {
     display: none;
   }
-  
+
   .statsGrid,
   .servicesGrid {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .portfolioGrid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .contactGrid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .footerGrid {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -791,13 +812,17 @@
 }
 
 .teamSection::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 180px;
-  background: linear-gradient(135deg, rgba(255,122,0,0.1), rgba(61,140,149,0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 122, 0, 0.1),
+    rgba(61, 140, 149, 0.1)
+  );
   z-index: 0;
 }
 
@@ -838,13 +863,13 @@
 }
 
 .teamCard:hover::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #FF7A00, #3D8C95);
+  background: linear-gradient(90deg, #ff7a00, #3d8c95);
 }
 
 .teamImageContainer {
@@ -876,7 +901,7 @@
 .teamImagePlaceholder {
   width: 100px;
   height: 100px;
-  background: linear-gradient(135deg, #FF7A00, #3D8C95);
+  background: linear-gradient(135deg, #ff7a00, #3d8c95);
   color: white;
   font-size: 2.5rem;
   font-weight: bold;
@@ -900,19 +925,19 @@
 .teamName {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #061E44;
+  color: #061e44;
   margin-bottom: 0.5rem;
   position: relative;
 }
 
 .teamName::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: -6px;
   height: 3px;
   width: 40px;
-  background: linear-gradient(to right, #FF7A00, #3D8C95);
+  background: linear-gradient(to right, #ff7a00, #3d8c95);
   border-radius: 2px;
 }
 
@@ -921,7 +946,7 @@
 }
 
 .teamBio {
-  color: #4B5563;
+  color: #4b5563;
   font-size: 0.875rem;
   line-height: 1.5;
   margin-bottom: 1rem;
@@ -935,12 +960,12 @@
 }
 
 .socialLink {
-  color: #4B5563;
+  color: #4b5563;
   transition: color 0.2s;
 }
 
 .socialLink:hover {
-  color: #FF7A00;
+  color: #ff7a00;
 }
 
 /* WhyOrders Section Styles */
@@ -952,13 +977,17 @@
 }
 
 .whyOrdersSection::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 8rem;
-  background: linear-gradient(135deg, rgba(255, 122, 0, 0.03), rgba(6, 30, 68, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 122, 0, 0.03),
+    rgba(6, 30, 68, 0.05)
+  );
   z-index: 1;
 }
 
@@ -989,7 +1018,11 @@
 .whyOrdersImageOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 122, 0, 0.2), rgba(6, 30, 68, 0.3));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 122, 0, 0.2),
+    rgba(6, 30, 68, 0.3)
+  );
   z-index: 2;
 }
 
@@ -1017,7 +1050,7 @@
 }
 
 .whyOrdersCheckIcon {
-  background: linear-gradient(135deg, #FF7A00, #FF9E44);
+  background: linear-gradient(135deg, #ff7a00, #ff9e44);
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
@@ -1030,7 +1063,7 @@
 }
 
 .whyOrdersCTA {
-  background: linear-gradient(135deg, #061E44, #0A2E61);
+  background: linear-gradient(135deg, #061e44, #0a2e61);
   border-radius: 0.75rem;
   padding: 2rem;
   color: white;
@@ -1042,7 +1075,7 @@
 }
 
 .whyOrdersCTA::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
@@ -1050,15 +1083,27 @@
 
 /* CTA Section Animation Styles */
 @keyframes float-slow {
-  0% { transform: translateY(0) rotate(0); }
-  50% { transform: translateY(-15px) rotate(3deg); }
-  100% { transform: translateY(0) rotate(0); }
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-15px) rotate(3deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
 }
 
 @keyframes float-medium {
-  0% { transform: translateY(0) rotate(0); }
-  50% { transform: translateY(-10px) rotate(2deg); }
-  100% { transform: translateY(0) rotate(0); }
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
 }
 
 .animation-delay-2000 {
@@ -1080,7 +1125,7 @@
 }
 
 .shine-text::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
@@ -1097,13 +1142,21 @@
 }
 
 @keyframes shine {
-  0% { transform: translateX(-100%) rotate(30deg); }
-  100% { transform: translateX(100%) rotate(30deg); }
+  0% {
+    transform: translateX(-100%) rotate(30deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(30deg);
+  }
 }
 
 @keyframes shimmer {
-  0% { transform: translateX(-150%); }
-  100% { transform: translateX(150%); }
+  0% {
+    transform: translateX(-150%);
+  }
+  100% {
+    transform: translateX(150%);
+  }
 }
 
 .animate-shimmer {
@@ -1111,8 +1164,11 @@
 }
 
 .bg-grid-pattern {
-  background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.05) 1px,
+      transparent 1px
+    ),
     linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
   background-size: 30px 30px;
 }

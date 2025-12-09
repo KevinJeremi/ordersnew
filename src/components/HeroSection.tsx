@@ -1,72 +1,596 @@
 'use client';
 
-import Link from 'next/link';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
-import { useEffect, useState, useCallback } from 'react';
-import styles from '../app/styles.module.css';
+import Link from 'next/link';
+import SpotlightCard from './SpotlightCard';
+
+// Data slides untuk slideshow (diperbarui sesuai permintaan)
+const SLIDE_INTERVAL_MS = 10000; // durasi perpindahan otomatis antar slide (10 detik)
+const slides = [
+    {
+        image: '/images/ecosistem/AI_1.png',
+        alt: 'Tim kami lolos AIDEA Nation oleh BRIN - cuplikan aktivitas inovasi AI tahap pertama',
+        title: 'Finalis AIDEA Nation BRIN',
+        description: 'Kami berhasil lolos seleksi AIDEA Nation yang diselenggarakan Badan Riset dan Inovasi Nasional (BRIN) sebagai salah satu finalis berkat solusi AI berorientasi keberlanjutan.'
+    },
+    {
+        image: '/images/ecosistem/AI_2.png',
+        alt: 'Pengembangan lanjutan solusi AI berkelanjutan - dokumentasi internal',
+        title: 'Inovasi AI Berkelanjutan',
+        description: 'Pengembangan berkelanjutan platform kami untuk mendukung efisiensi proses bisnis dan dampak lingkungan yang positif.'
+    },
+    {
+        image: '/images/ecosistem/Menteri_1.jpg',
+        alt: 'Menteri Pariwisata Widiyanti Putri Wardhana memperhatikan inovasi lingkungan kami',
+        title: 'Apresiasi Kementerian Pariwisata',
+        description: 'Inovasi dan kontribusi kami di sektor lingkungan mendapat perhatian Menteri Pariwisata Widiyanti Putri Wardhana.'
+    },
+    {
+        image: '/images/ecosistem/BACIRARO.png',
+        alt: 'Logo ekosistem daur ulang Baciraro Recycle',
+        title: 'Ekosistem Baciraro Recycle',
+        description: 'Bagian dari ekosistem Baciraro Recycle dalam mendorong ekonomi sirkular dan pengelolaan limbah yang bertanggung jawab.'
+    }
+];
 
 export default function HeroSection() {
+    const [currentSlide, setCurrentSlide] = useState(0);
     const [scrollY, setScrollY] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
+    const [showOwenNotification, setShowOwenNotification] = useState(false);
 
-    const handleScroll = useCallback(() => {
-        const currentScrollY = window.scrollY;
-        setScrollY(currentScrollY);
-    }, []);
-
+    // Check if device is mobile
     useEffect(() => {
-        let ticking = false;
-
-        const updateScrollY = () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    handleScroll();
-                    ticking = false;
-                });
-                ticking = true;
-            }
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
         };
 
-        window.addEventListener('scroll', updateScrollY, { passive: true });
-        return () => window.removeEventListener('scroll', updateScrollY);
-    }, [handleScroll]); return (<section
-        className={styles.heroSection}
-        style={{
-            backgroundPositionY: `calc(0% + ${scrollY * 0.1}px)`,
-        }}
-    >
-        {/* Overlay gelap untuk meningkatkan kontras */}
-        <div className="absolute inset-0 bg-black/25 z-0"></div>
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
-        <div className={`${styles.container} ${styles.heroContainer} relative z-10`}>
-            <div
-                className={`${styles.heroContent} ${styles.heroContentParallax}`}
-                style={{
-                    transform: `translateY(${scrollY * -0.1}px)`
-                }}
-            >                    <h1 className="text-4xl font-bold mb-4 text-white drop-shadow-lg md:text-5xl lg:text-6xl">
-                    <span className="bg-gradient-to-r from-white to-white/90 bg-clip-text text-transparent">Solusi Digital</span> <br />
-                    <span className="text-white">untuk <span className="text-[#FF7A00]">Bisnis Modern</span></span>
-                </h1>
-                <p className="text-white text-lg mb-8 max-w-lg drop-shadow-lg font-medium">
-                    Kami membantu bisnis Anda berkembang dengan teknologi terkini yang inovatif dan terpercaya.
-                </p>
-                <div className={styles.buttonContainer}>
-                    <Link href="/contact" className={styles.primaryButton}>
-                        Hubungi Kami
-                    </Link>
-                    <Link href="#layanan" className={styles.outlineButton}>
-                        Lihat Layanan
-                    </Link>
-                </div>
-            </div>
-            <div
-                className={`${styles.heroImage} ${styles.heroContentParallax}`}
-                style={{
-                    transform: `translateY(${scrollY * -0.05}px)`
-                }}
-            >
-            </div>
-        </div>
-    </section>
+    // Parallax effect handler (optimized for mobile)
+    useEffect(() => {
+        const handleScroll = () => setScrollY(window.scrollY);
+
+        // Use passive listener for better performance
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Auto-play slideshow functionality
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % slides.length);
+        }, SLIDE_INTERVAL_MS);
+
+        return () => clearInterval(timer);
+    }, []);
+
+    // Chatbot event listener - Updated to trigger FloatingActionButtons
+    useEffect(() => {
+        const handleOpenChatbot = () => {
+            // Trigger chatbot opening in FloatingActionButtons
+            const chatbotButton = document.querySelector('[aria-label="Buka chat"]') as HTMLButtonElement;
+            if (chatbotButton) {
+                chatbotButton.click();
+            }
+            setShowOwenNotification(false); // Hide notification when chatbot opens
+        };
+
+        window.addEventListener('openChatbot', handleOpenChatbot);
+        return () => window.removeEventListener('openChatbot', handleOpenChatbot);
+    }, []);
+
+    // Show Owen notification after 8 seconds
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowOwenNotification(true);
+        }, 8000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    // Navigation functions
+    const nextSlide = useCallback(() => {
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, []);
+
+    const prevSlide = useCallback(() => {
+        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    }, []);
+
+    const goToSlide = useCallback((index: number) => {
+        setCurrentSlide(index);
+    }, []);
+
+    return (
+        <>
+            {/* Google Fonts Import */}
+            <link
+                href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+                rel="stylesheet"
+            />            <section
+                className="relative min-h-screen flex items-center justify-center text-white font-inter overflow-hidden"
+                style={{ minHeight: '100vh' }}
+            >                {/* Parallax Background Layer */}
+                <div
+                    className="absolute inset-0 w-full h-full parallax-element"
+                    style={{
+                        backgroundImage: 'url(/images/ling.png)',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center center',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundAttachment: 'scroll', // Always scroll for mobile compatibility
+                        transform: `translate3d(0, ${scrollY * (isMobile ? 0.1 : 0.3)}px, 0)`, // Hardware accelerated with translate3d
+                        willChange: 'transform',
+                        minHeight: '120vh'
+                    }}
+                />
+
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-black/60 z-1" />
+
+                {/* Dot pattern overlay */}
+                <div className="absolute inset-0 dot-pattern opacity-20 z-2" />                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh] lg:min-h-auto">                        {/* Kolom Kiri - Konten Statis */}                        <div
+                        className="flex flex-col gap-6 lg:gap-8 order-2 lg:order-1 text-center lg:text-left parallax-element"
+                        style={{
+                            transform: `translate3d(0, ${scrollY * (isMobile ? -0.05 : -0.1)}px, 0)`, // Hardware accelerated
+                        }}
+                    ><h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+                            <span className="text-white">Solusi Digital Terdepan untuk </span><span className="text-custom-orange">Bisnis Masa Depan</span>
+                        </h1>
+
+                        <p className="text-base sm:text-lg text-gray-200 max-w-lg mx-auto lg:mx-0">
+                            ORDERS hadir sebagai partner digital terpercaya yang menghadirkan inovasi teknologi untuk mengakselerasi pertumbuhan bisnis Anda.
+                        </p>
+
+                        <div className="button-grid-container mt-4">
+                            {/* Owen Chatbot CTA Button - Takes 2x2 grid space */}
+                            <div
+                                className="owen-button cursor-pointer transform hover:scale-105 transition-all duration-300"
+                                onClick={() => {
+                                    // Trigger chatbot opening in FloatingActionButtons
+                                    const chatbotButton = document.querySelector('[aria-label="Buka chat"]') as HTMLButtonElement;
+                                    if (chatbotButton) {
+                                        chatbotButton.click();
+                                    }
+                                }}
+                            >
+                                <SpotlightCard
+                                    className="hover:bg-gray-900/80 transition-all duration-300 h-full"
+                                    spotlightColor="rgba(34, 197, 94, 0.4)"
+                                >
+                                    <div className="flex items-center gap-4 p-4 h-full">
+                                        <div className="text-4xl animate-bounce">🤖</div>
+                                        <div className="flex-1">
+                                            <p className="font-bold text-green-400 text-sm tracking-wider">💬 AI ASSISTANT</p>
+                                            <h3 className="text-xl font-bold text-white mt-1">Tanya Owen AI</h3>
+                                            <p className="text-gray-200 text-sm mt-2">
+                                                Assistant Digital ORDERS siap membantu Anda
+                                            </p>
+                                        </div>
+                                        <div className="text-green-400 text-2xl">→</div>
+                                    </div>
+                                </SpotlightCard>
+                            </div>
+
+                            {/* Contact Button */}
+                            <Link href="/contact" className="contact-button">
+                                <button className="bg-custom-orange text-white font-bold py-4 px-6 rounded-lg transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 w-full h-full">
+                                    Hubungi Kami
+                                </button>
+                            </Link>
+
+                            {/* Services Button */}
+                            <Link href="/portfolio" className="services-button">
+                                <button className="bg-gray-700 text-white font-bold py-4 px-6 rounded-lg hover:bg-gray-600 transition-colors duration-300 hover:shadow-lg transform hover:scale-105 w-full h-full">
+                                    Lihat Portfolio
+                                </button>
+                            </Link>
+                        </div>                            {/* Eco Digital Initiative Card */}                            <SpotlightCard
+                            className="mt-8 lg:mt-12 hover:bg-gray-900/80 transition-all duration-300"
+                            spotlightColor="rgba(34, 197, 94, 0.4)"
+                        >
+                            <p className="font-bold text-green-400 text-sm tracking-wider">🌱 ECO DIGITAL INITIATIVE</p>
+                            <h3 className="text-xl lg:text-2xl font-bold mt-2 text-white">Teknologi Ramah Lingkungan</h3>
+                            <p className="text-gray-200 mt-2 text-sm lg:text-base">
+                                Komitmen ORDERS dalam mengembangkan solusi digital yang berkelanjutan dan mendukung praktik ramah lingkungan.
+                            </p>
+                            <div className="flex items-center justify-between mt-4">
+                                <Link href="/ecodigital" className="inline-block text-green-400 font-semibold group text-sm lg:text-base">
+                                    Pelajari Lebih Lanjut
+                                    <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none ml-1">
+                                        →
+                                    </span>
+                                </Link>
+
+                                {/* Mini Owen CTA */}
+                                <button
+                                    onClick={() => {
+                                        // Trigger chatbot opening in FloatingActionButtons
+                                        const chatbotButton = document.querySelector('[aria-label="Buka chat"]') as HTMLButtonElement;
+                                        if (chatbotButton) {
+                                            chatbotButton.click();
+                                        }
+                                    }}
+                                    className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 hover:scale-105 flex items-center gap-1"
+                                >
+                                    <span>🤖</span>
+                                    <span>Tanya Owen</span>
+                                </button>
+                            </div>
+                        </SpotlightCard>
+
+                        {/* Mitra Lingkungan */}                            <div className="mt-6 lg:mt-8">
+                            <p className="text-xs lg:text-sm text-gray-300 font-medium tracking-wider">SUPPORTED BY:</p>                                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-4 lg:gap-x-8 gap-y-3 lg:gap-y-4 mt-3 lg:mt-4">
+                                <div className="hover:scale-105 transition-all duration-300 bg-white/10 p-2 lg:p-4 rounded-xl backdrop-blur-sm">
+                                    <Image
+                                        src="/images/sponsor/Baciraro.png"
+                                        alt="Baciraro"
+                                        width={60}
+                                        height={30}
+                                        className="lg:w-28 lg:h-14 object-contain rounded-lg"
+                                    />
+                                </div>
+                                <div className="hover:scale-105 transition-all duration-300 bg-white/10 p-2 lg:p-4 rounded-xl backdrop-blur-sm">
+                                    <Image
+                                        src="/images/sponsor/TanaNyiurLestari.png"
+                                        alt="Tana Nyiur Lestari"
+                                        width={60}
+                                        height={30}
+                                        className="lg:w-28 lg:h-14 object-contain rounded-lg"
+                                    />
+                                </div>
+                                <div className="hover:scale-105 transition-all duration-300 bg-white/10 p-2 lg:p-4 rounded-xl backdrop-blur-sm">
+                                    <Image
+                                        src="/images/sponsor/TrashRecycleCenter.png"
+                                        alt="Trash Recycle Center"
+                                        width={60}
+                                        height={30}
+                                        className="lg:w-28 lg:h-14 object-contain rounded-lg"
+                                    />
+                                </div>
+                                <div className="hover:scale-105 transition-all duration-300 bg-white/10 p-2 lg:p-4 rounded-xl backdrop-blur-sm">
+                                    <Image
+                                        src="/images/sponsor/ELMAST.png"
+                                        alt="ELMast"
+                                        width={60}
+                                        height={30}
+                                        className="lg:w-28 lg:h-14 object-contain rounded-lg"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>                        {/* Kolom Kanan - Slideshow Dinamis */}
+                        <div className="order-1 lg:order-2">
+                            <div className="relative w-full h-[280px] sm:h-[350px] md:h-[400px] lg:h-[500px] xl:h-[600px] rounded-2xl overflow-hidden shadow-2xl mx-auto max-w-lg lg:max-w-none bg-gray-900">
+
+                                {/* Slides Container */}
+                                <div className="relative w-full h-full">
+                                    {slides.map((slide, index) => (
+                                        <div
+                                            key={index}
+                                            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'
+                                                }`}
+                                        >
+                                            <Image
+                                                src={slide.image}
+                                                alt={slide.alt}
+                                                fill
+                                                className="w-full h-full"
+                                                style={{
+                                                    objectFit: isMobile ? 'contain' : 'cover',
+                                                    objectPosition: isMobile ? 'center top' : 'center center'
+                                                }}
+                                                priority={index === 0}
+                                                sizes="(max-width: 768px) 100vw, 50vw"
+                                            />
+                                            {/* Overlay gradient untuk kontras */}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
+                                            {/* Title & description overlay per slide (hanya saat aktif untuk SEO & aksesibilitas) */}
+                                            {index === currentSlide && (
+                                                <div className="absolute bottom-20 left-0 right-0 px-6">
+                                                    <h4 className="text-lg sm:text-xl font-semibold text-white drop-shadow-md">
+                                                        {slide.title}
+                                                    </h4>
+                                                    <p className="mt-2 text-xs sm:text-sm text-gray-200 max-w-md">
+                                                        {slide.description}
+                                                    </p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Navigation Arrows */}
+                                <button
+                                    onClick={prevSlide}
+                                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                                    aria-label="Previous slide"
+                                >
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+
+                                <button
+                                    onClick={nextSlide}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                                    aria-label="Next slide"
+                                >
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+
+                                {/* Dots Indicators */}
+                                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3">
+                                    {slides.map((_, index) => (
+                                        <button
+                                            key={index}
+                                            onClick={() => goToSlide(index)}
+                                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
+                                                ? 'bg-custom-orange scale-125'
+                                                : 'bg-white/50 hover:bg-white/70'
+                                                }`}
+                                            aria-label={`Go to slide ${index + 1}`}
+                                        />
+                                    ))}
+                                </div>
+
+                                {/* Slide Description Overlay (alt fallback) */}
+                                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                                    <p className="text-white text-sm font-medium opacity-90">
+                                        {slides[currentSlide].alt}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                {/* Decorative Elements */}
+                <div className="absolute top-20 left-10 w-32 h-32 bg-custom-orange-glow rounded-full blur-3xl animate-pulse" style={{ zIndex: 3 }} />
+                <div className="absolute bottom-20 right-10 w-40 h-40 bg-green-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s', zIndex: 3 }} />
+
+                {/* Owen Notification Popup */}
+                {showOwenNotification && (
+                    <div className="fixed bottom-20 right-4 bg-gray-900/80 backdrop-blur-lg text-white p-4 rounded-xl shadow-2xl z-40 max-w-sm animate-slide-in-right border border-green-500/30">
+                        <div className="flex items-start gap-3">
+                            <span className="text-2xl animate-bounce">🤖</span>
+                            <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                    <span className="text-xs font-bold text-green-400 tracking-wider">💬 AI ASSISTANT</span>
+                                </div>
+                                <h4 className="font-bold text-sm text-white">Hai! Saya Owen 👋</h4>
+                                <p className="text-xs mt-1 text-gray-200 opacity-90">
+                                    Ada yang bisa saya bantu tentang layanan digital ORDERS?
+                                </p>
+                                <div className="flex gap-2 mt-3">
+                                    <button
+                                        onClick={() => {
+                                            // Trigger chatbot opening in FloatingActionButtons
+                                            const chatbotButton = document.querySelector('[aria-label="Buka chat"]') as HTMLButtonElement;
+                                            if (chatbotButton) {
+                                                chatbotButton.click();
+                                            }
+                                            setShowOwenNotification(false);
+                                        }}
+                                        className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-lg text-xs font-medium transition-colors"
+                                    >
+                                        Mulai Chat
+                                    </button>
+                                    <button
+                                        onClick={() => setShowOwenNotification(false)}
+                                        className="text-gray-300 hover:text-white text-xs transition-colors"
+                                    >
+                                        Nanti saja
+                                    </button>
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => setShowOwenNotification(false)}
+                                className="text-gray-400 hover:text-white text-lg leading-none transition-colors"
+                            >
+                                ×
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </section>            {/* Custom Styles */}
+            <style jsx>{`
+                .dot-pattern {
+                    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+                    background-size: 40px 40px;
+                }
+                
+                .font-inter {
+                    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+                }
+
+                /* Custom Orange Color */
+                .text-custom-orange {
+                    color: #ff6c00;
+                }
+
+                .bg-custom-orange {
+                    background-color: #ff6c00;
+                }
+
+                .hover-custom-orange:hover {
+                    color: #ff6c00;
+                }
+
+                .bg-custom-orange:hover {
+                    background-color: #e55a00;
+                }                .bg-custom-orange-glow {
+                    background-color: rgba(255, 108, 0, 0.1);
+                }
+
+                /* Button Grid Layout */
+                .button-grid-container {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-template-rows: repeat(2, 1fr);
+                    gap: 16px;
+                    max-width: 600px;
+                    margin: 0 auto;
+                }
+
+                .owen-button {
+                    grid-column: span 2 / span 2;
+                    grid-row: span 2 / span 2;
+                }
+
+                .contact-button {
+                    grid-column-start: 3;
+                    grid-row-start: 1;
+                }
+
+                .services-button {
+                    grid-column-start: 3;
+                    grid-row-start: 2;
+                }
+
+                /* Responsive adjustments for mobile */
+                @media (max-width: 768px) {
+                    .button-grid-container {
+                        grid-template-columns: 1fr;
+                        grid-template-rows: auto auto auto;
+                        gap: 12px;
+                        max-width: 100%;
+                    }
+
+                    .owen-button {
+                        grid-column: 1;
+                        grid-row: 1;
+                    }
+
+                    .contact-button {
+                        grid-column: 1;
+                        grid-row: 2;
+                    }
+
+                    .services-button {
+                        grid-column: 1;
+                        grid-row: 3;
+                    }
+                }
+
+                /* Ensure proper centering on larger screens */
+                @media (min-width: 1024px) {
+                    .button-grid-container {
+                        margin: 0;
+                    }
+                }
+
+                /* Owen Notification Animation */
+                @keyframes slide-in-right {
+                    0% {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    100% {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+
+                .animate-slide-in-right {
+                    animation: slide-in-right 0.5s ease-out;
+                }
+
+                /* Parallax Performance Optimization */
+                .parallax-element {
+                    will-change: transform;
+                    transform: translate3d(0, 0, 0);
+                    backface-visibility: hidden;
+                    perspective: 1000px;
+                }
+
+                /* Mobile Touch Optimization */
+                @media (hover: none) and (pointer: coarse) {
+                    /* Enable hardware acceleration for smooth parallax on touch devices */
+                    .parallax-element {
+                        -webkit-transform: translate3d(0, 0, 0);
+                        transform: translate3d(0, 0, 0);
+                        -webkit-backface-visibility: hidden;
+                        backface-visibility: hidden;
+                        -webkit-perspective: 1000px;
+                        perspective: 1000px;
+                        -webkit-overflow-scrolling: touch;
+                    }
+                }                /* Mobile Optimization for Background with Parallax */
+                @media (max-width: 768px) {
+                    section {
+                        min-height: 100vh !important;
+                        min-height: 100dvh !important; /* Dynamic viewport height for mobile */
+                    }
+                    
+                    /* Optimize background for mobile parallax */
+                    .absolute.inset-0 {
+                        background-attachment: scroll !important;
+                        background-size: cover !important;
+                        background-position: center center !important;
+                        min-height: 120vh !important;
+                        /* Transform will be handled by inline styles for mobile */
+                    }
+                    
+                    /* Mobile slideshow container optimization */
+                    .order-1.lg\\:order-2 > div {
+                        height: 280px !important;
+                        background-color: #1f2937 !important; /* Darker background to make contained images stand out */
+                    }
+                    
+                    /* Ensure smooth scrolling on mobile */
+                    * {
+                        -webkit-transform: translate3d(0, 0, 0);
+                        transform: translate3d(0, 0, 0);
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    /* Very small screens - slightly shorter container */
+                    .order-1.lg\\:order-2 > div {
+                        height: 250px !important;
+                        margin: 0 auto !important;
+                    }
+                }
+
+                @media (max-width: 640px) {
+                    /* Extra small screens */
+                    .absolute.inset-0 {
+                        background-size: cover !important;
+                        background-position: center 20% !important; /* Adjust vertical position */
+                        min-height: 130vh !important;
+                    }
+                }
+
+                /* Smooth scrolling for better UX */
+                html {
+                    scroll-behavior: smooth;
+                }
+
+                /* Custom scrollbar for webkit browsers */
+                ::-webkit-scrollbar {
+                    width: 8px;
+                }
+
+                ::-webkit-scrollbar-track {
+                    background: #1a202c;
+                }
+
+                ::-webkit-scrollbar-thumb {
+                    background: #4a5568;
+                    border-radius: 4px;
+                }
+
+                ::-webkit-scrollbar-thumb:hover {
+                    background: #718096;
+                }
+            `}</style>
+        </>
     );
 }

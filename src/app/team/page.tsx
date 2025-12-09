@@ -3,7 +3,7 @@
 import Header from '@/components/Header';
 import TeamSection from '@/components/TeamSection';
 import Footer from '@/components/Footer';
-import ScrollToTop from '@/components/ScrollToTop';
+
 
 export default function TeamPage() {
     return (
@@ -44,7 +44,7 @@ export default function TeamPage() {
             </main>
 
             <Footer />
-            <ScrollToTop />
+
         </>
     );
 }

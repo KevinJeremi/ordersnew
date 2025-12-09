@@ -4,7 +4,9 @@ import {
     FaLightbulb,
     FaRocket,
     FaUsers,
-    FaCode
+    FaCode,
+    FaEye,
+    FaBullseye
 } from 'react-icons/fa';
 import styles from '../app/styles.module.css';
 
@@ -75,37 +77,70 @@ export default function AboutSection() {
                             "Kami percaya bahwa kemajuan digital harus dapat diakses oleh semua bisnis, besar maupun kecil. Inilah yang mendorong kami untuk terus berinovasi."
                         </div>
                     </div>
-                </div>                {/* Additional creative highlight section */}
-                <div className="mt-12 relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-teal-50 rounded-2xl opacity-30"></div>
-                    <div className="relative p-6 md:p-8 border border-gray-100 rounded-2xl shadow-sm">
-                        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8">
-                            <div className="flex-1">
-                                <h3 className="text-2xl font-bold mb-4 text-gray-800">Dari <span className="text-orange-500">Kami</span> Untuk <span className="text-teal-500">Indonesia</span></h3>
-                                <p className="text-gray-600 mb-4">
-                                    Sebagai startup yang digerakkan oleh anak muda, kami membawa perspektif segar dan ide-ide inovatif dalam setiap proyek. Dengan gabungan talenta dari berbagai bidang—desainer, developer, dan ahli strategi—kami menciptakan produk digital yang tidak hanya fungsional tetapi juga memikat secara visual.
+                </div>
+
+                {/* Visi & Misi Section - Integrated into About */}
+                <div className="mt-16">
+                    <div className={`text-center mb-12 transition-all duration-700 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                        <div className="inline-block mb-3">
+                            <span className="bg-gradient-to-r from-teal-600 to-teal-400 text-white text-sm font-medium py-1 px-3 rounded-full">
+                                VISI & MISI KAMI
+                            </span>
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+                            Komitmen Kami untuk <span className="text-orange-500">Indonesia</span>
+                        </h3>
+                    </div>
+
+                    {/* Visi & Misi Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12">
+                        {/* Visi Card */}
+                        <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+                            <div className="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-orange-100 h-full transform transition-all hover:scale-105 hover:shadow-xl group">
+                                <div className="flex items-center mb-6">
+                                    <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-3 md:p-4 rounded-xl mr-4 group-hover:scale-110 transition-all">
+                                        <FaEye className="text-xl md:text-2xl" />
+                                    </div>
+                                    <h4 className="text-xl md:text-2xl font-bold text-gray-800">Visi</h4>
+                                </div>
+                                <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+                                    Menjadi mitra digital terdepan yang mendorong inovasi dan pertumbuhan berkelanjutan bagi setiap bisnis di Indonesia.
                                 </p>
-                                <div className="flex flex-wrap gap-3 mt-4">
-                                    <span className="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm font-medium">Kreatif</span>
-                                    <span className="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-sm font-medium">Inovatif</span>
-                                    <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">Kolaboratif</span>
-                                    <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">Passionate</span>
+                            </div>
+                        </div>
+
+                        {/* Misi Card */}
+                        <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+                            <div className="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-teal-100 h-full transform transition-all hover:scale-105 hover:shadow-xl group">
+                                <div className="flex items-center mb-6">
+                                    <div className="bg-gradient-to-r from-teal-500 to-teal-600 text-white p-3 md:p-4 rounded-xl mr-4 group-hover:scale-110 transition-all">
+                                        <FaBullseye className="text-xl md:text-2xl" />
+                                    </div>
+                                    <h4 className="text-xl md:text-2xl font-bold text-gray-800">Misi</h4>
                                 </div>
-                            </div>                            <div className="flex flex-row gap-3 justify-center md:justify-end">
-                                <div className="flex flex-col items-center p-3 md:p-4 bg-white rounded-lg shadow-sm w-28 md:w-32 transform transition-all hover:scale-105 hover:shadow-md">
-                                    <FaLightbulb className="text-orange-500 text-xl md:text-2xl mb-2" />
-                                    <span className="text-base md:text-lg font-bold text-gray-800">15+</span>
-                                    <span className="text-xs text-gray-500 text-center">Ide Inovatif</span>
-                                </div>
-                                <div className="flex flex-col items-center p-3 md:p-4 bg-white rounded-lg shadow-sm w-28 md:w-32 transform transition-all hover:scale-105 hover:shadow-md">
-                                    <FaCode className="text-teal-500 text-xl md:text-2xl mb-2" />
-                                    <span className="text-base md:text-lg font-bold text-gray-800">1000+</span>
-                                    <span className="text-xs text-gray-500 text-center">Baris Kode</span>
-                                </div>
+                                <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+                                    Memberikan solusi digital berkualitas tinggi yang fleksibel dan terjangkau, serta mengedepankan praktik ramah lingkungan dalam setiap proyek.
+                                </p>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    {/* Bottom highlight section for vision mission */}
+                    <div className={`transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                        <div className="relative">
+                            <div className="absolute inset-0 bg-gradient-to-r from-orange-50 to-teal-50 rounded-2xl opacity-50"></div>
+                            <div className="relative p-6 md:p-8 border border-gray-100 rounded-2xl shadow-sm">
+                                <div className="text-center">
+                                    <h4 className="text-xl font-bold text-gray-800 mb-4">
+                                        Bersama Membangun <span className="text-orange-500">Masa Depan Digital</span> Indonesia
+                                    </h4>
+                                    <p className="text-gray-600 max-w-3xl mx-auto">
+                                        Dengan kombinasi teknologi terdepan dan komitmen terhadap keberlanjutan, kami hadir untuk mendampingi perjalanan transformasi digital bisnis Anda menuju era yang lebih hijau dan inovatif.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                </div>
             </div>
         </section>
     );

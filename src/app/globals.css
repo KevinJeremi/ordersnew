@@ -22,36 +22,36 @@
   .container-content {
     @apply max-w-content mx-auto px-4 md:px-6;
   }
-  
+
   .btn {
     @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-colors duration-200;
   }
-  
+
   .btn-primary {
     @apply btn bg-primary hover:bg-primary/90 text-white;
   }
-  
+
   .btn-outline {
     @apply btn border-2 border-white hover:bg-white/10 text-white;
   }
-  
+
   .btn-secondary {
     @apply btn bg-secondary hover:bg-secondary/90 text-white;
   }
-  
+
   .card {
     @apply bg-white rounded-large p-6 shadow-md;
   }
-  
+
   .form-input {
     @apply w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition;
   }
-  
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
@@ -60,10 +60,10 @@
 @layer utilities {
   /* Hide scrollbar for Chrome, Safari and Opera */
   .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
-  
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
@@ -110,6 +110,27 @@
     to {
       opacity: 1;
       transform: translateX(0);
+    }
+  }
+
+  /* Modal zoom animation */
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 }

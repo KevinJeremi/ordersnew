@@ -46,12 +46,11 @@ export default function CTASection() {
                     </div>
 
                     {/* Right Side - Image */}
-                    <div className="order-1 lg:order-2">
-                        <div className="relative">
-                            {/* Main Image Container */}                        <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl shadow-2xl p-6 transform -rotate-2 hover:rotate-0 transition-transform duration-500 group max-w-md mx-auto lg:max-w-lg">
+                    <div className="order-1 lg:order-2">                        <div className="relative">                            {/* Main Image Container */}
+                            <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl shadow-2xl p-6 transform -rotate-2 hover:rotate-0 transition-transform duration-500 group max-w-md mx-auto lg:max-w-lg">
                                 <img
-                                    src="/images/CTA.png"
-                                    alt="Call to Action Illustration"
+                                    src="/images/people/people.png"
+                                    alt="Professional Team Collaboration"
                                     className="w-full h-auto rounded-2xl group-hover:scale-105 transition-transform duration-700 max-w-sm mx-auto lg:max-w-md"
                                 />
 

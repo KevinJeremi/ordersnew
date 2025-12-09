@@ -3,7 +3,6 @@
 import Header from '@/components/Header';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
-import ScrollToTop from '@/components/ScrollToTop';
 
 export default function ContactPage() {
     return (
@@ -41,10 +40,7 @@ export default function ContactPage() {
                     </div>
                 </section>{/* Contact Section */}
                 <ContactSection />
-            </main>
-
-            <Footer />
-            <ScrollToTop />
+            </main>            <Footer />
         </>
     );
 }
