@@ -347,7 +347,6 @@ export default function HeroSection() {
                 <div className="absolute bottom-20 right-10 w-40 h-40 bg-green-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s', zIndex: 3 }} />
 
                 {/* Owen Notification Popup - DIHAPUS */}
-                )}
             </section>            {/* Custom Styles */}
             <style jsx>{`
                 .dot-pattern {
