@@ -38,7 +38,6 @@ export default function HeroSection() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [scrollY, setScrollY] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
-    const [showOwenNotification, setShowOwenNotification] = useState(false);
 
     // Check if device is mobile
     useEffect(() => {
@@ -77,21 +76,13 @@ export default function HeroSection() {
             if (chatbotButton) {
                 chatbotButton.click();
             }
-            setShowOwenNotification(false); // Hide notification when chatbot opens
         };
 
         window.addEventListener('openChatbot', handleOpenChatbot);
         return () => window.removeEventListener('openChatbot', handleOpenChatbot);
     }, []);
 
-    // Show Owen notification after 8 seconds
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowOwenNotification(true);
-        }, 8000);
-
-        return () => clearTimeout(timer);
-    }, []);
+    // Owen notification dihapus
 
     // Navigation functions
     const nextSlide = useCallback(() => {
@@ -168,7 +159,7 @@ export default function HeroSection() {
                                         <div className="text-4xl animate-bounce">🤖</div>
                                         <div className="flex-1">
                                             <p className="font-bold text-green-400 text-sm tracking-wider">💬 AI ASSISTANT</p>
-                                            <h3 className="text-xl font-bold text-white mt-1">Tanya Owen AI</h3>
+                                            <h3 className="text-xl font-bold text-white mt-1">Tanya Orders AI</h3>
                                             <p className="text-gray-200 text-sm mt-2">
                                                 Assistant Digital ORDERS siap membantu Anda
                                             </p>
@@ -355,49 +346,7 @@ export default function HeroSection() {
                 <div className="absolute top-20 left-10 w-32 h-32 bg-custom-orange-glow rounded-full blur-3xl animate-pulse" style={{ zIndex: 3 }} />
                 <div className="absolute bottom-20 right-10 w-40 h-40 bg-green-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s', zIndex: 3 }} />
 
-                {/* Owen Notification Popup */}
-                {showOwenNotification && (
-                    <div className="fixed bottom-20 right-4 bg-gray-900/80 backdrop-blur-lg text-white p-4 rounded-xl shadow-2xl z-40 max-w-sm animate-slide-in-right border border-green-500/30">
-                        <div className="flex items-start gap-3">
-                            <span className="text-2xl animate-bounce">🤖</span>
-                            <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-1">
-                                    <span className="text-xs font-bold text-green-400 tracking-wider">💬 AI ASSISTANT</span>
-                                </div>
-                                <h4 className="font-bold text-sm text-white">Hai! Saya Owen 👋</h4>
-                                <p className="text-xs mt-1 text-gray-200 opacity-90">
-                                    Ada yang bisa saya bantu tentang layanan digital ORDERS?
-                                </p>
-                                <div className="flex gap-2 mt-3">
-                                    <button
-                                        onClick={() => {
-                                            // Trigger chatbot opening in FloatingActionButtons
-                                            const chatbotButton = document.querySelector('[aria-label="Buka chat"]') as HTMLButtonElement;
-                                            if (chatbotButton) {
-                                                chatbotButton.click();
-                                            }
-                                            setShowOwenNotification(false);
-                                        }}
-                                        className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-lg text-xs font-medium transition-colors"
-                                    >
-                                        Mulai Chat
-                                    </button>
-                                    <button
-                                        onClick={() => setShowOwenNotification(false)}
-                                        className="text-gray-300 hover:text-white text-xs transition-colors"
-                                    >
-                                        Nanti saja
-                                    </button>
-                                </div>
-                            </div>
-                            <button
-                                onClick={() => setShowOwenNotification(false)}
-                                className="text-gray-400 hover:text-white text-lg leading-none transition-colors"
-                            >
-                                ×
-                            </button>
-                        </div>
-                    </div>
+                {/* Owen Notification Popup - DIHAPUS */}
                 )}
             </section>            {/* Custom Styles */}
             <style jsx>{`

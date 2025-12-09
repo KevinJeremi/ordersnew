@@ -21,13 +21,19 @@ export class ChatBotAPI {
     this.baseUrl = baseUrl;
   }
 
-  async sendMessage(message: string): Promise<{ message: string; model: string }> {
+  async sendMessage(
+    message: string,
+    conversationHistory?: Array<{ role: string; content: string }>
+  ): Promise<{ message: string; model: string }> {
     const response = await fetch(`${this.baseUrl}/chat`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ message }),
+      body: JSON.stringify({
+        message,
+        conversationHistory
+      }),
     });
 
     const data = await response.json();
@@ -94,9 +100,9 @@ export const clearChatHistory = (): void => {
 
 // Predefined responses for common scenarios
 export const FALLBACK_RESPONSES = {
-  CONNECTION_ERROR: "Maaf, Orders AI tidak dapat terhubung ke server AI. Silakan coba lagi dalam beberapa saat.",
+  CONNECTION_ERROR: "Maaf, Orders AI tidak dapat terhubung ke server AI. Silakan coba lagi dalam beberapa saat atau hubungi tim kami via WhatsApp.",
   MODEL_ERROR: "Model AI tidak tersedia. Silakan coba lagi nanti.",
   GENERIC_ERROR: "Terjadi kesalahan pada Orders AI. Silakan coba lagi dalam beberapa saat.",
-  WELCOME: "👋 Halo! Saya Owen, asisten digital dari Orders. Saya siap membantu Anda dengan pertanyaan tentang layanan digital, teknologi, atau topik lainnya. Ada yang bisa saya bantu hari ini?",
+  WELCOME: "👋 Halo! Saya Orders AI, asisten digital dari Orders. Saya siap membantu Anda dengan pertanyaan tentang layanan digital, teknologi, atau topik lainnya. Ada yang bisa saya bantu hari ini?",
   THINKING: "Orders AI sedang memproses..."
 };
