@@ -24,19 +24,20 @@ export default function Header() {
         } else if (pathname === '/pricing') {
             setActiveSection('pricing');
         } else if (pathname === '/portfolio') {
-            setActiveSection('portfolio');
-        } else if (pathname === '/team') {
+            setActiveSection('portfolio');        } else if (pathname === '/team') {
             setActiveSection('team');
         } else if (pathname === '/contact') {
             setActiveSection('contact');
-        }
-    }, [pathname]);    // Navigation items for mobile menu
+        } else if (pathname === '/chatbot-test') {
+            setActiveSection('chatbot-test');
+        }}, [pathname]);    // Navigation items for mobile menu
     const navigationItems = [
         { href: "/dashboard", label: "Layanan Kami", section: "dashboard", isExternal: true },
         { href: "/pricing", label: "Harga", section: "pricing", isExternal: true },
         { href: "/portfolio", label: "Portofolio", section: "portfolio", isExternal: true },
         { href: "/team", label: "Tim Kami", section: "team", isExternal: true },
-        { href: "/contact", label: "Kontak", section: "contact", isExternal: true }
+        { href: "/contact", label: "Kontak", section: "contact", isExternal: true },
+        { href: "/chatbot-test", label: "🤖 Test AI", section: "chatbot-test", isExternal: true }
     ];
 
     // Handle scroll for solid background effect

@@ -41,6 +41,13 @@ export default function PortfolioSection() {
             technologies: ["Django", "Python", "JavaScript"],
             image: "/images/portofolio/TNL.png",
             imageAlt: "Tanah Nyiur Lestari Website Screenshot"
+        },
+        {
+            title: "TRC Blockchain - Waste Management System",
+            description: "TRC (Tonsea Recycle Center) adalah sistem manajemen sampah inovatif yang mengintegrasikan teknologi blockchain untuk memberikan reward berupa token TRC kepada pengguna yang berkontribusi dalam program daur ulang sampah.",
+            technologies: ["Blockchain", "React", "Node.js", "Web3"],
+            image: "/images/portofolio/TRC.png",
+            imageAlt: "TRC Blockchain Waste Management System Screenshot"
         }, {
             title: "Solideo Kuliner App",
             description: "Aplikasi pemesanan makanan dengan sistem real-time ordering dan manajemen resto yang terintegrasi.",
