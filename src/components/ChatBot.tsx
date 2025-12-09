@@ -158,14 +158,14 @@ export default function ChatBot({ className = '' }: ChatBotProps) {
                             >
                                 <div
                                     className={`max-w-[85%] sm:max-w-[80%] rounded-large px-4 py-3 text-sm shadow-sm ${message.role === 'user'
-                                            ? 'bg-gradient-to-r from-primary to-secondary text-white'
-                                            : 'bg-white text-dark border border-gray-100'
+                                        ? 'bg-gradient-to-r from-primary to-secondary text-white'
+                                        : 'bg-white text-dark border border-gray-100'
                                         }`}
                                 >
                                     <div className="whitespace-pre-wrap">{message.content}</div>
                                     <div className={`text-xs mt-2 ${message.role === 'user'
-                                            ? 'text-blue-100'
-                                            : 'text-medium'
+                                        ? 'text-blue-100'
+                                        : 'text-medium'
                                         }`}>
                                         {formatTimestamp(message.timestamp)}
                                         {message.role === 'assistant' && (
