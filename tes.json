@@ -1,0 +1,90 @@
+{
+    "nodes": [
+      {
+        "parameters": {
+          "url": "https://gnews.io/api/v4/search?q=sampah plastik&token=YOUR_GNEWS_API_KEY",
+          "responseFormat": "json"
+        },
+        "id": "GNews",
+        "name": "Get GNews",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 1,
+        "position": [300, 200]
+      },
+      {
+        "parameters": {
+          "batchSize": 1
+        },
+        "id": "SplitInBatches",
+        "name": "SplitInBatches",
+        "type": "n8n-nodes-base.splitInBatches",
+        "typeVersion": 1,
+        "position": [500, 200]
+      },
+      {
+        "parameters": {
+          "url": "https://api-inference.huggingface.co/models/distilbert-base-uncased-finetuned-sst-2-english",
+          "method": "POST",
+          "jsonParameters": true,
+          "options": {},
+          "bodyParametersJson": "{\"inputs\": \"={{$json[\"title\"]}}\"}",
+          "headerParametersJson": "{\"Authorization\": \"Bearer YOUR_HUGGINGFACE_API_TOKEN\"}"
+        },
+        "id": "Sentiment",
+        "name": "Sentiment Analysis",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 1,
+        "position": [700, 200]
+      },
+      {
+        "parameters": {
+          "url": "https://yourwebsite.com/api/sentimen/",
+          "method": "POST",
+          "jsonParameters": true,
+          "options": {},
+          "bodyParametersJson": "{\n  \"source\": \"gnews\",\n  \"judul\": \"={{$node[\"SplitInBatches\"].json[\"title\"]}}\",\n  \"deskripsi\": \"={{$node[\"SplitInBatches\"].json[\"description\"]}}\",\n  \"sentimen\": \"={{$json[\"0\"][\"label\"]}}\",\n  \"score\": \"={{$json[\"0\"][\"score\"]}}\"\n}"
+        },
+        "id": "KirimKeWeb",
+        "name": "Send to Web API",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 1,
+        "position": [900, 200]
+      }
+    ],
+    "connections": {
+      "Get GNews": {
+        "main": [
+          [
+            {
+              "node": "SplitInBatches",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "SplitInBatches": {
+        "main": [
+          [
+            {
+              "node": "Sentiment Analysis",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Sentiment Analysis": {
+        "main": [
+          [
+            {
+              "node": "Send to Web API",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    }
+  }
+  

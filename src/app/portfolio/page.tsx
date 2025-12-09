@@ -1,11 +1,11 @@
 'use client';
 
+import { Suspense } from 'react';
 import Header from '@/components/Header';
 import PortfolioSection from '@/components/PortfolioSection';
 import Footer from '@/components/Footer';
-import ScrollToTop from '@/components/ScrollToTop';
 
-export default function PortfolioPage() {
+function PortfolioContent() {
     return (
         <>
             <Header />            {/* Main Content */}
@@ -40,10 +40,15 @@ export default function PortfolioPage() {
                     </div>
                 </section>{/* Portfolio Section */}
                 <PortfolioSection />
-            </main>
-
-            <Footer />
-            <ScrollToTop />
+            </main>            <Footer />
         </>
+    );
+}
+
+export default function PortfolioPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <PortfolioContent />
+        </Suspense>
     );
 }

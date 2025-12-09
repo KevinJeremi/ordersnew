@@ -7,48 +7,55 @@ import styles from '../app/styles.module.css';
 const TeamSection = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
-
   // Team members data moved before useEffect
   const teamMembers = [
     {
       name: 'Aldy Loing',
       position: 'Team Leader',
-      image: '/images/team/p1.png'
+      image: '/images/team/p1.png',
+      instagram: 'https://www.instagram.com/aldy_loing/profilecard/?igsh=b2R6cHI1N2NmMjZ5'
     },
     {
       name: 'Owen Kalumata',
       position: 'Project Manager',
-      image: '/images/team/p5.png'
+      image: '/images/team/p5.png',
+      instagram: 'https://www.instagram.com/_owenklmt?igsh=MWR2dWpuMG43aHd1NA=='
     },
     {
       name: 'Friestha Arikalang',
       position: 'Team Creative',
-      image: '/images/team/p4.png'
+      image: '/images/team/p4.png',
+      instagram: 'https://www.instagram.com/fristaarikalang?igsh=cmhleTQ2ZHV6bzMy'
     },
     {
       name: 'Jazel Kandou',
       position: 'Quality Control',
-      image: '/images/team/p3.png'
+      image: '/images/team/p3.png',
+      instagram: 'https://www.instagram.com/jazyyray?igsh=MWduNWVsM2E2bTFrZA=='
     },
     {
       name: 'Kevin Pesik',
       position: 'Developer',
-      image: '/images/team/p2.png'
+      image: '/images/team/p2.png',
+      instagram: 'https://www.instagram.com/lac_kvn?igsh=MTZhOG91YTQzbHlpZA%3D%3D&utm_source=qr'
     },
     {
       name: 'Rizky Mema',
       position: 'UI/UX Designer',
-      image: '/images/team/p7.png'
+      image: '/images/team/p7.png',
+      instagram: 'https://www.instagram.com/rizkymema?igsh=cGJ5NjBuZm41NXc2'
     },
     {
       name: 'Natasya Lumingkewas',
       position: 'Finance Officer',
-      image: '/images/team/p10.png'
+      image: '/images/team/p10.png',
+      instagram: 'https://www.instagram.com/ntsylumingkewas?igsh=MW8zczIxZXM5OTF3cQ%3D%3D&utm_source=qr'
     },
     {
       name: 'Giordyano Anhar',
       position: 'Creative Director',
-      image: '/images/team/p8.png'
+      image: '/images/team/p8.png',
+      instagram: 'https://www.instagram.com/gioanhar?igsh=N3RheXJmN2J2dXQz&utm_source=qr'
     }
   ];
 
@@ -168,7 +175,13 @@ const TeamSection = () => {
                           </div>
                         </div>                        {/* Instagram Link */}
                         <div className="flex justify-center">
-                          <a href="#" className="group/social relative" aria-label="Instagram">
+                          <a 
+                            href={member.instagram} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="group/social relative" 
+                            aria-label={`Follow ${member.name} on Instagram`}
+                          >
                             <div className="w-12 h-12 bg-gradient-to-br from-[#FF7A00]/10 to-[#FF7A00]/5 hover:from-[#FF7A00] hover:to-[#FF7A00]/80 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg group-hover/social:shadow-[#FF7A00]/25">
                               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#FF7A00] group-hover/social:text-white transition-colors duration-300">
                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -237,7 +250,13 @@ const TeamSection = () => {
                   </div>
                 </div>                {/* Instagram Link */}
                 <div className="flex justify-center">
-                  <a href="#" className="group/social relative" aria-label="Instagram">
+                  <a 
+                    href={member.instagram} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="group/social relative" 
+                    aria-label={`Follow ${member.name} on Instagram`}
+                  >
                     <div className="w-10 h-10 bg-gradient-to-br from-[#FF7A00]/10 to-[#FF7A00]/5 hover:from-[#FF7A00] hover:to-[#FF7A00]/80 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg group-hover/social:shadow-[#FF7A00]/25">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#FF7A00] group-hover/social:text-white transition-colors duration-300">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>

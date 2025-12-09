@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paket Company - Website Profesional untuk Bisnis Anda</title>
+    <meta name="description" content="Tingkatkan citra perusahaan dengan website profesional yang meyakinkan klien sejak detik pertama. Paket lengkap dengan fitur bisnis premium.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#3b82f6',
+                        accent: '#1d4ed8',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        .testimonial-carousel {
+            scroll-snap-type: x mandatory;
+        }
+        .testimonial-slide {
+            scroll-snap-align: start;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary">Company<span class="text-accent">Pro</span></a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#fitur" class="hover:text-accent transition">Fitur</a>
+                <a href="#portfolio" class="hover:text-accent transition">Portfolio</a>
+                <a href="#kenapa-kami" class="hover:text-accent transition">Kenapa Kami</a>
+                <a href="#testimoni" class="hover:text-accent transition">Testimoni</a>
+                <a href="#faq" class="hover:text-accent transition">FAQ</a>
+                <a href="#harga" class="hover:text-accent transition">Harga</a>
+            </nav>
+            <button class="md:hidden focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-primary to-accent text-white py-20">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0 animate-fade-in">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Tingkatkan Citra Perusahaan Anda</h1>
+                <p class="text-xl mb-8 opacity-90">Website profesional yang meyakinkan klien sejak detik pertama.</p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#kontak" class="bg-white text-primary font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition text-center">Hubungi Kami</a>
+                    <a href="#portfolio" class="border-2 border-white text-white font-semibold px-6 py-3 rounded-lg hover:bg-white hover:text-primary transition text-center">Lihat Demo</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center animate-fade-in">
+                <img src="https://via.placeholder.com/500x350" alt="Website Company Mockup" class="rounded-lg shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- Fitur Section -->
+    <section id="fitur" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Termasuk dalam Paket</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Fitur 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-mobile-alt text-accent text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Responsive Pro</h3>
+                            <p class="text-gray-600">Tampilan sempurna di semua perangkat, dari desktop hingga smartphone.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fitur 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-building text-accent text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Company Profile</h3>
+                            <p class="text-gray-600">Halaman profesional untuk memperkenalkan perusahaan dan tim Anda.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fitur 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-map-marked-alt text-accent text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Contact Form + Maps</h3>
+                            <p class="text-gray-600">Form kontak profesional dengan integrasi Google Maps untuk kemudahan akses.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fitur 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-search text-accent text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Basic SEO</h3>
+                            <p class="text-gray-600">Optimasi dasar untuk mesin pencari agar website mudah ditemukan.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fitur 5 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-lock text-accent text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">SSL & Domain Setup</h3>
+                            <p class="text-gray-600">Keamanan maksimal dengan SSL dan domain profesional untuk bisnis Anda.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fitur 6 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-sync-alt text-accent text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">3x Revisi</h3>
+                            <p class="text-gray-600">Ruang untuk penyempurnaan dengan 3 kali revisi desain.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Portfolio Kami</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
+                    <img src="https://via.placeholder.com/300x200" alt="Project 1" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">Website Perusahaan A</h3>
+                        <p class="text-gray-600 text-sm">Desain modern dengan fitur lengkap</p>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
+                    <img src="https://via.placeholder.com/300x200" alt="Project 2" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">Website Perusahaan B</h3>
+                        <p class="text-gray-600 text-sm">Tampilan elegan untuk bisnis properti</p>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
+                    <img src="https://via.placeholder.com/300x200" alt="Project 3" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">Website Perusahaan C</h3>
+                        <p class="text-gray-600 text-sm">Solusi digital untuk perusahaan hukum</p>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition transform hover:-translate-y-1">
+                    <img src="https://via.placeholder.com/300x200" alt="Project 4" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">Website Perusahaan D</h3>
+                        <p class="text-gray-600 text-sm">Platform perusahaan manufaktur</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kenapa Kami Section -->
+    <section id="kenapa-kami" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Kenapa Memilih Kami?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Value 1 -->
+                <div class="text-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition">
+                    <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-medal text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Kualitas Premium</h3>
+                    <p class="text-gray-600">Desain dan kode berkualitas tinggi yang memenuhi standar industri.</p>
+                </div>
+                
+                <!-- Value 2 -->
+                <div class="text-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition">
+                    <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-headset text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Dukungan Penuh</h3>
+                    <p class="text-gray-600">Tim support siap membantu Anda kapan saja selama proses pengembangan.</p>
+                </div>
+                
+                <!-- Value 3 -->
+                <div class="text-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition">
+                    <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-clock text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Tepat Waktu</h3>
+                    <p class="text-gray-600">Proyek selesai sesuai jadwal yang disepakati tanpa kompromi kualitas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoni Section -->
+    <section id="testimoni" class="py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Apa Kata Klien Kami?</h2>
+            <div class="relative">
+                <div class="testimonial-carousel flex overflow-x-auto pb-6 scrollbar-hide space-x-4">
+                    <!-- Testimoni 1 -->
+                    <div class="testimonial-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center mb-4">
+                            <img src="https://via.placeholder.com/50" alt="Client 1" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold">Budi Santoso</h4>
+                                <p class="text-gray-600 text-sm">Direktur, PT Maju Jaya</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">"Website yang dibuat sangat profesional dan membantu meningkatkan kredibilitas perusahaan kami. Proses pengerjaan cepat dan hasilnya melebihi ekspektasi."</p>
+                        <div class="mt-4 text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimoni 2 -->
+                    <div class="testimonial-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center mb-4">
+                            <img src="https://via.placeholder.com/50" alt="Client 2" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold">Anita Wijaya</h4>
+                                <p class="text-gray-600 text-sm">Marketing Manager, CV Sejahtera</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">"Tim sangat responsif dan memahami kebutuhan bisnis kami. Website yang dihasilkan tidak hanya indah tetapi juga fungsional untuk target pasar kami."</p>
+                        <div class="mt-4 text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimoni 3 -->
+                    <div class="testimonial-slide flex-shrink-0 w-full md:w-1/2 lg:w-1/3 bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-center mb-4">
+                            <img src="https://via.placeholder.com/50" alt="Client 3" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold">Dewi Kartika</h4>
+                                <p class="text-gray-600 text-sm">Owner, DeKha Fashion</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">"Sangat puas dengan layanan yang diberikan. Revisi ditangani dengan cepat dan profesional. Website kami sekarang menjadi aset berharga untuk bisnis."</p>
+                        <div class="mt-4 text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Pertanyaan Umum</h2>
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ 1 -->
+                <div class="mb-6 bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-toggle w-full text-left p-6 focus:outline-none">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-semibold text-lg">Berapa lama waktu pengerjaan website?</h3>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content px-6 pb-6 hidden">
+                        <p class="text-gray-600">Waktu pengerjaan standar untuk Paket Company adalah 10-14 hari kerja, tergantung kompleksitas konten yang Anda siapkan. Kami akan memberikan timeline yang lebih detail setelah diskusi kebutuhan.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="mb-6 bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-toggle w-full text-left p-6 focus:outline-none">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-semibold text-lg">Apakah revisi termasuk dalam paket?</h3>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content px-6 pb-6 hidden">
+                        <p class="text-gray-600">Ya, Paket Company mencakup 3 kali revisi desain setelah website pertama kali diserahkan. Revisi tambahan dapat dibicarakan dengan tim kami dengan biaya tambahan yang disepakati.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="mb-6 bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-toggle w-full text-left p-6 focus:outline-none">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-semibold text-lg">Apakah hosting dan domain termasuk?</h3>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content px-6 pb-6 hidden">
+                        <p class="text-gray-600">Domain dan hosting tidak termasuk dalam harga dasar paket, namun kami bisa membantu Anda mengurusnya. Kami menawarkan paket hosting premium khusus dengan performa optimal untuk website perusahaan.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="mb-6 bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="faq-toggle w-full text-left p-6 focus:outline-none">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-semibold text-lg">Bagaimana proses pembayarannya?</h3>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </div>
+                    </button>
+                    <div class="faq-content px-6 pb-6 hidden">
+                        <p class="text-gray-600">Pembayaran dilakukan dalam 2 tahap: 50% di awal sebagai DP saat kontrak ditandatangani, dan 50% sisanya setelah website selesai dan sebelum serah terima. Kami menerima transfer bank dan pembayaran digital.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="harga" class="py-16 bg-gradient-to-r from-primary to-accent text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-2xl overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8 md:p-10 bg-gradient-to-b from-primary to-accent">
+                        <h2 class="text-2xl font-bold mb-2">Paket Company</h2>
+                        <p class="text-xl font-semibold mb-6">Mulai dari <span class="text-3xl">Rp 750.000</span></p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                <span>Website Responsive Profesional</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                <span>Halaman Company Profile</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                <span>Form Kontak + Google Maps</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                <span>Optimasi SEO Dasar</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                <span>Setup Domain & SSL (opsional)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                <span>3x Revisi Desain</span>
+                            </li>
+                        </ul>
+                        <a href="#kontak" class="block w-full bg-white text-primary text-center font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition">Pesan Sekarang</a>
+                    </div>
+                    <div class="md:w-1/2 p-8 md:p-10 text-gray-800">
+                        <h3 class="text-xl font-bold mb-4">Butuh Fitur Tambahan?</h3>
+                        <p class="mb-6">Kami menyediakan berbagai add-on untuk meningkatkan fungsionalitas website Anda:</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-plus-circle text-accent mt-1 mr-2"></i>
+                                <div>
+                                    <h4 class="font-semibold">Halaman Blog</h4>
+                                    <p class="text-sm text-gray-600">+ Rp 250.000</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-plus-circle text-accent mt-1 mr-2"></i>
+                                <div>
+                                    <h4 class="font-semibold">Galeri Produk/Jasa</h4>
+                                    <p class="text-sm text-gray-600">+ Rp 350.000</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-plus-circle text-accent mt-1 mr-2"></i>
+                                <div>
+                                    <h4 class="font-semibold">Integrasi Media Sosial</h4>
+                                    <p class="text-sm text-gray-600">+ Rp 150.000</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-plus-circle text-accent mt-1 mr-2"></i>
+                                <div>
+                                    <h4 class="font-semibold">Advanced SEO</h4>
+                                    <p class="text-sm text-gray-600">+ Rp 300.000</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontak" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Hubungi Kami</h2>
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="lg:w-1/2">
+                    <form class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 mb-2">Nama Lengkap</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent">
+                        </div>
+                        <div class="mb-4">
+                            <label for="company" class="block text-gray-700 mb-2">Perusahaan</label>
+                            <input type="text" id="company" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent">
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="block text-gray-700 mb-2">Pesan</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-accent text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition">Kirim Pesan</button>
+                    </form>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                        <div class="h-64 mb-6 rounded-lg overflow-hidden">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.923521354329!2d107.60873431529424!3d-6.902394769348088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e64a1e6a1093%3A0x1e446500e8a7e221!2sBandung%20City%20Hall!5e0!3m2!1sen!2sid!4v1621234567890!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-accent mt-1 mr-3"></i>
+                                <p>Jl. Merdeka No. 10, Bandung, Jawa Barat</p>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone-alt text-accent mr-3"></i>
+                                <p>+62 812-3456-7890</p>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-accent mr-3"></i>
+                                <p>info@companypro.id</p>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-clock text-accent mr-3"></i>
+                                <p>Senin-Jumat: 09.00-17.00 WIB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-2xl font-bold text-white">Company<span class="text-accent">Pro</span></a>
+                    <p class="mt-2 text-gray-400">Solusi Website Profesional untuk Bisnis Anda</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2023 CompanyPro. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqContent = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                faqContent.classList.toggle('hidden');
+                icon.classList.toggle('transform');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple testimonial carousel
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial-slide');
+        
+        function showTestimonial(index) {
+            testimonials.forEach((testimonial, i) => {
+                testimonial.style.display = i === index ? 'block' : 'none';
+            });
+        }
+        
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }
+        
+        // Auto-rotate testimonials
+        setInterval(nextTestimonial, 5000);
+        
+        // Initialize
+        showTestimonial(0);
+    </script>
+</body>
+</html>
