@@ -14,16 +14,9 @@
     "@react-three/fiber": "^9.1.2",
     "@types/three": "^0.177.0",
     "emailjs-com": "^3.2.0",
-<<<<<<< HEAD
-    "framer-motion": "^12.16.0",
+    "framer-motion": "^12.23.12",
     "next": "15.3.6",
     "openai": "^4.77.3",
-=======
-    "framer-motion": "^12.23.12",
-    "groq-sdk": "^0.32.0",
-    "my-next-app": "file:",
-    "next": "15.3.2",
->>>>>>> d9b347a145e1982adbef0cb28c7047974dd041da
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
